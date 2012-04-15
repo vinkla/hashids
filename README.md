@@ -40,7 +40,7 @@ To encode a single number:
 	
 `$hash` is now going to be:
 
-	7kG
+	7OR
 
 To encode multiple numbers into one hash:
 
@@ -51,7 +51,7 @@ To encode multiple numbers into one hash:
 	
 `$hash` is now going to be:
 
-	mnsHQMurNSb
+	nEFOM6s7wI6
 	
 
 ### Decoding:
@@ -61,10 +61,10 @@ Hash decoding is done using the same salt value:
 	require_once('lib/hash_ids.php');
 	$hash_ids = new hash_ids('this is my salt');
 	
-	$first_hash = $hash_ids->decode('7kG');
+	$first_hash = $hash_ids->decode('7OR');
 	var_dump($first_hash);
 	
-	$second_hash = $hash_ids->decode('mnsHQMurNSb');
+	$second_hash = $hash_ids->decode('nEFOM6s7wI6');
 	var_dump($second_hash);
 	
 Output will be:
@@ -99,7 +99,7 @@ Let's for example look at the following code:
 	
 `$hash` will be:
 
-	hi71jie
+	jief5sd
 	
 You don't see any repeating patterns that might show there's 4 identical numbers in the hash.
 
@@ -112,7 +112,7 @@ Same with incremented numbers:
 	
 `$hash` will be :
 
-	6urs0I617ivuEfvI5iE
+	6uts5Iaf2s7hjSw16ho
 
 ## Bonus
 

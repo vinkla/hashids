@@ -8,8 +8,8 @@
 	class hash_ids {
 		
 		private $salt;
-		private $alphabet = '-023456789abdeghjklmnopqrtvwxyzABDEGHJKLMNOPQRTVWXYZ';
-		private $separators = 'fF1uUsSiIcC';
+		private $alphabet = '-023456789abdegjklmnopqrtvwxyzABDEGJKLMNOPQRTVWXYZ';
+		private $separators = 'fF1uUsSiIcChH';
 		
 		function __construct($salt = '') {
 			
