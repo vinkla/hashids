@@ -2,6 +2,7 @@
 	
 	// hash-ids 0.1.0
 	// (c) 2012 Ivan Akimov
+	// https://github.com/ivanakimov/hash-ids
 	// hash-ids may be freely distributed under the MIT license.
 	
 	class hash_ids {
