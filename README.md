@@ -27,6 +27,8 @@ There is no limit to how many ids you can encode into one hash. The more ids you
 
 ## Sample Usage
 
+All integers are expected to be positive.
+
 ### Encoding:
 
 To encode a single number:
@@ -38,7 +40,7 @@ To encode a single number:
 	
 `$hash` is now going to be:
 
-	8dL
+	7kG
 
 To encode multiple numbers into one hash:
 
@@ -49,7 +51,7 @@ To encode multiple numbers into one hash:
 	
 `$hash` is now going to be:
 
-	eWS8M81rhic
+	mnsHQMurNSb
 	
 
 ### Decoding:
@@ -59,10 +61,10 @@ Hash decoding is done using the same salt value:
 	require_once('lib/hash_ids.php');
 	$hash_ids = new hash_ids('this is my salt');
 	
-	$first_hash = $hash_ids->decode('8dL');
+	$first_hash = $hash_ids->decode('7kG');
 	var_dump($first_hash);
 	
-	$second_hash = $hash_ids->decode('eWS8M81rhic');
+	$second_hash = $hash_ids->decode('mnsHQMurNSb');
 	var_dump($second_hash);
 	
 Output will be:
@@ -97,7 +99,7 @@ Let's for example look at the following code:
 	
 `$hash` will be:
 
-	hu8fhU8
+	hi71jie
 	
 You don't see any repeating patterns that might show there's 4 identical numbers in the hash.
 
@@ -110,8 +112,8 @@ Same with incremented numbers:
 	
 `$hash` will be :
 
-	7f41mUmf2U816fbiqip
+	6urs0I617ivuEfvI5iE
 
 ## Bonus
 
-Since these hashes are most likely to be used in user-visible places, like the url, created hashes will not include basic curse words by design, like the f-bomb or "#2".
+Since these hashes are most likely to be used in user-visible places, like the url -- no matter the salt value, they will not make up basic curse words by design, like the f-bomb or "#2".

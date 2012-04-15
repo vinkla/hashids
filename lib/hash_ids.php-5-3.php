@@ -7,8 +7,8 @@
 	class hash_ids {
 		
 		private $salt;
-		private $alphabet = '-23456789abcdeghjklmnopqrtvwxyzABCDEGHJKLMNOPQRTVWXYZ';
-		private $separators = 'fF10uUsSiI';
+		private $alphabet = '-023456789abdeghjklmnopqrtvwxyzABDEGHJKLMNOPQRTVWXYZ';
+		private $separators = 'fF1uUsSiIcC';
 		
 		function __construct($salt = '') {
 			
@@ -35,6 +35,11 @@
 			
 			$args = func_get_args();
 			foreach ($args as $i => $arg) {
+				
+				if ($arg < 0) {
+					$ret = '';
+					break;
+				}
 				
 				if ($i) {
 					$params = array_slice($args, 0, $i);
@@ -66,11 +71,15 @@
 				
 				foreach ($hash_array as $i => $sub_hash) {
 					
-					$id = $this->_unhash($sub_hash, $alphabet);
-					$ret[] = $id;
-					
-					if ($i + 1 < sizeof($hash_array))
-						$alphabet = $this->_shuffle($alphabet, $this->salt . $sub_hash);
+					if ($sub_hash) {
+						
+						$id = $this->_unhash($sub_hash, $alphabet);
+						$ret[] = $id;
+						
+						if ($i + 1 < sizeof($hash_array))
+							$alphabet = $this->_shuffle($alphabet, $this->salt . $sub_hash);
+						
+					}
 					
 				}
 				
