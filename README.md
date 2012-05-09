@@ -97,7 +97,7 @@ array(4) {
 
 ## Security
 
-The primary purpose of this algorithm is to make ids look different. It's not meant or tested to be used as a security algorithm.
+The primary purpose of hashids is to make ids look different. It's not meant or tested to be used as a security algorithm.
 
 Having said that, this class does try to make these hashes un-guessable and unique.
 
