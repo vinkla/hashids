@@ -38,6 +38,8 @@ All integers are expected to be positive.
 To encode a single number:
 
 ```php
+<?php
+
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
@@ -51,6 +53,8 @@ $hash = $hashids->encode(12345);
 To encode multiple numbers into one hash:
 
 ```php
+<?php
+
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
@@ -66,6 +70,8 @@ $hash = $hashids->encode(683, 94108, 123, 5);
 Hash decoding is done using the same salt value:
 
 ```php
+<?php
+
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
@@ -104,6 +110,8 @@ Having said that, this class does try to make these hashes un-guessable and uniq
 Let's look at the following example:
 
 ```php
+<?php
+
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
@@ -119,6 +127,8 @@ You don't see any repeating patterns that might show there's 4 identical numbers
 Same with incremented numbers:
 
 ```php
+<?php
+
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
