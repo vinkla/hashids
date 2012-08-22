@@ -5,7 +5,7 @@ A small PHP class to generate YouTube-like hashes from one or many numbers. Use 
 
 [http://www.hashids.org/php/](http://www.hashids.org/php/)
 
-## What's it for?
+## What is it?
 
 **hashids** creates short, unique, decryptable hashes from unsigned integers.
 
