@@ -28,7 +28,7 @@ class hashids {
 			$this->alphabet = implode('', array_unique(str_split($alphabet)));
 		
 		if (strlen($this->alphabet) < 4)
-			throw new Exception('Alphabet must contain at least 4 unique characters', E_USER_WARNING);
+			throw new Exception('Alphabet must contain at least 4 unique characters');
 		
 		$this->seps = [];
 		foreach ($this->primes as $i => $prime) {
