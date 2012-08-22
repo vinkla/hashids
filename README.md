@@ -30,7 +30,7 @@ All integers need to be greater than or equal to zero.
 
 Examples below assume you have PHP 5.4 and above:
 
-## Sample Usage
+## Sample usage
 
 #### Encrypting one number
 
