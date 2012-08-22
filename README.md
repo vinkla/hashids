@@ -95,7 +95,7 @@ $numbers = $hashids->decrypt('x7yR');
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$hash = $hashids->encode(683, 94108, 123, 5);
+$hash = $hashids->encrypt(683, 94108, 123, 5);
 ```
 
 `$hash` is now going to be:
@@ -128,7 +128,7 @@ $numbers = $hashids->decrypt('z8pFrxLyCRah7');
 	
 #### Encrypting and specifying minimum hash length
 
-Here we encode integer 1, and set the minimum hash length to **17** (by default it's **0** -- meaning hashes will be the shortest possible length).
+Here we encrypt integer 1, and set the minimum hash length to **17** (by default it's **0** -- meaning hashes will be the shortest possible length).
 
 ```php
 <?php
@@ -136,7 +136,7 @@ Here we encode integer 1, and set the minimum hash length to **17** (by default 
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt', 17);
 
-$hash = $hashids->encode(1);
+$hash = $hashids->encrypt(1);
 ```
 
 `$hash` is now going to be:
@@ -171,7 +171,7 @@ Here we set the alphabet to consist of only four letters: "abcd"
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt', 0, 'abcd');
 
-$hash = $hashids->encode(1, 2, 3, 4, 5);
+$hash = $hashids->encrypt(1, 2, 3, 4, 5);
 ```
 
 `$hash` is now going to be:
@@ -191,7 +191,7 @@ Having said that, this algorithm does try to make these hashes unguessable and u
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$hash = $hashids->encode(5, 5, 5, 5);
+$hash = $hashids->encrypt(5, 5, 5, 5);
 ```
 
 You don't see any repeating patterns that might show there's 4 identical numbers in the hash:
@@ -206,7 +206,7 @@ Same with incremented numbers:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$hash = $hashids->encode(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+$hash = $hashids->encrypt(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 ```
 
 `$hash` will be :
@@ -221,11 +221,11 @@ $hash = $hashids->encode(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-var_dump($hashids->encode(1)); // MG
-var_dump($hashids->encode(2)); // eL
-var_dump($hashids->encode(3)); // o7
-var_dump($hashids->encode(4)); // 4R
-var_dump($hashids->encode(5)); // ag
+var_dump($hashids->encrypt(1)); // MG
+var_dump($hashids->encrypt(2)); // eL
+var_dump($hashids->encrypt(3)); // o7
+var_dump($hashids->encrypt(4)); // 4R
+var_dump($hashids->encrypt(5)); // ag
 ```
 
 ## Speed
