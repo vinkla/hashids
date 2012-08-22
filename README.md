@@ -242,7 +242,7 @@ If we do the same with 3 integers, for example: `$hashids->encrypt(10, 11, 12);`
 
 On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes about **0.75 seconds** to do the same with 1 integer, and **1.15 seconds** for 3 integers.
 
-*Sidnote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
+*Sidenote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
 
 #### What you could do to speed it up
 
