@@ -1,7 +1,14 @@
 <?php
 
+/* including hashids code */
 require_once('../lib/hashids.php-5-3.php');
+
+/* creating class object */
 $hashids = new hashids('this is my salt');
 
-var_dump($hashids->encrypt(45, 434, 1313, 99));
+/* encrypting several numbers into one hash */
+$hash = $hashids->encrypt(45, 434, 1313, 99);
+
+/* $hash is always a string */
+var_dump($hash);
 exit;

@@ -1,10 +1,17 @@
 <?php
 
+/* including hashids code */
 require_once('../lib/hashids.php-5-3.php');
-$hashids = new hashids('this is my salt', 30); /* using custom minimum hash length of 30 here */
 
-$hash = $hashids->encrypt(1337, 5, 77, 12345678);
+/* creating class object with hash length of 8 */
+$hashids = new hashids('this is my salt', 8);
+
+/* encrypting several numbers into one hash (length of hash is going to be at least 8) */
+$hash = $hashids->encrypt(1337, 5);
+
+/* decrypting the same hash */
 $numbers = $hashids->decrypt($hash);
 
+/* $numbers is always an array */
 var_dump($hash, $numbers);
 exit;
