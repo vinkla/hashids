@@ -1,11 +1,13 @@
 
 # hashids
 
-A small PHP class to generate YouTube-like hashes from one or many numbers. Use `hashids` when you do not want to expose your database ids to the user.
+A small PHP class to generate YouTube-like hashes from one or many numbers. Use **hashids** when you do not want to expose your database ids to the user.
+
+[http://www.hashids.org/php/](http://www.hashids.org/php/)
 
 ## What's it for?
 
-`hashids` creates short, unique, decryptable hashes from unsigned integers.
+**hashids** creates short, unique, decryptable hashes from unsigned integers.
 
 It was designed for websites to use in URL shortening, tracking stuff, or making pages private (or at least unguessable).
 
@@ -16,21 +18,21 @@ This algorithm tries to satisfy the following requirements:
 3. You should be able to specify minimum hash length.
 4. Hashes should not contain basic English curse words (since they are meant to appear in public places - like the URL).
 
-Instead of showing items as `1`, `2`, or `3`, you can show them as `U6dc`, `u87U`, and `HMou`.
+Instead of showing items as `1`, `2`, or `3`, you could show them as `U6dc`, `u87U`, and `HMou`.
 You don't have to store these hashes in the database, but can encrypt + decrypt on the fly.
 
-**All integers need to be greater than or equal to zero.**
+All integers need to be greater than or equal to zero.
 
 ## lib folder
 
 - Use `lib/hashids.php-5-3.php` if you have __PHP 5.3.*__
-- Use `lib/hashids.php` if you have __PHP 5.4.*__
+- Use `lib/hashids.php` if you have __PHP 5.4.*__ or higher
 
-Examples below assume you have PHP 5.4 and above.
+Examples below assume you have PHP 5.4 and above:
 
 ## Sample Usage
 
-#### Encrypting one number:
+#### Encrypting one number
 
 You can pass a unique salt value so your hashes differ from everyone else's. I use "**this is my salt**" as an example.
 
@@ -47,7 +49,7 @@ $hash = $hashids->encrypt(1234);
 	
 	x7yR
 	
-#### Decrypting a hash with the same salt:
+#### Decrypting
 
 Notice during decryption, same salt value is used:
 
@@ -66,8 +68,8 @@ $numbers = $hashids->decrypt('x7yR');
 		[0]=>
 		int(1234)
 	}
-	
-#### Decrypting a hash with a different salt:
+
+#### Decrypting with different salt
 
 Decryption will not work if salt is changed:
 
@@ -85,7 +87,7 @@ $numbers = $hashids->decrypt('x7yR');
 	array(0) {
 	}
 	
-#### Encrypting several numbers:
+#### Encrypting several numbers
 
 ```php
 <?php
@@ -100,7 +102,7 @@ $hash = $hashids->encode(683, 94108, 123, 5);
 	
 	z8pFrxLyCRah7
 	
-#### Decrypting is done the same way:
+#### Decrypting is done the same way
 
 ```php
 <?php
@@ -124,9 +126,9 @@ $numbers = $hashids->decrypt('z8pFrxLyCRah7');
 		int(5)
 	}
 	
-#### Encrypting and specifying minimum hash length:
+#### Encrypting and specifying minimum hash length
 
-Here we encode integer 1, and set the minimum hash length to be **17**. (By default it's **0** -- meaning hashes will be the shortest possible.)
+Here we encode integer 1, and set the minimum hash length to **17** (by default it's **0** -- meaning hashes will be the shortest possible length).
 
 ```php
 <?php
@@ -141,7 +143,7 @@ $hash = $hashids->encode(1);
 	
 	KR9AIXzUMGcR9AIXz
 	
-#### Decrypting is still the same way:
+#### Decrypting
 
 ```php
 <?php
@@ -159,7 +161,7 @@ $numbers = $hashids->decrypt('KR9AIXzUMGcR9AIXz');
 		int(1)
 	}
 	
-#### Specifying custom hash alphabet:
+#### Specifying custom hash alphabet
 
 Here we set the alphabet to consist of only four letters: "abcd"
 
@@ -178,10 +180,10 @@ $hash = $hashids->encode(1, 2, 3, 4, 5);
 	
 ## Randomness
 
-The primary purpose of hashids is to obfuscate ids. It's not meant or tested to be used as a security algorithm.
-Having said that, this class does try to make these hashes unguessable and unpredictable.
+The primary purpose of hashids is to obfuscate ids. It's not meant or tested to be used for security purposes or compression.
+Having said that, this algorithm does try to make these hashes unguessable and unpredictable:
 
-#### Repeating numbers:
+#### Repeating numbers
 
 ```php
 <?php
@@ -192,13 +194,9 @@ $hashids = new hashids('this is my salt');
 $hash = $hashids->encode(5, 5, 5, 5);
 ```
 
-`$hash` will be:
+You don't see any repeating patterns that might show there's 4 identical numbers in the hash:
 
 	GkIpCxSL
-	
-You don't see any repeating patterns that might show there's 4 identical numbers in the hash.
-
-#### Incrementing numbers:
 
 Same with incremented numbers:
 
@@ -223,11 +221,11 @@ $hash = $hashids->encode(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-var_dump($hashids->encode(1)); /* MG */
-var_dump($hashids->encode(2)); /* eL */
-var_dump($hashids->encode(3)); /* o7 */
-var_dump($hashids->encode(4)); /* 4R */
-var_dump($hashids->encode(5)); /* ag */
+var_dump($hashids->encode(1)); // MG
+var_dump($hashids->encode(2)); // eL
+var_dump($hashids->encode(3)); // o7
+var_dump($hashids->encode(4)); // 4R
+var_dump($hashids->encode(5)); // ag
 ```
 
 ## Speed
@@ -236,8 +234,8 @@ Even though speed is an important factor of every hashing algorithm, primary goa
 
 On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly **0.37 seconds** to:
 
-1. Encrypt 1000 hashes consisting of 1 integer: `$hashids->encrypt(12);`
-2. And decrypt these 1000 hashes back into integers: `$hashids->decrypt($hash);`
+1. Encrypt 1000 hashes consisting of 1 integer `$hashids->encrypt(12);`
+2. And decrypt these 1000 hashes back into integers `$hashids->decrypt($hash);` while ensuring they are valid
 
 If we do the same with 3 integers, for example: `$hashids->encrypt(10, 11, 12);`
 -- the number jumps up to **0.56 seconds** on the same machine.
@@ -248,8 +246,7 @@ On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes about **0.75 seconds*
 
 #### What you could do to speed it up
 
-**Usually people either encrypt or decrypt one hash per request, so the algorithm should already be fast enough for that.**
-
+Usually people either encrypt or decrypt one hash per request, so the algorithm should already be fast enough for that.
 However, there are still several things you could do:
 
 1. Wrap this class in your own, and cache hashes/numbers in static variables - so that per lifetime of a request, they would be remembered by PHP and hashids wouldn't have to recalcuate them.
@@ -260,8 +257,10 @@ However, there are still several things you could do:
 
 I wrote this class with the intent of placing these hashes in visible places - like the URL. If I create a unique hash for each user, it would be unfortunate if the hash ended up accidentally being a bad word. Imagine auto-creating a URL with hash for your user that looks like this - `http://example.com/user/a**hole`
 
-Therefore, this algorithm tries to avoid generating most common English curse words with the default alphabet.
-
+Therefore, this algorithm tries to avoid generating most common English curse words with the default alphabet. This is done by never placing the following letters next to each other:
+	
+	c, C, s, S, f, F, h, H, u, U, i, I, t, T
+	
 ## Changelog
 
 **0.1.2 - Current Stable**
