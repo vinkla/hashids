@@ -69,7 +69,7 @@ class hashids {
 				return $ret;
 		}
 		
-		return call_user_func_array([$this, '_encode'], [$numbers, $this->alphabet, $this->salt, $this->min_hash_length]);
+		return $this->_encode($numbers, $this->alphabet, $this->salt, $this->min_hash_length);
 		
 	}
 	
@@ -301,12 +301,6 @@ class hashids {
 		
 		return $ret;
 		
-	}
-	
-	private function _swap(&$value1, &$value2) {
-		$value1 = $value1 ^ $value2;
-		$value2 = $value1 ^ $value2;
-		$value1 = $value1 ^ $value2;
 	}
 	
 }
