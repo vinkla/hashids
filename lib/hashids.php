@@ -30,7 +30,7 @@ class hashids {
 		if (strlen($this->alphabet) < 4)
 			throw new Exception('Alphabet must contain at least 4 unique characters');
 		
-		$this->seps = [];
+		$this->guards = $this->seps = [];
 		foreach ($this->primes as $i => $prime) {
 			
 			if (isset($this->alphabet[$prime - 1])) {
@@ -41,18 +41,15 @@ class hashids {
 			
 		}
 		
-		$this->alphabet = str_replace(' ', '', $this->alphabet);
-		$this->guards = [];
-		
 		foreach ([0, 4, 8, 12] as $index) {
 			if (isset($this->seps[$index])) {
 				$this->guards[] = $this->seps[$index];
-				unset($this->seps[$index]);
+				array_splice($this->seps, $index, 1);
 			}
 		}
 		
+		$this->alphabet = str_replace(' ', '', $this->alphabet);
 		$this->alphabet = $this->_consistent_shuffle($this->alphabet, $this->salt);
-		$this->seps = array_merge($this->seps);
 		
 	}
 	
@@ -106,7 +103,7 @@ class hashids {
 				
 			}
 			
-			$alphabet = $this->_consistent_shuffle($alphabet, ord($lottery_char) & 12345 . $salt);
+			$alphabet = $this->_consistent_shuffle($alphabet, (ord($lottery_char) & 12345) . $salt);
 			$ret .= $this->_hash($number, $alphabet);
 			
 			if ($i + 1 < sizeof($numbers)) {
@@ -162,7 +159,7 @@ class hashids {
 		
 		$ret = [];
 		
-		if ($hash) {
+		if (strlen($hash)) {
 			
 			$original_hash = $hash;
 			
@@ -188,7 +185,7 @@ class hashids {
 					}
 					
 					if (isset($alphabet) && isset($lottery_char)) {
-						$alphabet = $this->_consistent_shuffle($alphabet, ord($lottery_char) & 12345 . $this->salt);
+						$alphabet = $this->_consistent_shuffle($alphabet, (ord($lottery_char) & 12345) . $this->salt);
 						$ret[] = $this->_unhash($sub_hash, $alphabet);
 					}
 					
@@ -251,14 +248,12 @@ class hashids {
 				$pos = $sorting_array[$i];
 				
 				if ($pos >= $alphabet_size)
-					$pos = $pos % $alphabet_size;
+					$pos %= $alphabet_size;
 				
 				$ret .= $alphabet_array[$pos];
-				unset($alphabet_array[$pos]);
-				$alphabet_array = array_merge($alphabet_array);
+				array_splice($alphabet_array, $pos, 1);
 				
-				$i++;
-				$i %= sizeof($sorting_array);
+				$i = ++$i % sizeof($sorting_array);
 				
 			}
 			
@@ -270,22 +265,21 @@ class hashids {
 	
 	private function _hash($input, $alphabet) {
 		
-		$ret = '';
+		$hash = '';
 		$alphabet_length = strlen($alphabet);
 		
 		do {
-			$rem = $input % $alphabet_length;
+			$hash = $alphabet[$input % $alphabet_length] . $hash;
 			$input = (int)($input / $alphabet_length);
-			$ret = $alphabet[$rem] . $ret;
 		} while ($input);
 		
-		return $ret;
+		return $hash;
 		
 	}
 	
 	private function _unhash($input, $alphabet) {
 		
-		$ret = 0;
+		$number = 0;
 		
 		if (strlen($input) && $alphabet) {
 			
@@ -294,12 +288,12 @@ class hashids {
 			
 			foreach ($input_chars as $i => $char) {
 				$pos = strpos($alphabet, $char);
-				$ret += $pos * pow($alphabet_length, (strlen($input) - $i - 1));
+				$number += $pos * pow($alphabet_length, (strlen($input) - $i - 1));
 			}
 			
 		}
 		
-		return $ret;
+		return $number;
 		
 	}
 	

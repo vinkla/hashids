@@ -1,13 +1,13 @@
 
 # hashids
 
-A small PHP class to generate YouTube-like hashes from one or many numbers. Use **hashids** when you do not want to expose your database ids to the user.
+A small PHP class to generate YouTube-like hashes from one or many numbers. Use hashids when you do not want to expose your database ids to the user.
 
 [http://www.hashids.org/php/](http://www.hashids.org/php/)
 
 ## What is it?
 
-**hashids** creates short, unique, decryptable hashes from unsigned integers.
+hashids (Hash ID's) creates short, unique, decryptable hashes from unsigned integers.
 
 It was designed for websites to use in URL shortening, tracking stuff, or making pages private (or at least unguessable).
 
@@ -47,7 +47,7 @@ $hash = $hashids->encrypt(1234);
 
 `$hash` is now going to be:
 	
-	x7yR
+	xEXn
 	
 #### Decrypting
 
@@ -59,7 +59,7 @@ Notice during decryption, same salt value is used:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$numbers = $hashids->decrypt('x7yR');
+$numbers = $hashids->decrypt('xEXn');
 ```
 
 `$numbers` is now going to be:
@@ -79,7 +79,7 @@ Decryption will not work if salt is changed:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my pepper');
 
-$numbers = $hashids->decrypt('x7yR');
+$numbers = $hashids->decrypt('xEXn');
 ```
 
 `$numbers` is now going to be:
@@ -100,7 +100,7 @@ $hash = $hashids->encrypt(683, 94108, 123, 5);
 
 `$hash` is now going to be:
 	
-	z8pFrxLyCRah7
+	zKphM54nuAyu5
 	
 #### Decrypting is done the same way
 
@@ -110,7 +110,7 @@ $hash = $hashids->encrypt(683, 94108, 123, 5);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$numbers = $hashids->decrypt('z8pFrxLyCRah7');
+$numbers = $hashids->decrypt('zKphM54nuAyu5');
 ```
 
 `$numbers` is now going to be:
@@ -141,7 +141,7 @@ $hash = $hashids->encrypt(1);
 
 `$hash` is now going to be:
 	
-	KR9AIXzUMGcR9AIXz
+	7rKjHrjiMRirLkHyr
 	
 #### Decrypting
 
@@ -151,7 +151,7 @@ $hash = $hashids->encrypt(1);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt', 17);
 
-$numbers = $hashids->decrypt('KR9AIXzUMGcR9AIXz');
+$numbers = $hashids->decrypt('7rKjHrjiMRirLkHyr');
 ```
 
 `$numbers` is now going to be:
@@ -196,7 +196,7 @@ $hash = $hashids->encrypt(5, 5, 5, 5);
 
 You don't see any repeating patterns that might show there's 4 identical numbers in the hash:
 
-	GkIpCxSL
+	GMh5SAt9
 
 Same with incremented numbers:
 
@@ -211,7 +211,7 @@ $hash = $hashids->encrypt(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 `$hash` will be :
 	
-	z7FXtaiRSkIpFrtYirSo
+	zEUzHySGIpuyhpF6Tasj
 	
 ### Incrementing number hashes:
 
@@ -221,11 +221,11 @@ $hash = $hashids->encrypt(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-var_dump($hashids->encrypt(1)); // MG
-var_dump($hashids->encrypt(2)); // eL
-var_dump($hashids->encrypt(3)); // o7
-var_dump($hashids->encrypt(4)); // 4R
-var_dump($hashids->encrypt(5)); // ag
+var_dump($hashids->encrypt(1)); // MR
+var_dump($hashids->encrypt(2)); // ed
+var_dump($hashids->encrypt(3)); // o9
+var_dump($hashids->encrypt(4)); // 4n
+var_dump($hashids->encrypt(5)); // a5
 ```
 
 ## Speed
@@ -284,3 +284,7 @@ Therefore, this algorithm tries to avoid generating most common English curse wo
 **0.1.0**
 	
 - First commit
+
+## License
+
+MIT License. See the `LICENSE` file.
