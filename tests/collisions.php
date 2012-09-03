@@ -8,7 +8,7 @@ $end_at = 15;
 /* this script will create hashes and check against each other to make sure there are no collisions */
 
 require_once('../lib/hashids.php-5-3.php');
-$hashids = new hashids('this is my salt', 0);
+$hashids = new hashids('this is my salt');
 
 $hash_array = array();
 

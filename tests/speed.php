@@ -19,7 +19,7 @@ function microtime_float() {
 $total = 0;
 $time_start = microtime_float();
 
-for ($i = $start_at; $i <= $end_at; $i++) {
+for ($i = $start_at; $i <= $end_at; $i++, $total++) {
 	
 	$numbers = array_fill(0, $number_of_ints_to_encrypt_at_once, $i);
 	
@@ -27,7 +27,6 @@ for ($i = $start_at; $i <= $end_at; $i++) {
 	$numbers = $hashids->decrypt($hash);
 	
 	echo $hash.' - '.implode(', ', $numbers)."\n";
-	$total++;
 	
 }
 
