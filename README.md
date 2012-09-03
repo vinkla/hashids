@@ -30,7 +30,7 @@ All integers need to be greater than or equal to zero.
 
 Examples below assume you have PHP 5.4 and above:
 
-## Sample usage
+## Usage
 
 #### Encrypting one number
 
@@ -42,12 +42,12 @@ You can pass a unique salt value so your hashes differ from everyone else's. I u
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$hash = $hashids->encrypt(1234);
+$hash = $hashids->encrypt(12345);
 ```
 
 `$hash` is now going to be:
 	
-	xEXn
+	ryKo
 	
 #### Decrypting
 
@@ -59,14 +59,14 @@ Notice during decryption, same salt value is used:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$numbers = $hashids->decrypt('xEXn');
+$numbers = $hashids->decrypt('ryKo');
 ```
 
 `$numbers` is now going to be:
 	
 	array(1) {
 		[0]=>
-		int(1234)
+		int(12345)
 	}
 
 #### Decrypting with different salt
@@ -79,7 +79,7 @@ Decryption will not work if salt is changed:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my pepper');
 
-$numbers = $hashids->decrypt('xEXn');
+$numbers = $hashids->decrypt('ryKo');
 ```
 
 `$numbers` is now going to be:
@@ -128,20 +128,20 @@ $numbers = $hashids->decrypt('zKphM54nuAyu5');
 	
 #### Encrypting and specifying minimum hash length
 
-Here we encrypt integer 1, and set the minimum hash length to **17** (by default it's **0** -- meaning hashes will be the shortest possible length).
+Here we encrypt integer 1, and set the minimum hash length to **8** (by default it's **0** -- meaning hashes will be the shortest possible length).
 
 ```php
 <?php
 
 require_once('lib/hashids.php');
-$hashids = new hashids('this is my salt', 17);
+$hashids = new hashids('this is my salt', 8);
 
 $hash = $hashids->encrypt(1);
 ```
 
 `$hash` is now going to be:
 	
-	7rKjHrjiMRirLkHyr
+	rjiMRirL
 	
 #### Decrypting
 
@@ -149,9 +149,9 @@ $hash = $hashids->encrypt(1);
 <?php
 
 require_once('lib/hashids.php');
-$hashids = new hashids('this is my salt', 17);
+$hashids = new hashids('this is my salt', 8);
 
-$numbers = $hashids->decrypt('7rKjHrjiMRirLkHyr');
+$numbers = $hashids->decrypt('rjiMRirL');
 ```
 
 `$numbers` is now going to be:
@@ -284,6 +284,12 @@ Therefore, this algorithm tries to avoid generating most common English curse wo
 **0.1.0**
 	
 - First commit
+
+## Contact
+
+Follow me [@IvanAkimov](http://twitter.com/ivanakimov)
+
+Or [http://ivanakimov.com](http://ivanakimov.com)
 
 ## License
 
