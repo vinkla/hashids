@@ -263,7 +263,14 @@ Therefore, this algorithm tries to avoid generating most common English curse wo
 	
 ## Changelog
 
-**0.1.2 - Current Stable**
+**0.1.3 - Current Stable**
+
+	Warning: If you are using 0.1.2 or below, updating to this version will change your hashes.
+
+- Updated default alphabet
+- Constructor removes duplicate characters for default alphabet as well
+
+**0.1.2**
 
 	Warning: If you are using 0.1.1 or below, updating to this version will change your hashes.
 

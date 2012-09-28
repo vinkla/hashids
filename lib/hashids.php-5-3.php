@@ -11,9 +11,9 @@
 
 class hashids {
 	
-	public $version = '0.1.2';
+	public $version = '0.1.3';
 	
-	private $alphabet = 'xcS4F6h89aUbidefI7fjkyunopqrsgCYE5GHTCKLHMtARXz';
+	private $alphabet = 'xcS4F6h89aUbideAI7tkynuopqrXCgTE5GBKHLMjfRsz';
 	private $primes = array(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43);
 	private $min_hash_length = 0;
 	
@@ -25,7 +25,9 @@ class hashids {
 			$this->min_hash_length = (int)$min_hash_length;
 		
 		if ($alphabet)
-			$this->alphabet = implode('', array_unique(str_split($alphabet)));
+			$this->alphabet = $alphabet;
+		
+		$this->alphabet = implode('', array_unique(str_split($this->alphabet)));
 		
 		if (strlen($this->alphabet) < 4)
 			throw new Exception('Alphabet must contain at least 4 unique characters');
