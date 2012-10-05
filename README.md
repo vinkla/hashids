@@ -47,7 +47,7 @@ $hash = $hashids->encrypt(12345);
 
 `$hash` is now going to be:
 	
-	ryKo
+	ryBo
 	
 #### Decrypting
 
@@ -59,7 +59,7 @@ Notice during decryption, same salt value is used:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$numbers = $hashids->decrypt('ryKo');
+$numbers = $hashids->decrypt('ryBo');
 ```
 
 `$numbers` is now going to be:
@@ -79,7 +79,7 @@ Decryption will not work if salt is changed:
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my pepper');
 
-$numbers = $hashids->decrypt('ryKo');
+$numbers = $hashids->decrypt('ryBo');
 ```
 
 `$numbers` is now going to be:
@@ -100,7 +100,7 @@ $hash = $hashids->encrypt(683, 94108, 123, 5);
 
 `$hash` is now going to be:
 	
-	zKphM54nuAyu5
+	zBphL54nuMyu5
 	
 #### Decrypting is done the same way
 
@@ -110,7 +110,7 @@ $hash = $hashids->encrypt(683, 94108, 123, 5);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-$numbers = $hashids->decrypt('zKphM54nuAyu5');
+$numbers = $hashids->decrypt('zBphL54nuMyu5');
 ```
 
 `$numbers` is now going to be:
@@ -141,7 +141,7 @@ $hash = $hashids->encrypt(1);
 
 `$hash` is now going to be:
 	
-	rjiMRirL
+	b9iLXiAa
 	
 #### Decrypting
 
@@ -151,7 +151,7 @@ $hash = $hashids->encrypt(1);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt', 8);
 
-$numbers = $hashids->decrypt('rjiMRirL');
+$numbers = $hashids->decrypt('b9iLXiAa');
 ```
 
 `$numbers` is now going to be:
@@ -196,7 +196,7 @@ $hash = $hashids->encrypt(5, 5, 5, 5);
 
 You don't see any repeating patterns that might show there's 4 identical numbers in the hash:
 
-	GMh5SAt9
+	GLh5SMs9
 
 Same with incremented numbers:
 
@@ -211,7 +211,7 @@ $hash = $hashids->encrypt(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 `$hash` will be :
 	
-	zEUzHySGIpuyhpF6Tasj
+	zEUzfySGIpuyhpF6HaC7
 	
 ### Incrementing number hashes:
 
@@ -221,7 +221,7 @@ $hash = $hashids->encrypt(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 require_once('lib/hashids.php');
 $hashids = new hashids('this is my salt');
 
-var_dump($hashids->encrypt(1)); // MR
+var_dump($hashids->encrypt(1)); // LX
 var_dump($hashids->encrypt(2)); // ed
 var_dump($hashids->encrypt(3)); // o9
 var_dump($hashids->encrypt(4)); // 4n
@@ -267,8 +267,8 @@ Therefore, this algorithm tries to avoid generating most common English curse wo
 
 	Warning: If you are using 0.1.2 or below, updating to this version will change your hashes.
 
-- Updated default alphabet
-- Constructor removes duplicate characters for default alphabet as well
+- Updated default alphabet (thanks to [@speps](https://github.com/speps))
+- Constructor removes duplicate characters for default alphabet as well (thanks to [@speps](https://github.com/speps))
 
 **0.1.2**
 
