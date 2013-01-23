@@ -3,7 +3,7 @@ language: php
 php:
   - 5.4
 
-script: phpunit
+script: phpunit --coverage-text
 
 notifications:
   email:
