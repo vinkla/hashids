@@ -4,7 +4,7 @@
 require_once('../lib/hashids.php-5-3.php');
 
 /* creating class object */
-$hashids = new hashids('this is my salt');
+$hashids = new Hashids('this is my salt');
 
 /* encrypting several numbers into one hash */
 $hash = $hashids->encrypt(45, 434, 1313, 99);
