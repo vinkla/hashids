@@ -2,3 +2,9 @@ language: php
 
 php:
   - 5.4
+
+script: phpunit
+
+notifications:
+  email:
+    - ivanakimov.com@gmail.com
