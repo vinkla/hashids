@@ -60,6 +60,11 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 	
 	c, C, s, S, f, F, h, H, u, U, i, I, t, T
 	
+### Notes
+
+- If you want to squeeze out even more performance, set a shorter alphabet. Hashes will be less random and longer, but calculating them will be faster.
+- Since version 0.2.0, speed has been improved so be careful using cache now - it might actually take longer to pull from memory.
+
 ### Changelog
 
 **0.2.0 -- Current Stable**
