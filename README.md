@@ -78,6 +78,7 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 - Basic English curse words will now be avoided even with custom alphabet
 - Class name changed from `hashids` to `Hashids`
 - New unit tests with [PHPUnit](https://github.com/sebastianbergmann/phpunit/) (requires latest PHP)
+- Composer package at packagist: [https://packagist.org/packages/hashids/hashids](https://packagist.org/packages/hashids/hashids)
 - _Minor:_ a bit smaller code overall -- more motivation to port to other languages :P
 
 **0.1.3**
