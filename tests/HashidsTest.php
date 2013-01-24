@@ -26,13 +26,13 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function testCollisions() {
 		
-		foreach ([
+		foreach (array(
 			$this->hashids,
 			$this->hashids_min_length,
 			$this->hashids_alphabet
-		] as $hashids) {
+		) as $hashids) {
 			
-			$hashes = [];
+			$hashes = array();
 			
 			/* encrypt one number like [123] */
 			
@@ -48,13 +48,13 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function testMultiCollisions() {
 		
-		foreach ([
+		foreach (array(
 			$this->hashids,
 			$this->hashids_min_length,
 			$this->hashids_alphabet
-		] as $hashids) {
+		) as $hashids) {
 			
-			$hashes = [];
+			$hashes = array();
 			$max_id = (int)($this->max_id / 3);
 			
 			/* encrypt multiple numbers like [1, 2, 3] */
@@ -73,7 +73,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function testMinHashLength() {
 		
-		$hashes = [];
+		$hashes = array();
 		
 		for ($i = 0; $i != $this->max_id; $i++) {
 			
@@ -89,7 +89,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function testRandomHashesDecryption() {
 		
-		$corrupt = $hashes = [];
+		$corrupt = $hashes = array();
 		
 		for ($i = 0; $i != $this->max_id; $i++) {
 			
@@ -106,7 +106,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 				
 				/* could've accidentally generated correct hash, try to encrypt */
 				
-				$hash = call_user_func_array([$this->hashids, 'encrypt'], $numbers);
+				$hash = call_user_func_array(array($this->hashids, 'encrypt'), $numbers);
 				if ($hash != $random_hash)
 					$corrupt[] = $random_hash;
 				
@@ -120,7 +120,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function testCustomAlphabet() {
 		
-		$hashes = [];
+		$hashes = array();
 		$alphabet_array = str_split($this->custom_alphabet);
 		
 		for ($i = 0; $i != $this->max_id; $i++) {
