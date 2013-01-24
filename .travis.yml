@@ -5,7 +5,3 @@ php:
   - "5.4"
 
 script: phpunit tests/HashidsTest.php
-
-notifications:
-  email:
-    - ivanakimov.com@gmail.com
