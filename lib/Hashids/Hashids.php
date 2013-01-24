@@ -168,20 +168,23 @@ class Hashids {
 			$i = 1;
 		
 		$hash_breakdown = $hash_array[$i];
-		
-		$lottery = $hash_breakdown[0];
-		$hash_breakdown = substr($hash_breakdown, 1);
-		
-		$hash_breakdown = str_replace(str_split($this->seps), ' ', $hash_breakdown);
-		$hash_array = explode(' ', $hash_breakdown);
-		
-		foreach ($hash_array as $sub_hash) {
-			$alphabet = $this->_consistent_shuffle($alphabet, substr($lottery . $this->salt . $alphabet, 0, strlen($alphabet)));
-			$ret[] = $this->_unhash($sub_hash, $alphabet);
+		if (isset($hash_breakdown[0])) {
+			
+			$lottery = $hash_breakdown[0];
+			$hash_breakdown = substr($hash_breakdown, 1);
+			
+			$hash_breakdown = str_replace(str_split($this->seps), ' ', $hash_breakdown);
+			$hash_array = explode(' ', $hash_breakdown);
+			
+			foreach ($hash_array as $sub_hash) {
+				$alphabet = $this->_consistent_shuffle($alphabet, substr($lottery . $this->salt . $alphabet, 0, strlen($alphabet)));
+				$ret[] = $this->_unhash($sub_hash, $alphabet);
+			}
+			
+			if (call_user_func_array(array($this, 'encrypt'), $ret) != $hash)
+				$ret = array();
+			
 		}
-		
-		if (call_user_func_array(array($this, 'encrypt'), $ret) != $hash)
-			$ret = array();
 		
 		return $ret;
 		
