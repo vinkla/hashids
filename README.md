@@ -3,20 +3,39 @@
 
 ### Full Documentation
 
-A small PHP class to generate YouTube-like hashes from numbers. Read more at [http://www.hashids.org/php/](http://www.hashids.org/php/)
+A small PHP class to generate YouTube-like hashes from numbers. Read documentation at [http://www.hashids.org/php/](http://www.hashids.org/php/)
 
-### PHP Versions
+[![Build Status](https://secure.travis-ci.org/ivanakimov/hashids.php.png)](http://travis-ci.org/ivanakimov/hashids.php)
 
-- Use `lib/hashids.php-5-3.php` for __PHP 5.3.*__
-- Use `lib/hashids.php` for __PHP 5.4.*__
+### Installation
+
+You can either `require()` the lib yourself, or use [Composer](http://getcomposer.org) -- packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package:
+
+In your `composer.json` file use:
+
+``` json
+{
+    "require": {
+        "hashids/hashids": "*"
+    }
+}
+```
+
+And run: `composer install`. After that you can require the autoloader and use Hashids:
+
+``` php
+<?php
+
+require_once 'vendor/autoload.php'
+$hashids = new Hashids\Hashids('this is my salt');
+```
 
 ### Example Usage
 
 ```php
 <?php
 
-require_once('lib/hashids.php');
-$hashids = new Hashids('this is my salt');
+$hashids = new Hashids\Hashids('this is my salt');
 
 $hash = $hashids->encrypt(1, 2, 3);
 $numbers = $hashids->decrypt($hash);
@@ -67,7 +86,14 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 
 ### Changelog
 
-**0.2.0 -- Current Stable**
+**0.2.1**
+
+- General directory cleanup + improvements
+- Now only one library file for both PHP 5.3 and PHP 5.4
+- Constants uppercased
+- Namespace `Hashids` added to library class
+
+**0.2.0**
 	
 	Warning: If you are using 0.1.3 or below, updating to this version will change your hashes. So do not update if you are afraid your hashes will change!
 	
