@@ -9,7 +9,7 @@ A small PHP class to generate YouTube-like hashes from numbers. Read documentati
 
 ### Installation
 
-You can either `require()` the lib yourself, or use [Composer](http://getcomposer.org) -- packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package:
+You can either `require()` the lib yourself, or use [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package).
 
 In your `composer.json` file use:
 
@@ -21,7 +21,7 @@ In your `composer.json` file use:
 }
 ```
 
-And run: `composer install`. After that you can require the autoloader and use Hashids:
+And run: `php composer.phar install`. After that you can require the autoloader and use Hashids:
 
 ``` php
 <?php
