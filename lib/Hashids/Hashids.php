@@ -6,15 +6,17 @@
 	Source: https://github.com/ivanakimov/hashids.php
 */
 
+namespace Hashids;
+
 class Hashids {
 	
-	const version = '0.2.0';
-	const min_alphabet_length = 16;
-	const sep_div = 3.5;
-	const guard_div = 12;
+	const VERSION = '0.2.1';
+	const MIN_ALPHABET_LENGTH = 16;
+	const SEP_DIV = 3.5;
+	const GUARD_DIV = 12;
 	
-	const error_alphabet_length = 'alphabet must contain at least %d unique characters';
-	const error_alphabet_space = 'alphabet cannot contain spaces';
+	const E_ALPHABET_LENGTH = 'alphabet must contain at least %d unique characters';
+	const E_ALPHABET_SPACE = 'alphabet cannot contain spaces';
 	
 	private $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 	private $seps = 'cCsSfFhHuUiItT';
@@ -30,11 +32,11 @@ class Hashids {
 		if ($alphabet)
 			$this->alphabet = implode('', array_unique(str_split($alphabet)));
 		
-		if (strlen($this->alphabet) < self::min_alphabet_length)
-			throw new Exception(sprintf(self::error_alphabet_length, self::min_alphabet_length));
+		if (strlen($this->alphabet) < self::MIN_ALPHABET_LENGTH)
+			throw new Exception(sprintf(self::E_ALPHABET_LENGTH, self::MIN_ALPHABET_LENGTH));
 		
 		if (is_int(strpos($this->alphabet, ' ')))
-			throw new Exception(self::error_alphabet_space);
+			throw new Exception(self::E_ALPHABET_SPACE);
 		
 		$alphabet_array = str_split($this->alphabet);
 		$seps_array = str_split($this->seps);
@@ -43,9 +45,9 @@ class Hashids {
 		$this->alphabet = implode('', array_diff($alphabet_array, $seps_array));
 		$this->seps = $this->_consistent_shuffle($this->seps, $this->salt);
 		
-		if (!$this->seps || (strlen($this->alphabet) / strlen($this->seps)) > self::sep_div) {
+		if (!$this->seps || (strlen($this->alphabet) / strlen($this->seps)) > self::SEP_DIV) {
 			
-			$seps_length = (int)ceil(strlen($this->alphabet) / self::sep_div);
+			$seps_length = (int)ceil(strlen($this->alphabet) / self::SEP_DIV);
 			
 			if ($seps_length == 1)
 				$seps_length++;
@@ -62,7 +64,7 @@ class Hashids {
 		}
 		
 		$this->alphabet = $this->_consistent_shuffle($this->alphabet, $this->salt);
-		$guard_count = (int)ceil(strlen($this->alphabet) / self::guard_div);
+		$guard_count = (int)ceil(strlen($this->alphabet) / self::GUARD_DIV);
 		
 		if (strlen($this->alphabet) < 3) {
 			$this->guards = substr($this->seps, 0, $guard_count);
@@ -93,7 +95,7 @@ class Hashids {
 	
 	function decrypt($hash) {
 		
-		$ret = [];
+		$ret = array();
 		
 		if (!$hash || !is_string($hash) || !trim($hash))
 			return $ret;
@@ -156,7 +158,7 @@ class Hashids {
 	
 	private function _decode($hash, $alphabet) {
 		
-		$ret = [];
+		$ret = array();
 		
 		$hash_breakdown = str_replace(str_split($this->guards), ' ', $hash);
 		$hash_array = explode(' ', $hash_breakdown);
@@ -178,8 +180,8 @@ class Hashids {
 			$ret[] = $this->_unhash($sub_hash, $alphabet);
 		}
 		
-		if (call_user_func_array([$this, 'encrypt'], $ret) != $hash)
-			$ret = [];
+		if (call_user_func_array(array($this, 'encrypt'), $ret) != $hash)
+			$ret = array();
 		
 		return $ret;
 		

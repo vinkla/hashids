@@ -1,29 +1,29 @@
 {
-    "name": "hashids/hashids",
-    "type": "library",
-    "description": "Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.",
-    "keywords": ["hashids", "hash", "ids", "youtube", "bitly"],
-    "homepage": "http://www.hashids.org/php/",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ivan Akimov",
-            "email": "ivan@grather.com",
-            "homepage": "https://twitter.com/ivanakimov",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.0"
-    },
-    "autoload": {
-        "files": [
-            "autoload.php"
-        ]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.2-dev"
-        }
-    }
+	"name": "hashids/hashids",
+	"type": "library",
+	"description": "Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.",
+	"keywords": ["hashids", "hash", "ids", "youtube", "bitly"],
+	"homepage": "http://www.hashids.org/php/",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Ivan Akimov",
+			"email": "ivan@grather.com",
+			"homepage": "https://twitter.com/ivanakimov",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"Hashids": "lib/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.2-dev"
+		}
+	}
 }

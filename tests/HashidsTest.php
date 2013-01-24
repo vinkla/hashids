@@ -16,11 +16,11 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function __construct() {
 		
-		require_once('../lib/hashids.php');
+		require_once('../lib/Hashids/Hashids.php');
 		
-		$this->hashids = new Hashids($this->salt);
-		$this->hashids_min_length = new Hashids($this->salt, $this->min_hash_length);
-		$this->hashids_alphabet = new Hashids($this->salt, 0, $this->custom_alphabet);
+		$this->hashids = new Hashids\Hashids($this->salt);
+		$this->hashids_min_length = new Hashids\Hashids($this->salt, $this->min_hash_length);
+		$this->hashids_alphabet = new Hashids\Hashids($this->salt, 0, $this->custom_alphabet);
 		
 	}
 	
