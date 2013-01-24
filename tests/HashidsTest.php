@@ -16,7 +16,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 	
 	public function __construct() {
 		
-		require_once('../lib/Hashids/Hashids.php');
+		require_once(__DIR__.'/../lib/Hashids/Hashids.php');
 		
 		$this->hashids = new Hashids\Hashids($this->salt);
 		$this->hashids_min_length = new Hashids\Hashids($this->salt, $this->min_hash_length);
