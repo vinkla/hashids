@@ -1,10 +1,10 @@
 <?php
 
 /* including hashids code */
-require_once('../lib/hashids.php-5-3.php');
+require_once(__DIR__.'/../lib/Hashids/Hashids.php');
 
 /* creating class object */
-$hashids = new Hashids('this is my salt');
+$hashids = new Hashids\Hashids('this is my salt');
 
 /* encrypting one number */
 $hash = $hashids->encrypt(1337);
