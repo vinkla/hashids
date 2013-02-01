@@ -53,6 +53,18 @@ var_dump($hash, $numbers);
 	  int(3)
 	}
 	
+### Big Numbers
+
+Each number passed to the constructor **cannot be negative** or **greater than 1 billion** (1,000,000,000). Hashids `encrypt()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that. No exception is thrown.
+
+PHP starts approximating numbers when it does arithmetic on large integers (by converting them to floats). Which is usually not a big issue, but a problem when precise integers are needed.
+
+However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) (**--with-gmp**) or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) (**--enable-bcmath**) libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems, or **int(9223372036854775807)** on 64-bit.
+
+It will then use regular arithmetic on numbers less than 1 billion (because it's faster), and one of these libraries if greater than. GMP takes precedence over BCMath.
+
+You can get the upper limit by doing: `$hashids->get_max_int_value();` -- which will still be **1 billion ** if no library is installed.
+
 ### Speed
 
 Even though speed is an important factor of every hashing algorithm, primary goal here was encoding several numbers at once while avoiding collisions.
@@ -86,6 +98,13 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 
 ### Changelog
 
+**0.3.0 - Warning: Hashes change in this version:**
+
+- Bug fix: better handling of big numbers: [https://github.com/ivanakimov/hashids.php/issues/3](https://github.com/ivanakimov/hashids.php/issues/3) (thanks [@tobsn](https://github.com/tobsn) and [@miquelfire](https://github.com/miquelfire))
+- Bug fix: exception throwing in constructor
+- Default maximum number is set to 1 billion: 1,000,000,000. Unless you have [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) library installed - then `PHP_INT_MAX` is used.
+- Cleanup: private variables use underscores
+
 **0.2.1**
 
 - General directory cleanup + improvements
@@ -93,9 +112,7 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 - Constants uppercased
 - Namespace `Hashids` added to library class
 
-**0.2.0**
-	
-	Warning: If you are using 0.1.3 or below, updating to this version will change your hashes. So do not update if you are afraid your hashes will change!
+**0.2.0 - Warning: Hashes change in this version:**
 	
 - Overall approximately **4x** faster
 - Consistent shuffle function uses slightly modified version of [Fisher–Yates algorithm](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
@@ -107,16 +124,12 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 - Composer package at packagist: [https://packagist.org/packages/hashids/hashids](https://packagist.org/packages/hashids/hashids)
 - _Minor:_ a bit smaller code overall -- more motivation to port to other languages :P
 
-**0.1.3**
-
-	Warning: If you are using 0.1.2 or below, updating to this version will change your hashes.
+**0.1.3 - Warning: Hashes change in this version:**
 
 - Updated default alphabet (thanks to [@speps](https://github.com/speps))
 - Constructor removes duplicate characters for default alphabet as well (thanks to [@speps](https://github.com/speps))
 
-**0.1.2**
-
-	Warning: If you are using 0.1.1 or below, updating to this version will change your hashes.
+**0.1.2 - Warning: Hashes change in this version:**
 
 - Minimum hash length can now be specified
 - Added more randomness to hashes

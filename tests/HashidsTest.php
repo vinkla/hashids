@@ -1,11 +1,8 @@
 <?php
 
-/*
-	cd phpunit
-	phpunit HashidsTest
-*/
+/* phpunit tests/HashidsTest.php */
 
-class HashidsTest extends PHPUnit_Framework_TestCase {
+class HashidsTest extends \PHPUnit_Framework_TestCase {
 	
 	private $hashids = null;
 	private $salt = 'this is my salt';
@@ -135,6 +132,35 @@ class HashidsTest extends PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals(0, sizeof($hashes));
 		
+	}
+	
+	public function testBigValues() {
+		
+		$hashes = array();
+		$max_int_value = $this->hashids->get_max_int_value();
+		
+		for ($i = $this->hashids->get_max_int_value(), $j = $i - $this->max_id; $i != $j; $i--) {
+			
+			$hash = $this->hashids->encrypt($i);
+			$numbers = $this->hashids->decrypt($hash);
+			
+			if (!$numbers || $i != $numbers[0])
+				$hashes[] = $hash;
+			
+		}
+		
+		$this->assertEquals(0, sizeof($hashes));
+		
+	}
+	
+	public function testOutOfBoundsValue() {
+		$hash = $this->hashids->encrypt($this->hashids->get_max_int_value() + 1);
+		$this->assertEquals('', $hash);
+	}
+	
+	public function testNegativeValue() {
+		$hash = $this->hashids->encrypt(-1);
+		$this->assertEquals('', $hash);
 	}
 	
 }
