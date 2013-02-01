@@ -43,7 +43,7 @@ $numbers = $hashids->decrypt($hash);
 var_dump($hash, $numbers);
 ```
 
-	string(5) "laUqtq"
+	string(5) "laHquq"
 	array(3) {
 	  [0]=>
 	  int(1)
@@ -63,7 +63,7 @@ However, if you have either [GNU Multiple Precision](http://www.php.net/manual/e
 
 It will then use regular arithmetic on numbers less than 1 billion (because it's faster), and one of these libraries if greater than. GMP takes precedence over BCMath.
 
-You can get the upper limit by doing: `$hashids->get_max_int_value();` -- which will still be **1 billion** if no library is installed.
+You can get the upper limit by doing: `$hashids->get_max_int_value();` -- which will still be **1 billion** if neither of the libraries is installed.
 
 ### Speed
 
