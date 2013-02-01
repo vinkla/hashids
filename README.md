@@ -151,7 +151,7 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 
 ### Contact
 
-Follow me [@IvanAkimov](http://twitter.com/ivanakimov)
+I am on the internets [@IvanAkimov](http://twitter.com/ivanakimov)
 
 ### License
 
