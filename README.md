@@ -59,7 +59,7 @@ Each number passed to the constructor **cannot be negative** or **greater than 1
 
 PHP starts approximating numbers when it does arithmetic on large integers (by converting them to floats). Which is usually not a big issue, but a problem when precise integers are needed.
 
-However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) (**--with-gmp**) or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) (**--enable-bcmath**) libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems, or **int(9223372036854775807)** on 64-bit.
+However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) **--with-gmp**, or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) **--enable-bcmath** libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems, or **int(9223372036854775807)** on 64-bit.
 
 It will then use regular arithmetic on numbers less than 1 billion (because it's faster), and one of these libraries if greater than. GMP takes precedence over BCMath.
 
