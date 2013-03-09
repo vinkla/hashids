@@ -9,7 +9,7 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 	private $min_hash_length = 1000;
 	private $custom_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	
-	private $max_id = 100;
+	private $max_id = 75; /* set higher to test locally */
 	
 	public function __construct() {
 		
