@@ -1,13 +1,17 @@
 
 ![hashids](http://www.hashids.org.s3.amazonaws.com/public/img/hashids.png "Hashids")
 
-### Full Documentation
+======
+
+Full Documentation
+-------
 
 A small PHP class to generate YouTube-like hashes from numbers. Read documentation at [http://www.hashids.org/php/](http://www.hashids.org/php/)
 
-[![Build Status](https://secure.travis-ci.org/ivanakimov/hashids.php.png)](http://travis-ci.org/ivanakimov/hashids.php)
+![hashids](https://secure.travis-ci.org/ivanakimov/hashids.php.png "Hashids")
 
-### Installation
+Installation
+-------
 
 You can either `require()` the lib yourself, or use [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package).
 
@@ -30,7 +34,8 @@ require_once 'vendor/autoload.php'
 $hashids = new Hashids\Hashids('this is my salt');
 ```
 
-### Example Usage
+Example Usage
+-------
 
 ```php
 <?php
@@ -53,19 +58,21 @@ var_dump($hash, $numbers);
 	  int(3)
 	}
 	
-### Big Numbers
+Big Numbers
+-------
 
-Each number passed to the constructor **cannot be negative** or **greater than 1 billion** (1,000,000,000). Hashids `encrypt()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that. No exception is thrown.
+Each number passed to the constructor **cannot be negative** or **greater than 1 billion** (1,000,000,000). Hashids `encrypt()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that -- no exception is thrown.
 
 PHP starts approximating numbers when it does arithmetic on large integers (by converting them to floats). Which is usually not a big issue, but a problem when precise integers are needed.
 
-However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) **--with-gmp**, or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) **--enable-bcmath** libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems, or **int(9223372036854775807)** on 64-bit.
+However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) **--with-gmp**, or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) **--enable-bcmath** libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems and **int(9223372036854775807)** on 64-bit.
 
 It will then use regular arithmetic on numbers less than 1 billion (because it's faster), and one of these libraries if greater than. GMP takes precedence over BCMath.
 
-You can get the upper limit by doing: `$hashids->get_max_int_value();` -- which will still be **1 billion** if neither of the libraries is installed.
+You can get the upper limit by doing: `$hashids->get_max_int_value();` (which will stay at **1 billion** if neither of the libraries is installed).
 
-### Speed
+Speed
+-------
 
 Even though speed is an important factor of every hashing algorithm, primary goal here was encoding several numbers at once while avoiding collisions.
 
@@ -75,7 +82,7 @@ On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly:
 2. **0.000113 seconds** to decrypt one hash (and ensuring that it's valid).
 3. **0.297426 seconds** to generate **10,000** hashes in a `for` loop.
 
-On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes roughly:
+On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes about:
 
 1. **0.000093 seconds** to encrypt one number.
 2. **0.000240 seconds** to decrypt one hash (while ensuring that it's valid).
@@ -83,7 +90,8 @@ On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes roughly:
 
 *Sidenote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
 
-### Curses! #$%@
+Curses! #$%@
+-------
 
 This code was written with the intent of placing created hashes in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
 
@@ -91,12 +99,13 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 	
 	c, C, s, S, f, F, h, H, u, U, i, I, t, T
 	
-### Notes
+Notes
+-------
 
 - If you want to squeeze out even more performance, set a shorter alphabet. Hashes will be less random and longer, but calculating them will be faster.
-- Since version 0.2.0, speed has been improved so be careful using cache now - it might actually take longer to pull from memory.
 
-### Changelog
+Changelog
+-------
 
 **0.3.0 - Warning: Hashes change in this version:**
 
@@ -149,10 +158,12 @@ Therefore, the algorithm tries to avoid generating most common English curse wor
 	
 - First commit
 
-### Contact
+Contact
+-------
 
 I am on the internets [@IvanAkimov](http://twitter.com/ivanakimov)
 
-### License
+License
+-------
 
-MIT License. See the `LICENSE` file. Use it in commercial or open source projects; don't break the Internet.
+MIT License. See the `LICENSE` file. You can use Hashids in open source projects and commercial products. Don't break the Internet. Kthxbye.

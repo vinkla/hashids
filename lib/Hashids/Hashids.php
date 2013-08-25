@@ -26,7 +26,7 @@ class Hashids {
 	/* set at constructor */
 	
 	private $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-	private $_seps = 'cCsSfFhHuUiItT';
+	private $_seps = 'cfhistuCFHISTU';
 	private $_min_hash_length = 0;
 	private $_math_functions = array();
 	private $_max_int_value = 1000000000;
