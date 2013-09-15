@@ -1,16 +1,21 @@
 <?php
 
 /*
-	Hashids may be freely distributed under the MIT license.
-	Documentation: http://www.hashids.org/php/
-	Source: https://github.com/ivanakimov/hashids.php
+	
+	hashids
+	http://www.hashids.org/php/
+	(c) 2013 Ivan Akimov
+	
+	https://github.com/ivanakimov/hashids.php
+	hashids may be freely distributed under the MIT license.
+	
 */
 
 namespace Hashids;
 
 class Hashids {
 	
-	const VERSION = '0.3.0';
+	const VERSION = '0.3.1';
 	
 	/* internal settings */
 	
@@ -113,7 +118,9 @@ class Hashids {
 		
 		foreach ($numbers as $number) {
 			
-			if (!is_int($number) || $number < 0 || $number > $this->_max_int_value)
+			$is_number = ctype_digit((string)$number);
+			
+			if (!$is_number || $number < 0 || $number > $this->_max_int_value)
 				return $ret;
 			
 		}
@@ -130,6 +137,33 @@ class Hashids {
 			return $ret;
 		
 		return $this->_decode(trim($hash), $this->_alphabet);
+		
+	}
+	
+	function encrypt_hex($str) {
+		
+		if (!ctype_xdigit($str))
+			return '';
+		
+		$numbers = trim(chunk_split($str, 12, ' '));
+		$numbers = explode(' ', $numbers);
+		
+		foreach ($numbers as $i => $number)
+			$numbers[$i] = hexdec('1' . $number);
+		
+		return call_user_func_array(array($this, 'encrypt'), $numbers);
+		
+	}
+	
+	function decrypt_hex($hash) {
+		
+		$ret = "";
+		$numbers = $this->decrypt($hash);
+		
+		foreach ($numbers as $i => $number)
+			$ret .= substr(dechex($number), 1);
+		
+		return $ret;
 		
 	}
 	

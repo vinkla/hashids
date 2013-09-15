@@ -107,6 +107,11 @@ Notes
 Changelog
 -------
 
+**0.3.1**
+
+- Added *encrypt_hex()* and *decrypt_hex()* support
+- Minor: Relaxed integer check in *encrypt()* function (can now pass strings of numbers)
+
 **0.3.0 - Warning: Hashes change in this version:**
 
 - Bug fix: better handling of big numbers: [https://github.com/ivanakimov/hashids.php/issues/3](https://github.com/ivanakimov/hashids.php/issues/3) (thanks [@tobsn](https://github.com/tobsn) and [@miquelfire](https://github.com/miquelfire))
