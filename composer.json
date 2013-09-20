@@ -3,7 +3,7 @@
 	"version": "0.3.1",
 	"type": "library",
 	"description": "Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.",
-	"keywords": ["hashids", "hash", "ids", "youtube", "bitly"],
+	"keywords": ["hashids", "hash", "ids", "youtube", "bitly", "encrypt", "decrypt", "obfuscate"],
 	"homepage": "http://www.hashids.org/php/",
 	"license": "MIT",
 	"authors": [
@@ -20,6 +20,11 @@
 	"autoload": {
 		"psr-0": {
 			"Hashids": "lib/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.3.x-dev"
 		}
 	}
 }
