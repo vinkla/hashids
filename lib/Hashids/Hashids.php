@@ -142,7 +142,7 @@ class Hashids {
 	
 	function encrypt_hex($str) {
 		
-		if (!ctype_xdigit($str))
+		if (!ctype_xdigit((string)$str))
 			return '';
 		
 		$numbers = trim(chunk_split($str, 12, ' '));
