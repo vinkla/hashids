@@ -4,4 +4,7 @@ php:
   - "5.3"
   - "5.4"
 
-script: phpunit tests/HashidsTest.php
+before_script:
+  - composer install --dev
+  
+script: vendor/bin/phpunit tests/HashidsTest.php
