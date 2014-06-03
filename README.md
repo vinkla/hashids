@@ -20,7 +20,7 @@ In your `composer.json` file use:
 ``` json
 {
     "require": {
-        "hashids/hashids": "*"
+        "hashids/hashids": "dev-master"
     }
 }
 ```
