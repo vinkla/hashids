@@ -2,8 +2,8 @@
 
 /*
 	
-	hashids
-	http://www.hashids.org/php/
+	Hashids
+	http://hashids.org/php
 	(c) 2013 Ivan Akimov
 	
 	https://github.com/ivanakimov/hashids.php
@@ -15,7 +15,7 @@ namespace Hashids;
 
 class Hashids {
 	
-	const VERSION = '0.3.1';
+	const VERSION = '1.0.0';
 	
 	/* internal settings */
 	
@@ -51,24 +51,29 @@ class Hashids {
 		}
 		
 		$this->_lower_max_int_value = $this->_max_int_value;
-		if ($this->_math_functions)
+		if ($this->_math_functions) {
 			$this->_max_int_value = PHP_INT_MAX;
+		}
 		
 		/* handle parameters */
 		
 		$this->_salt = $salt;
 		
-		if ((int)$min_hash_length > 0)
+		if ((int)$min_hash_length > 0) {
 			$this->_min_hash_length = (int)$min_hash_length;
+		}
 		
-		if ($alphabet)
+		if ($alphabet) {
 			$this->_alphabet = implode('', array_unique(str_split($alphabet)));
+		}
 		
-		if (strlen($this->_alphabet) < self::MIN_ALPHABET_LENGTH)
+		if (strlen($this->_alphabet) < self::MIN_ALPHABET_LENGTH) {
 			throw new \Exception(sprintf(self::E_ALPHABET_LENGTH, self::MIN_ALPHABET_LENGTH));
+		}
 		
-		if (is_int(strpos($this->_alphabet, ' ')))
+		if (is_int(strpos($this->_alphabet, ' '))) {
 			throw new \Exception(self::E_ALPHABET_SPACE);
+		}
 		
 		$alphabet_array = str_split($this->_alphabet);
 		$seps_array = str_split($this->_seps);
@@ -81,8 +86,9 @@ class Hashids {
 			
 			$seps_length = (int)ceil(strlen($this->_alphabet) / self::SEP_DIV);
 			
-			if ($seps_length == 1)
+			if ($seps_length == 1) {
 				$seps_length++;
+			}
 			
 			if ($seps_length > strlen($this->_seps)) {
 				
@@ -90,8 +96,9 @@ class Hashids {
 				$this->_seps .= substr($this->_alphabet, 0, $diff);
 				$this->_alphabet = substr($this->_alphabet, $diff);
 				
-			} else
+			} else {
 				$this->_seps = substr($this->_seps, 0, $seps_length);
+			}
 			
 		}
 		
@@ -108,20 +115,22 @@ class Hashids {
 		
 	}
 	
-	function encrypt() {
+	function encode() {
 		
 		$ret = '';
 		$numbers = func_get_args();
 		
-		if (!$numbers)
+		if (!$numbers) {
 			return $ret;
+		}
 		
 		foreach ($numbers as $number) {
 			
 			$is_number = ctype_digit((string)$number);
 			
-			if (!$is_number || $number < 0 || $number > $this->_max_int_value)
+			if (!$is_number || $number < 0 || $number > $this->_max_int_value) {
 				return $ret;
+			}
 			
 		}
 		
@@ -129,39 +138,43 @@ class Hashids {
 		
 	}
 	
-	function decrypt($hash) {
+	function decode($hash) {
 		
 		$ret = array();
 		
-		if (!$hash || !is_string($hash) || !trim($hash))
+		if (!$hash || !is_string($hash) || !trim($hash)) {
 			return $ret;
+		}
 		
 		return $this->_decode(trim($hash), $this->_alphabet);
 		
 	}
 	
-	function encrypt_hex($str) {
+	function encode_hex($str) {
 		
-		if (!ctype_xdigit((string)$str))
+		if (!ctype_xdigit((string)$str)) {
 			return '';
+		}
 		
 		$numbers = trim(chunk_split($str, 12, ' '));
 		$numbers = explode(' ', $numbers);
 		
-		foreach ($numbers as $i => $number)
+		foreach ($numbers as $i => $number) {
 			$numbers[$i] = hexdec('1' . $number);
+		}
 		
-		return call_user_func_array(array($this, 'encrypt'), $numbers);
+		return call_user_func_array(array($this, 'decode'), $numbers);
 		
 	}
 	
-	function decrypt_hex($hash) {
+	function decode_hex($hash) {
 		
 		$ret = "";
-		$numbers = $this->decrypt($hash);
+		$numbers = $this->decode($hash);
 		
-		foreach ($numbers as $i => $number)
+		foreach ($numbers as $i => $number) {
 			$ret .= substr(dechex($number), 1);
+		}
 		
 		return $ret;
 		
@@ -177,8 +190,9 @@ class Hashids {
 		$numbers_size = sizeof($numbers);
 		$numbers_hash_int = 0;
 		
-		foreach ($numbers as $i => $number)
+		foreach ($numbers as $i => $number) {
 			$numbers_hash_int += ($number % ($i + 100));
+		}
 		
 		$lottery = $ret = $alphabet[$numbers_hash_int % strlen($alphabet)];
 		foreach ($numbers as $i => $number) {
@@ -219,8 +233,9 @@ class Hashids {
 			$ret = substr($alphabet, $half_length) . $ret . substr($alphabet, 0, $half_length);
 			
 			$excess = strlen($ret) - $this->_min_hash_length;
-			if ($excess > 0)
+			if ($excess > 0) {
 				$ret = substr($ret, $excess / 2, $this->_min_hash_length);
+			}
 			
 		}
 		
@@ -236,8 +251,9 @@ class Hashids {
 		$hash_array = explode(' ', $hash_breakdown);
 		
 		$i = 0;
-		if (sizeof($hash_array) == 3 || sizeof($hash_array) == 2)
+		if (sizeof($hash_array) == 3 || sizeof($hash_array) == 2) {
 			$i = 1;
+		}
 		
 		$hash_breakdown = $hash_array[$i];
 		if (isset($hash_breakdown[0])) {
@@ -253,8 +269,9 @@ class Hashids {
 				$ret[] = (int)$this->_unhash($sub_hash, $alphabet);
 			}
 			
-			if ($this->_encode($ret) != $hash)
+			if ($this->_encode($ret) != $hash) {
 				$ret = array();
+			}
 			
 		}
 		
@@ -264,8 +281,9 @@ class Hashids {
 	
 	private function _consistent_shuffle($alphabet, $salt) {
 		
-		if (!strlen($salt))
+		if (!strlen($salt)) {
 			return $alphabet;
+		}
 		
 		for ($i = strlen($alphabet) - 1, $v = 0, $p = 0; $i > 0; $i--, $v++) {
 			
@@ -291,10 +309,11 @@ class Hashids {
 		do {
 			
 			$hash = $alphabet[$input % $alphabet_length] . $hash;
-			if ($input > $this->_lower_max_int_value && $this->_math_functions)
+			if ($input > $this->_lower_max_int_value && $this->_math_functions) {
 				$input = $this->_math_functions['str']($this->_math_functions['div']($input, $alphabet_length));
-			else
+			} else {
 				$input = (int)($input / $alphabet_length);
+			}
 			
 		} while ($input);
 		
@@ -313,10 +332,11 @@ class Hashids {
 			foreach ($input_chars as $i => $char) {
 				
 				$pos = strpos($alphabet, $char);
-				if ($this->_math_functions)
+				if ($this->_math_functions) {
 					$number = $this->_math_functions['str']($this->_math_functions['add']($number, $pos * pow($alphabet_length, (strlen($input) - $i - 1))));
-				else
+				} else {
 					$number += $pos * pow($alphabet_length, (strlen($input) - $i - 1));
+				}
 				
 			}
 			

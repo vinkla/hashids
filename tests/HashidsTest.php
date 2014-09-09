@@ -12,7 +12,7 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 	private $max_id = 75; /* set higher to test locally */
 	
 	public function __construct() {
-
+		
 		$this->hashids = new Hashids\Hashids($this->salt);
 		$this->hashids_min_length = new Hashids\Hashids($this->salt, $this->min_hash_length);
 		$this->hashids_alphabet = new Hashids\Hashids($this->salt, 0, $this->custom_alphabet);
@@ -29,10 +29,11 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 			
 			$hashes = array();
 			
-			/* encrypt one number like [123] */
+			/* encode one number like [123] */
 			
-			for ($i = 0; $i != $this->max_id; $i++)
-				$hashes[] = $hashids->encrypt($i);
+			for ($i = 0; $i != $this->max_id; $i++) {
+				$hashes[] = $hashids->encode($i);
+			}
 			
 			$unique_array = array_unique($hashes);
 			$this->assertEquals(0, sizeof($hashes) - sizeof($unique_array));
@@ -52,12 +53,15 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 			$hashes = array();
 			$max_id = (int)($this->max_id / 3);
 			
-			/* encrypt multiple numbers like [1, 2, 3] */
+			/* encode multiple numbers like [1, 2, 3] */
 			
-			for ($i = 0; $i != $max_id; $i++)
-				for ($j = 0; $j != $max_id; $j++)
-					for ($k = 0; $k != $max_id; $k++)
-						$hashes[] = $hashids->encrypt($i, $j, $k);
+			for ($i = 0; $i != $max_id; $i++) {
+				for ($j = 0; $j != $max_id; $j++) {
+					for ($k = 0; $k != $max_id; $k++) {
+						$hashes[] = $hashids->encode($i, $j, $k);
+					}
+				}
+			}
 			
 			$unique_array = array_unique($hashes);
 			$this->assertEquals(0, sizeof($hashes) - sizeof($unique_array));
@@ -72,9 +76,10 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 		
 		for ($i = 0; $i != $this->max_id; $i++) {
 			
-			$hash = $this->hashids_min_length->encrypt($i);
-			if (strlen($hash) < $this->min_hash_length)
+			$hash = $this->hashids_min_length->encode($i);
+			if (strlen($hash) < $this->min_hash_length) {
 				$hashes[] = $hash;
+			}
 			
 		}
 		
@@ -82,7 +87,7 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 		
 	}
 	
-	public function testRandomHashesDecryption() {
+	public function testRandomHashesdecodeion() {
 		
 		$corrupt = $hashes = array();
 		
@@ -91,19 +96,21 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 			/* create a random hash */
 			
 			$random_hash = substr(md5(microtime()), rand(0, 10), rand(3, 12));
-			if ($i % 2 == 0)
+			if ($i % 2 == 0) {
 				$random_hash = strtoupper($random_hash);
+			}
 			
-			/* decrypt it; check that it's empty */
+			/* decode it; check that it's empty */
 			
-			$numbers = $this->hashids->decrypt($random_hash);
+			$numbers = $this->hashids->decode($random_hash);
 			if ($numbers) {
 				
-				/* could've accidentally generated correct hash, try to encrypt */
+				/* could've accidentally generated correct hash, try to encode */
 				
-				$hash = call_user_func_array(array($this->hashids, 'encrypt'), $numbers);
-				if ($hash != $random_hash)
+				$hash = call_user_func_array(array($this->hashids, 'encode'), $numbers);
+				if ($hash != $random_hash) {
 					$corrupt[] = $random_hash;
+				}
 				
 			}
 			
@@ -120,11 +127,12 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 		
 		for ($i = 0; $i != $this->max_id; $i++) {
 			
-			$hash = $this->hashids_alphabet->encrypt($i);
+			$hash = $this->hashids_alphabet->encode($i);
 			$hash_array = str_split($hash);
 			
-			if (array_diff($hash_array, $alphabet_array))
+			if (array_diff($hash_array, $alphabet_array)) {
 				$hashes[] = $hash;
+			}
 			
 		}
 		
@@ -139,11 +147,12 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 		
 		for ($i = $this->hashids->get_max_int_value(), $j = $i - $this->max_id; $i != $j; $i--) {
 			
-			$hash = $this->hashids->encrypt($i);
-			$numbers = $this->hashids->decrypt($hash);
+			$hash = $this->hashids->encode($i);
+			$numbers = $this->hashids->decode($hash);
 			
-			if (!$numbers || $i != $numbers[0])
+			if (!$numbers || $i != $numbers[0]) {
 				$hashes[] = $hash;
+			}
 			
 		}
 		
@@ -152,12 +161,12 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 	}
 	
 	public function testOutOfBoundsValue() {
-		$hash = $this->hashids->encrypt($this->hashids->get_max_int_value() + 1);
+		$hash = $this->hashids->encode($this->hashids->get_max_int_value() + 1);
 		$this->assertEquals('', $hash);
 	}
 	
 	public function testNegativeValue() {
-		$hash = $this->hashids->encrypt(-1);
+		$hash = $this->hashids->encode(-1);
 		$this->assertEquals('', $hash);
 	}
 	

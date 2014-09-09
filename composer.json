@@ -1,17 +1,16 @@
 {
 	"name": "hashids/hashids",
-	"version": "0.3.1",
+	"version": "1.0.0",
 	"type": "library",
-	"description": "Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.",
-	"keywords": ["hashids", "hash", "ids", "youtube", "bitly", "encrypt", "decrypt", "obfuscate"],
-	"homepage": "http://www.hashids.org/php/",
+	"description": "Generate hashids like YouTube or Bitly from numbers to obfuscate your database primary ids, or navigate to the right shard.",
+	"keywords": ["hashids", "hashid", "hash", "ids", "youtube", "bitly", "encrypt", "decrypt", "obfuscate"],
+	"homepage": "http://hashids.org/php",
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "Ivan Akimov",
 			"email": "ivan@barreleye.com",
-			"homepage": "https://twitter.com/ivanakimov",
-			"role": "Developer"
+			"homepage": "https://twitter.com/IvanAkimov"
 		}
 	],
 	"require": {

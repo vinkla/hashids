@@ -6,7 +6,7 @@
 Full Documentation
 -------
 
-A small PHP class to generate YouTube-like hashes from numbers. Read documentation at [http://www.hashids.org/php/](http://www.hashids.org/php/)
+A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
 
 ![hashids](https://secure.travis-ci.org/ivanakimov/hashids.php.png "Hashids")
 
@@ -20,7 +20,7 @@ In your `composer.json` file use:
 ``` json
 {
     "require": {
-        "hashids/hashids": "*"
+        "hashids/hashids": "1.0.0"
     }
 }
 ```
@@ -37,17 +37,19 @@ $hashids = new Hashids\Hashids('this is my salt');
 Example Usage
 -------
 
+The simplest way to use Hashids:
+
 ```php
 <?php
 
-$hashids = new Hashids\Hashids('this is my salt');
+$hashids = new Hashids\Hashids();
 
-$hash = $hashids->encrypt(1, 2, 3);
-$numbers = $hashids->decrypt($hash);
+$id = $hashids->encode(1, 2, 3);
+$numbers = $hashids->decode($id);
 
-var_dump($hash, $numbers);
+var_dump($id, $numbers);
 ```
-
+	
 	string(5) "laHquq"
 	array(3) {
 	  [0]=>
@@ -58,10 +60,42 @@ var_dump($hash, $numbers);
 	  int(3)
 	}
 	
+And an example with all the custom parameters provided (unique salt value, minimum id length, custom alphabet):
+
+```php
+<?php
+
+$hashids = new Hashids\Hashids('this is my salt', 8, 'abcdefghij1234567890');
+
+$id = $hashids->encode(1, 2, 3);
+$numbers = $hashids->decode($hash);
+
+var_dump($id, $numbers);
+```
+	
+	string(5) "514cdi42"
+	array(3) {
+	  [0]=>
+	  int(1)
+	  [1]=>
+	  int(2)
+	  [2]=>
+	  int(3)
+	}
+	
+Curses! #$%@
+-------
+
+This code was written with the intent of placing created ids in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
+
+Therefore, the algorithm tries to avoid generating most common English curse words. This is done by never placing the following letters next to each other:
+	
+	c, C, s, S, f, F, h, H, u, U, i, I, t, T
+	
 Big Numbers
 -------
 
-Each number passed to the constructor **cannot be negative** or **greater than 1 billion** (1,000,000,000). Hashids `encrypt()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that -- no exception is thrown.
+Each number passed to the constructor **cannot be negative** or **greater than 1 billion by default** (1,000,000,000). Hashids `encode()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that -- no exception is thrown.
 
 PHP starts approximating numbers when it does arithmetic on large integers (by converting them to floats). Which is usually not a big issue, but a problem when precise integers are needed.
 
@@ -76,29 +110,20 @@ Speed
 
 Even though speed is an important factor of every hashing algorithm, primary goal here was encoding several numbers at once while avoiding collisions.
 
-On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly:
-
-1. **0.000067 seconds** to encrypt one number.
-2. **0.000113 seconds** to decrypt one hash (and ensuring that it's valid).
-3. **0.297426 seconds** to generate **10,000** hashes in a `for` loop.
-
 On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes about:
 
-1. **0.000093 seconds** to encrypt one number.
-2. **0.000240 seconds** to decrypt one hash (while ensuring that it's valid).
-3. **0.493436 seconds** to generate **10,000** hashes in a `for` loop.
+1. **0.000093 seconds** to encode one number.
+2. **0.000240 seconds** to decode one id (while ensuring that it's valid).
+3. **0.493436 seconds** to generate **10,000** ids in a `for` loop.
+
+On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly:
+
+1. **0.000067 seconds** to encode one number.
+2. **0.000113 seconds** to decode one id (and ensuring that it's valid).
+3. **0.297426 seconds** to generate **10,000** ids in a `for` loop.
 
 *Sidenote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
 
-Curses! #$%@
--------
-
-This code was written with the intent of placing created hashes in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
-
-Therefore, the algorithm tries to avoid generating most common English curse words. This is done by never placing the following letters next to each other:
-	
-	c, C, s, S, f, F, h, H, u, U, i, I, t, T
-	
 Notes
 -------
 
@@ -106,6 +131,19 @@ Notes
 
 Changelog
 -------
+
+**1.0.0**
+
+- Several public functions are renamed to be more appropriate:
+	- Function `encrypt()` changed to `encode()`
+	- Function `decrypt()` changed to `decode()`
+	- Function `encryptHex()` changed to `encodeHex()`
+	- Function `decryptHex()` changed to `decodeHex()`
+	
+	Hashids was designed to encode integers, primary ids at most. We've had several requests to encrypt sensitive data with Hashids and this is the wrong algorithm for that. So to encourage more appropriate use, `encrypt/decrypt` is being "downgraded" to `encode/decode`.
+
+- Version tag added: `1.0`
+- `README.md` updated
 
 **0.3.1**
 
