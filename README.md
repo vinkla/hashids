@@ -34,6 +34,11 @@ require_once 'vendor/autoload.php'
 $hashids = new Hashids\Hashids('this is my salt');
 ```
 
+Updating from v0.3 to 1.0?
+-------
+
+Read the `CHANGELOG` at the bottom of this readme!
+
 Example Usage
 -------
 
