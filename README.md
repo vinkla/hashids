@@ -137,6 +137,11 @@ Notes
 Changelog
 -------
 
+**1.0.1**
+
+- bug fix for `encodeHex()` (thanks [@leihog](https://github.com/ivanakimov/hashids.php/pull/20))
+- unit test for `encodeHex()/decodeHex()`
+
 **1.0.0**
 
 - Several public functions are renamed to be more appropriate:

@@ -170,4 +170,16 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals('', $hash);
 	}
 	
+	public function testEncodingDecodingHex() {
+		
+		$testValue = '3ade68b1000fff';
+		
+		$id = $this->hashids->encode_hex($testValue);
+		$this->assertTrue((bool)$id);
+		
+		$hex = $this->hashids->decode_hex($id);
+		$this->assertEquals($hex, $testValue);
+		
+	}
+	
 }

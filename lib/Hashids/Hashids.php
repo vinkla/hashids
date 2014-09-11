@@ -15,7 +15,7 @@ namespace Hashids;
 
 class Hashids {
 	
-	const VERSION = '1.0.0';
+	const VERSION = '1.0.1';
 	
 	/* internal settings */
 	
