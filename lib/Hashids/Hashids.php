@@ -163,7 +163,7 @@ class Hashids {
 			$numbers[$i] = hexdec('1' . $number);
 		}
 		
-		return call_user_func_array(array($this, 'decode'), $numbers);
+		return call_user_func_array(array($this, 'encode'), $numbers);
 		
 	}
 	
