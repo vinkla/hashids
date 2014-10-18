@@ -13,7 +13,7 @@
 
 namespace Hashids;
 
-class Hashids {
+class Hashids implements HashGenerator {
 	
 	const VERSION = '1.0.1';
 	
