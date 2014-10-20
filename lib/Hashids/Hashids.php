@@ -124,6 +124,9 @@ class Hashids {
 			return $ret;
 		}
 		
+        if (func_num_args() == 1 && is_array(func_get_arg(0))) {
+            $numbers = $numbers[0];
+        }
 		foreach ($numbers as $number) {
 			
 			$is_number = ctype_digit((string)$number);
