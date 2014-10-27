@@ -137,6 +137,11 @@ Notes
 Changelog
 -------
 
+**1.0.2**
+
+- PSR-2 cleanup + interface changes (thanks [@Trismegiste](https://github.com/ivanakimov/hashids.php/pull/23))
+- `encode()` can accept array of integers (thanks [@leunggamciu](https://github.com/ivanakimov/hashids.php/pull/24))
+
 **1.0.1**
 
 - bug fix for `encode_hex()` (thanks [@leihog](https://github.com/ivanakimov/hashids.php/pull/20))
