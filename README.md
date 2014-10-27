@@ -8,7 +8,7 @@ Full Documentation
 
 A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
 
-![hashids](https://secure.travis-ci.org/ivanakimov/hashids.php.png "Hashids")
+[![hashids](https://api.travis-ci.org/ivanakimov/hashids.php.svg "Hashids")](https://travis-ci.org/ivanakimov/hashids.php)
 
 Installation
 -------
