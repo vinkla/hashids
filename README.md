@@ -13,14 +13,12 @@ A small PHP class to generate YouTube-like ids from numbers. Read documentation 
 Installation
 -------
 
-You can either `require()` the lib yourself, or use [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package).
-
-In your `composer.json` file use:
+You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package). In your `composer.json` file use:
 
 ``` json
 {
     "require": {
-        "hashids/hashids": "1.0.3"
+        "hashids/hashids": "1.0.4"
     }
 }
 ```
