@@ -1,2 +1,5 @@
 .DS_Store
 Hashids.tmproj
+/nbproject/
+/vendor/
+/composer.lock
