@@ -137,9 +137,10 @@ Notes
 Changelog
 -------
 
-**1.0.3**
+**1.0.3** & **1.0.4**:
 
 - adjusting examples (thanks [@Trismegiste](https://github.com/ivanakimov/hashids.php/pull/28))
+- proper version bump in `const VERSION`
 
 **1.0.2**
 
