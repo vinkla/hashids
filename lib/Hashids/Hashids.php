@@ -15,7 +15,7 @@ namespace Hashids;
 
 class Hashids implements HashGenerator {
 	
-	const VERSION = '1.0.4';
+	const VERSION = '1.0.5';
 	
 	/* internal settings */
 	
@@ -120,12 +120,12 @@ class Hashids implements HashGenerator {
 		$ret = '';
 		$numbers = func_get_args();
 		
-		if (!$numbers) {
-			return $ret;
-		}
-		
 		if (func_num_args() == 1 && is_array(func_get_arg(0))) {
 			$numbers = $numbers[0];
+		}
+		
+		if (!$numbers) {
+			return $ret;
 		}
 		
 		foreach ($numbers as $number) {
