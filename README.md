@@ -18,7 +18,7 @@ You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [
 ``` json
 {
     "require": {
-        "hashids/hashids": "1.0.4"
+        "hashids/hashids": "1.0.5"
     }
 }
 ```
@@ -134,6 +134,10 @@ Notes
 
 Changelog
 -------
+
+**1.0.5**:
+
+- bug fix for passing empty array to `encode` (thanks [@bpahan](https://github.com/ivanakimov/hashids.php/issues/32))
 
 **1.0.3** & **1.0.4**:
 
