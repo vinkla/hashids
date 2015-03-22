@@ -8,19 +8,17 @@ Full Documentation
 
 A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
 
-![hashids](https://secure.travis-ci.org/ivanakimov/hashids.php.png "Hashids")
+[![hashids](https://api.travis-ci.org/ivanakimov/hashids.php.svg "Hashids")](https://travis-ci.org/ivanakimov/hashids.php)
 
 Installation
 -------
 
-You can either `require()` the lib yourself, or use [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package).
-
-In your `composer.json` file use:
+You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package). In your `composer.json` file use:
 
 ``` json
 {
     "require": {
-        "hashids/hashids": "1.0.0"
+        "hashids/hashids": "1.0.5"
     }
 }
 ```
@@ -136,6 +134,20 @@ Notes
 
 Changelog
 -------
+
+**1.0.5**:
+
+- bug fix for passing empty array to `encode` (thanks [@bpahan](https://github.com/ivanakimov/hashids.php/issues/32))
+
+**1.0.3** & **1.0.4**:
+
+- adjusting examples (thanks [@Trismegiste](https://github.com/ivanakimov/hashids.php/pull/28))
+- proper version bump in `const VERSION`
+
+**1.0.2**
+
+- PSR-2 cleanup + interface changes (thanks [@Trismegiste](https://github.com/ivanakimov/hashids.php/pull/23))
+- `encode()` can accept array of integers (thanks [@leunggamciu](https://github.com/ivanakimov/hashids.php/pull/24))
 
 **1.0.1**
 

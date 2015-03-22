@@ -1,7 +1,7 @@
 <?php
 
-/* include hashids lib */
-require_once(__DIR__.'/../lib/Hashids/Hashids.php');
+/* be sure to require `hashids` in your `composer.json` file first */
+require_once(__DIR__.'/../vendor/autoload.php');
 
 /* create the class object */
 $hashids = new Hashids\Hashids('this is my salt');

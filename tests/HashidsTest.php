@@ -87,7 +87,7 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 		
 	}
 	
-	public function testRandomHashesdecodeion() {
+	public function testRandomHashesDecoding() {
 		
 		$corrupt = $hashes = array();
 		
@@ -167,6 +167,16 @@ class HashidsTest extends \PHPUnit_Framework_TestCase {
 	
 	public function testNegativeValue() {
 		$hash = $this->hashids->encode(-1);
+		$this->assertEquals('', $hash);
+	}
+	
+	public function testEncodingEmptyArray() {
+		$hash = $this->hashids->encode(array());
+		$this->assertEquals('', $hash);
+	}
+	
+	public function testEncodingWithoutParams() {
+		$hash = $this->hashids->encode();
 		$this->assertEquals('', $hash);
 	}
 	

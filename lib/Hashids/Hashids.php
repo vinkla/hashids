@@ -13,9 +13,9 @@
 
 namespace Hashids;
 
-class Hashids {
+class Hashids implements HashGenerator {
 	
-	const VERSION = '1.0.1';
+	const VERSION = '1.0.5';
 	
 	/* internal settings */
 	
@@ -36,7 +36,7 @@ class Hashids {
 	private $_math_functions = array();
 	private $_max_int_value = 1000000000;
 	
-	function __construct($salt = '', $min_hash_length = 0, $alphabet = '') {
+	public function __construct($salt = '', $min_hash_length = 0, $alphabet = '') {
 		
 		/* if either math precision library is present, raise $this->_max_int_value */
 		
@@ -115,10 +115,14 @@ class Hashids {
 		
 	}
 	
-	function encode() {
+	public function encode() {
 		
 		$ret = '';
 		$numbers = func_get_args();
+		
+		if (func_num_args() == 1 && is_array(func_get_arg(0))) {
+			$numbers = $numbers[0];
+		}
 		
 		if (!$numbers) {
 			return $ret;
@@ -138,7 +142,7 @@ class Hashids {
 		
 	}
 	
-	function decode($hash) {
+	public function decode($hash) {
 		
 		$ret = array();
 		
@@ -150,7 +154,7 @@ class Hashids {
 		
 	}
 	
-	function encode_hex($str) {
+	public function encode_hex($str) {
 		
 		if (!ctype_xdigit((string)$str)) {
 			return '';
@@ -167,7 +171,7 @@ class Hashids {
 		
 	}
 	
-	function decode_hex($hash) {
+	public function decode_hex($hash) {
 		
 		$ret = "";
 		$numbers = $this->decode($hash);
@@ -180,7 +184,7 @@ class Hashids {
 		
 	}
 	
-	function get_max_int_value() {
+	public function get_max_int_value() {
 		return $this->_max_int_value;
 	}
 	
