@@ -328,7 +328,9 @@ class Hashids implements HashGenerator {
 	private function _unhash($input, $alphabet) {
 		
 		$number = 0;
-		if (strlen($input) && $alphabet) {
+		$input_length = strlen($input);
+
+		if ($input_length && $alphabet) {
 			
 			$alphabet_length = strlen($alphabet);
 			$input_chars = str_split($input);
@@ -337,9 +339,9 @@ class Hashids implements HashGenerator {
 				
 				$pos = strpos($alphabet, $char);
 				if ($this->_math_functions) {
-					$number = $this->_math_functions['str']($this->_math_functions['add']($number, $pos * pow($alphabet_length, (strlen($input) - $i - 1))));
+					$number = $this->_math_functions['str']($this->_math_functions['add']($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
 				} else {
-					$number += $pos * pow($alphabet_length, (strlen($input) - $i - 1));
+					$number += $pos * pow($alphabet_length, ($input_length - $i - 1));
 				}
 				
 			}
