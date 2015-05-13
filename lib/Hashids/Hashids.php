@@ -285,13 +285,14 @@ class Hashids implements HashGenerator {
 	
 	private function _consistent_shuffle($alphabet, $salt) {
 		
-		if (!strlen($salt)) {
+		$salt_length = strlen($salt);
+		if (!$salt_length) {
 			return $alphabet;
 		}
 		
 		for ($i = strlen($alphabet) - 1, $v = 0, $p = 0; $i > 0; $i--, $v++) {
 			
-			$v %= strlen($salt);
+			$v %= $salt_length;
 			$p += $int = ord($salt[$v]);
 			$j = ($int + $v + $p) % $i;
 			
