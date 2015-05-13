@@ -146,11 +146,11 @@ class Hashids implements HashGenerator {
 		
 		$ret = array();
 		
-		if (!is_string($hash) || !trim($hash)) {
+		if (!is_string($hash) || !($hash = trim($hash))) {
 			return $ret;
 		}
 		
-		return $this->_decode(trim($hash), $this->_alphabet);
+		return $this->_decode($hash, $this->_alphabet);
 		
 	}
 	
