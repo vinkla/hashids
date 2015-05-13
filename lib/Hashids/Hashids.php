@@ -146,7 +146,7 @@ class Hashids implements HashGenerator {
 		
 		$ret = array();
 		
-		if (!$hash || !is_string($hash) || !trim($hash)) {
+		if (!is_string($hash) || !trim($hash)) {
 			return $ret;
 		}
 		
