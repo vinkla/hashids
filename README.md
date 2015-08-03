@@ -1,5 +1,5 @@
 
-![hashids](http://www.hashids.org.s3.amazonaws.com/public/img/hashids.png "Hashids")
+![hashids](https://avatars1.githubusercontent.com/u/8481000?v=3&s=200 "Hashids")
 
 ======
 
