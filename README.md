@@ -1,5 +1,5 @@
 
-![hashids](https://avatars1.githubusercontent.com/u/8481000?v=3&s=200 "Hashids")
+![hashids](http://hashids.org/public/img/hashids-logo-normal.png "Hashids")
 
 ======
 
