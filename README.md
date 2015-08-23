@@ -1,24 +1,20 @@
+![hashids](http://hashids.org/public/img/hashids-logo-normal.png)
 
-![hashids](http://hashids.org/public/img/hashids-logo-normal.png "Hashids")
-
-======
-
-Full Documentation
--------
+## Full Documentation
 
 A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
 
-[![hashids](https://api.travis-ci.org/ivanakimov/hashids.php.svg "Hashids")](https://travis-ci.org/ivanakimov/hashids.php)
+[![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
+[![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
 
-Installation
--------
+## Installation
 
 You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package). In your `composer.json` file use:
 
 ``` json
 {
     "require": {
-        "hashids/hashids": "1.0.5"
+        "hashids/hashids": "^1.0"
     }
 }
 ```
@@ -26,25 +22,22 @@ You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [
 And run: `php composer.phar install`. After that you can require the autoloader and use Hashids:
 
 ``` php
-<?php
+require_once 'vendor/autoload.php';
 
-require_once 'vendor/autoload.php'
-$hashids = new Hashids\Hashids('this is my salt');
+use Hashids\Hashids;
+
+$hashids = new Hashids('this is my salt');
 ```
 
-Updating from v0.3 to 1.0?
--------
+## Updating from v0.3 to 1.0?
 
-Read the `CHANGELOG` at the bottom of this readme!
+Read the [CHANGELOG](CHANGELOG.md)!
 
-Example Usage
--------
+## Example Usage
 
 The simplest way to use Hashids:
 
 ```php
-<?php
-
 $hashids = new Hashids\Hashids();
 
 $id = $hashids->encode(1, 2, 3);
@@ -53,50 +46,52 @@ $numbers = $hashids->decode($id);
 var_dump($id, $numbers);
 ```
 	
-	string(5) "laHquq"
-	array(3) {
-	  [0]=>
-	  int(1)
-	  [1]=>
-	  int(2)
-	  [2]=>
-	  int(3)
-	}
+```
+string(5) "laHquq"
+array(3) {
+  [0]=>
+  int(1)
+  [1]=>
+  int(2)
+  [2]=>
+  int(3)
+}
+```
 	
 And an example with all the custom parameters provided (unique salt value, minimum id length, custom alphabet):
 
 ```php
-<?php
-
-$hashids = new Hashids\Hashids('this is my salt', 8, 'abcdefghij1234567890');
+$hashids = new Hashids('this is my salt', 8, 'abcdefghij1234567890');
 
 $id = $hashids->encode(1, 2, 3);
 $numbers = $hashids->decode($hash);
 
 var_dump($id, $numbers);
 ```
+
+```
+string(5) "514cdi42"
+array(3) {
+  [0]=>
+  int(1)
+  [1]=>
+  int(2)
+  [2]=>
+  int(3)
+}
+```
 	
-	string(5) "514cdi42"
-	array(3) {
-	  [0]=>
-	  int(1)
-	  [1]=>
-	  int(2)
-	  [2]=>
-	  int(3)
-	}
-	
-Curses! #$%@
--------
+## Curses! #$%@
 
 This code was written with the intent of placing created ids in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
 
 Therefore, the algorithm tries to avoid generating most common English curse words. This is done by never placing the following letters next to each other:
-	
-	c, C, s, S, f, F, h, H, u, U, i, I, t, T
-	
-Big Numbers
--------
+
+```
+c, C, s, S, f, F, h, H, u, U, i, I, t, T
+```
+
+## Big Numbers
 
 Each number passed to the constructor **cannot be negative** or **greater than 1 billion by default** (1,000,000,000). Hashids `encode()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that -- no exception is thrown.
 
@@ -108,8 +103,7 @@ It will then use regular arithmetic on numbers less than 1 billion (because it's
 
 You can get the upper limit by doing: `$hashids->get_max_int_value();` (which will stay at **1 billion** if neither of the libraries is installed).
 
-Speed
--------
+## Speed
 
 Even though speed is an important factor of every hashing algorithm, primary goal here was encoding several numbers at once while avoiding collisions.
 
@@ -127,17 +121,14 @@ On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly:
 
 *Sidenote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
 
-Notes
--------
+## Notes
 
 - If you want to squeeze out even more performance, set a shorter alphabet. Hashes will be less random and longer, but calculating them will be faster.
 
-Contact
--------
+## Contact
 
 I am on the internets [@IvanAkimov](http://twitter.com/ivanakimov)
 
-License
--------
+## License
 
 MIT License. See the `LICENSE` file. You can use Hashids in open source projects and commercial products. Don't break the Internet. Kthxbye.
