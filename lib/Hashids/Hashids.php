@@ -146,11 +146,11 @@ class Hashids implements HashGenerator {
 		
 		$ret = array();
 		
-		if (!$hash || !is_string($hash) || !trim($hash)) {
+		if (!is_string($hash) || !($hash = trim($hash))) {
 			return $ret;
 		}
 		
-		return $this->_decode(trim($hash), $this->_alphabet);
+		return $this->_decode($hash, $this->_alphabet);
 		
 	}
 	
@@ -285,13 +285,14 @@ class Hashids implements HashGenerator {
 	
 	private function _consistent_shuffle($alphabet, $salt) {
 		
-		if (!strlen($salt)) {
+		$salt_length = strlen($salt);
+		if (!$salt_length) {
 			return $alphabet;
 		}
 		
 		for ($i = strlen($alphabet) - 1, $v = 0, $p = 0; $i > 0; $i--, $v++) {
 			
-			$v %= strlen($salt);
+			$v %= $salt_length;
 			$p += $int = ord($salt[$v]);
 			$j = ($int + $v + $p) % $i;
 			
@@ -328,7 +329,9 @@ class Hashids implements HashGenerator {
 	private function _unhash($input, $alphabet) {
 		
 		$number = 0;
-		if (strlen($input) && $alphabet) {
+		$input_length = strlen($input);
+
+		if ($input_length && $alphabet) {
 			
 			$alphabet_length = strlen($alphabet);
 			$input_chars = str_split($input);
@@ -337,9 +340,9 @@ class Hashids implements HashGenerator {
 				
 				$pos = strpos($alphabet, $char);
 				if ($this->_math_functions) {
-					$number = $this->_math_functions['str']($this->_math_functions['add']($number, $pos * pow($alphabet_length, (strlen($input) - $i - 1))));
+					$number = $this->_math_functions['str']($this->_math_functions['add']($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
 				} else {
-					$number += $pos * pow($alphabet_length, (strlen($input) - $i - 1));
+					$number += $pos * pow($alphabet_length, ($input_length - $i - 1));
 				}
 				
 			}
