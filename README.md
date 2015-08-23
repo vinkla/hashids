@@ -140,4 +140,4 @@ I am on the internets [@IvanAkimov](http://twitter.com/ivanakimov)
 License
 -------
 
-MIT License. See the `LICENSE` file. You can use Hashids in open source projects and commercial products. Don't break the Internet. Kthxbye.
+Hashids is licensed under [The MIT License (MIT)](LICENSE).
