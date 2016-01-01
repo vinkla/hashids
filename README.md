@@ -71,7 +71,7 @@ And an example with all the custom parameters provided (unique salt value, minim
 $hashids = new Hashids\Hashids('this is my salt', 8, 'abcdefghij1234567890');
 
 $id = $hashids->encode(1, 2, 3);
-$numbers = $hashids->decode($hash);
+$numbers = $hashids->decode($id);
 
 var_dump($id, $numbers);
 ```
