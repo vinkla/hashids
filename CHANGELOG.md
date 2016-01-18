@@ -1,5 +1,16 @@
 # CHANGELOG
 
+**1.0.6**:
+
+- `CHANGELOG` moved to its own file (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/41))
+- `.gitattributes` added (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/40))
+- autoload with PSR-4 (thanks [@vinkla and @GrahamCampbell](https://github.com/ivanakimov/hashids.php/pull/40))
+- `LICENSE` moved to its own file (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/44))
+- `.gitignore` file simplified (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/45))
+- random `README` cleanups (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/46))
+- applied PSR-1 and PSR-2 to the code (thanks [@pablofmorales](https://github.com/ivanakimov/hashids.php/pull/51))
+- typo in custom parameters example (thanks [@McMillanThomas](https://github.com/ivanakimov/hashids.php/pull/52))
+
 **1.0.5**:
 
 - bug fix for passing empty array to `encode` (thanks [@bpahan](https://github.com/ivanakimov/hashids.php/issues/32))
