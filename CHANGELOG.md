@@ -4,7 +4,7 @@
 
 - `CHANGELOG` moved to its own file (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/41))
 - `.gitattributes` added (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/40))
-- autoload with PSR-4 (thanks [@vinkla and @GrahamCampbell](https://github.com/ivanakimov/hashids.php/pull/40))
+- autoload with PSR-4 (thanks [@vinkla and @GrahamCampbell](https://github.com/ivanakimov/hashids.php/pull/43))
 - `LICENSE` moved to its own file (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/44))
 - `.gitignore` file simplified (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/45))
 - random `README` cleanups (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/46))
