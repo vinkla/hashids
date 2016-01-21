@@ -10,6 +10,7 @@
 - random `README` cleanups (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/46))
 - applied PSR-1 and PSR-2 to the code (thanks [@pablofmorales](https://github.com/ivanakimov/hashids.php/pull/51))
 - typo in custom parameters example (thanks [@McMillanThomas](https://github.com/ivanakimov/hashids.php/pull/52))
+- testing against PHP 7.0 now (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/54))
 
 **1.0.5**:
 
