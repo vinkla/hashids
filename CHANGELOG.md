@@ -3,6 +3,7 @@
 **2.0.0**:
 
 - Dropped PHP 5.3 - 5.5 support
+- Dropped HHVM support
 
 **1.0.6**:
 
