@@ -12,7 +12,7 @@
 namespace Hashids;
 
 /**
- * This is the hash generator class.
+ * This is the hash generator interface.
  *
  * @author Ivan Akimov <ivan@barreleye.com>
  */
