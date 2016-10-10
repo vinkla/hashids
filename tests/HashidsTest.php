@@ -23,12 +23,12 @@ class HashidsTest extends PHPUnit_Framework_TestCase
 
     public function testCollisions()
     {
-        foreach (array(
+        foreach ([
             $this->hashids,
             $this->hashids_min_length,
             $this->hashids_alphabet,
-        ) as $hashids) {
-            $hashes = array();
+        ] as $hashids) {
+            $hashes = [];
 
             /* encode one number like [123] */
 
@@ -37,18 +37,18 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
 
             $unique_array = array_unique($hashes);
-            $this->assertEquals(0, sizeof($hashes) - sizeof($unique_array));
+            $this->assertSame(0, sizeof($hashes) - sizeof($unique_array));
         }
     }
 
     public function testMultiCollisions()
     {
-        foreach (array(
+        foreach ([
             $this->hashids,
             $this->hashids_min_length,
             $this->hashids_alphabet,
-        ) as $hashids) {
-            $hashes = array();
+        ] as $hashids) {
+            $hashes = [];
             $max_id = (int) ($this->max_id / 3);
 
             /* encode multiple numbers like [1, 2, 3] */
@@ -62,13 +62,13 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
 
             $unique_array = array_unique($hashes);
-            $this->assertEquals(0, sizeof($hashes) - sizeof($unique_array));
+            $this->assertSame(0, sizeof($hashes) - sizeof($unique_array));
         }
     }
 
     public function testMinHashLength()
     {
-        $hashes = array();
+        $hashes = [];
 
         for ($i = 0; $i != $this->max_id; ++$i) {
             $hash = $this->hashids_min_length->encode($i);
@@ -77,12 +77,12 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertEquals(0, sizeof($hashes));
+        $this->assertSame(0, sizeof($hashes));
     }
 
     public function testRandomHashesDecoding()
     {
-        $corrupt = $hashes = array();
+        $corrupt = $hashes = [];
 
         for ($i = 0; $i != $this->max_id; ++$i) {
 
@@ -100,19 +100,19 @@ class HashidsTest extends PHPUnit_Framework_TestCase
 
                 /* could've accidentally generated correct hash, try to encode */
 
-                $hash = call_user_func_array(array($this->hashids, 'encode'), $numbers);
+                $hash = call_user_func_array([$this->hashids, 'encode'], $numbers);
                 if ($hash != $random_hash) {
                     $corrupt[] = $random_hash;
                 }
             }
         }
 
-        $this->assertEquals(0, sizeof($corrupt));
+        $this->assertSame(0, sizeof($corrupt));
     }
 
     public function testCustomAlphabet()
     {
-        $hashes = array();
+        $hashes = [];
         $alphabet_array = str_split($this->custom_alphabet);
 
         for ($i = 0; $i != $this->max_id; ++$i) {
@@ -124,12 +124,12 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertEquals(0, sizeof($hashes));
+        $this->assertSame(0, sizeof($hashes));
     }
 
     public function testBigValues()
     {
-        $hashes = array();
+        $hashes = [];
         $max_int_value = $this->hashids->get_max_int_value();
 
         for ($i = $this->hashids->get_max_int_value(), $j = $i - $this->max_id; $i != $j; --$i) {
@@ -141,31 +141,31 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertEquals(0, sizeof($hashes));
+        $this->assertSame(0, sizeof($hashes));
     }
 
     public function testOutOfBoundsValue()
     {
         $hash = $this->hashids->encode($this->hashids->get_max_int_value() + 1);
-        $this->assertEquals('', $hash);
+        $this->assertSame('', $hash);
     }
 
     public function testNegativeValue()
     {
         $hash = $this->hashids->encode(-1);
-        $this->assertEquals('', $hash);
+        $this->assertSame('', $hash);
     }
 
     public function testEncodingEmptyArray()
     {
-        $hash = $this->hashids->encode(array());
-        $this->assertEquals('', $hash);
+        $hash = $this->hashids->encode([]);
+        $this->assertSame('', $hash);
     }
 
     public function testEncodingWithoutParams()
     {
         $hash = $this->hashids->encode();
-        $this->assertEquals('', $hash);
+        $this->assertSame('', $hash);
     }
 
     public function testEncodingDecodingHex()
@@ -176,6 +176,6 @@ class HashidsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue((bool) $id);
 
         $hex = $this->hashids->decode_hex($id);
-        $this->assertEquals($hex, $testValue);
+        $this->assertSame($hex, $testValue);
     }
 }

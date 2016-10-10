@@ -35,7 +35,7 @@ class Hashids implements HashGenerator
     private $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     private $_seps = 'cfhistuCFHISTU';
     private $_min_hash_length = 0;
-    private $_math_functions = array();
+    private $_math_functions = [];
     private $_max_int_value = 1000000000;
 
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
@@ -139,7 +139,7 @@ class Hashids implements HashGenerator
 
     public function decode($hash)
     {
-        $ret = array();
+        $ret = [];
 
         if (!is_string($hash) || !($hash = trim($hash))) {
             return $ret;
@@ -161,7 +161,7 @@ class Hashids implements HashGenerator
             $numbers[$i] = hexdec('1'.$number);
         }
 
-        return call_user_func_array(array($this, 'encode'), $numbers);
+        return call_user_func_array([$this, 'encode'], $numbers);
     }
 
     public function decode_hex($hash)
@@ -233,7 +233,7 @@ class Hashids implements HashGenerator
 
     private function _decode($hash, $alphabet)
     {
-        $ret = array();
+        $ret = [];
 
         $hash_breakdown = str_replace(str_split($this->_guards), ' ', $hash);
         $hash_array = explode(' ', $hash_breakdown);
@@ -257,7 +257,7 @@ class Hashids implements HashGenerator
             }
 
             if ($this->_encode($ret) != $hash) {
-                $ret = array();
+                $ret = [];
             }
         }
 
