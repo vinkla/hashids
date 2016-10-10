@@ -5,6 +5,7 @@
 A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
 
 [![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
+[![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
 
 ## Installation
@@ -45,7 +46,7 @@ $numbers = $hashids->decode($id);
 
 var_dump($id, $numbers);
 ```
-	
+
 ```
 string(5) "laHquq"
 array(3) {
@@ -57,7 +58,7 @@ array(3) {
   int(3)
 }
 ```
-	
+
 And an example with all the custom parameters provided (unique salt value, minimum id length, custom alphabet):
 
 ```php
@@ -80,7 +81,7 @@ array(3) {
   int(3)
 }
 ```
-	
+
 ## Curses! #$%@
 
 This code was written with the intent of placing created ids in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
