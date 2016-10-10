@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Hashids\\": "lib/Hashids/"
+            "Hashids\\": "src/"
         }
     },
     "autoload-dev": {
