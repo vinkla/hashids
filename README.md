@@ -6,7 +6,7 @@ A small PHP class to generate YouTube-like ids from numbers. Read documentation 
 
 [![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
 [![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
-[![Latest Version](https://img.shields.io/github/release/ivanakimov/hashids.php.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
+[![Latest Version](https://img.shields.io/packagist/v/hashids/hashids.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
 
 ## Installation
