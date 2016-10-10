@@ -40,6 +40,7 @@ class Hashids implements HashGenerator
     private $_min_hash_length = 0;
     private $_math_functions = [];
     private $_max_int_value = 1000000000;
+    private $_salt;
 
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
     {
