@@ -15,6 +15,7 @@ namespace Hashids;
  * This is the hashids interface.
  *
  * @author Ivan Akimov <ivan@barreleye.com>
+ * @author Vincent Klaiber <hello@vinkla.com>
  */
 interface HashidsInterface
 {

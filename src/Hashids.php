@@ -17,6 +17,7 @@ use Exception;
  * This is the hashids class.
  *
  * @author Ivan Akimov <ivan@barreleye.com>
+ * @author Vincent Klaiber <hello@vinkla.com>
  */
 class Hashids implements HashidsInterface
 {
