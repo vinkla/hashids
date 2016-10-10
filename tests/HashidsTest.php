@@ -1,10 +1,24 @@
 <?php
 
+/*
+ * This file is part of Hashids.
+ *
+ * (c) Ivan Akimov <ivan@barreleye.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Hashids\Tests;
 
 use Hashids\Hashids;
 use PHPUnit_Framework_TestCase;
 
+/**
+ * This is the hashids test class.
+ *
+ * @author Ivan Akimov <ivan@barreleye.com>
+ */
 class HashidsTest extends PHPUnit_Framework_TestCase
 {
     private $hashids = null;

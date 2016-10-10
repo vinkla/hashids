@@ -1,20 +1,20 @@
 <?php
 
 /*
-
-    Hashids
-    http://hashids.org/php
-    (c) 2013 Ivan Akimov
-
-    https://github.com/ivanakimov/hashids.php
-    hashids may be freely distributed under the MIT license.
-
-*/
+ * This file is part of Hashids.
+ *
+ * (c) Ivan Akimov <ivan@barreleye.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Hashids;
 
 /**
- * HashGenerator is a contract for generating hashes.
+ * This is the hash generator class.
+ *
+ * @author Ivan Akimov <ivan@barreleye.com>
  */
 interface HashGenerator
 {
