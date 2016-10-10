@@ -1,7 +1,7 @@
 <?php
 
 /* be sure to require `hashids` in your `composer.json` file first */
-require_once(__DIR__.'/../vendor/autoload.php');
+require_once __DIR__.'/../vendor/autoload.php';
 
 /* create the class object with custom alphabet */
 $hashids = new Hashids\Hashids('this is my salt', 0, 'abcdefgh123456789');
