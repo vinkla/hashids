@@ -18,7 +18,7 @@ use Exception;
  *
  * @author Ivan Akimov <ivan@barreleye.com>
  */
-class Hashids implements HashGenerator
+class Hashids implements HashidsInterface
 {
     const VERSION = '1.0.6';
 

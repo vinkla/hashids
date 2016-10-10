@@ -12,11 +12,11 @@
 namespace Hashids;
 
 /**
- * This is the hash generator interface.
+ * This is the hashids interface.
  *
  * @author Ivan Akimov <ivan@barreleye.com>
  */
-interface HashGenerator
+interface HashidsInterface
 {
     /**
      * Encodes a variable number of parameters to generate a hash.
