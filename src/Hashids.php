@@ -187,7 +187,7 @@ class Hashids implements HashGenerator
     private function _encode(array $numbers)
     {
         $alphabet = $this->_alphabet;
-        $numbers_size = sizeof($numbers);
+        $numbers_size = count($numbers);
         $numbers_hash_int = 0;
 
         foreach ($numbers as $i => $number) {
@@ -242,7 +242,7 @@ class Hashids implements HashGenerator
         $hash_array = explode(' ', $hash_breakdown);
 
         $i = 0;
-        if (sizeof($hash_array) == 3 || sizeof($hash_array) == 2) {
+        if (count($hash_array) == 3 || count($hash_array) == 2) {
             $i = 1;
         }
 

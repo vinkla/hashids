@@ -51,7 +51,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
 
             $unique_array = array_unique($hashes);
-            $this->assertSame(0, sizeof($hashes) - sizeof($unique_array));
+            $this->assertSame(0, count($hashes) - count($unique_array));
         }
     }
 
@@ -76,7 +76,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
 
             $unique_array = array_unique($hashes);
-            $this->assertSame(0, sizeof($hashes) - sizeof($unique_array));
+            $this->assertSame(0, count($hashes) - count($unique_array));
         }
     }
 
@@ -91,7 +91,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertSame(0, sizeof($hashes));
+        $this->assertSame(0, count($hashes));
     }
 
     public function testRandomHashesDecoding()
@@ -121,7 +121,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertSame(0, sizeof($corrupt));
+        $this->assertSame(0, count($corrupt));
     }
 
     public function testCustomAlphabet()
@@ -138,7 +138,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertSame(0, sizeof($hashes));
+        $this->assertSame(0, count($hashes));
     }
 
     public function testBigValues()
@@ -155,7 +155,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $this->assertSame(0, sizeof($hashes));
+        $this->assertSame(0, count($hashes));
     }
 
     public function testOutOfBoundsValue()
