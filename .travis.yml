@@ -8,7 +8,10 @@ php:
   - 7.1
   - hhvm
 
-before_script:
-  - composer install --dev
+sudo: false
 
-script: vendor/bin/phpunit tests/HashidsTest.php
+install:
+  - travis_retry composer install --no-interaction --prefer-source
+
+script:
+  - vendor/bin/phpunit
