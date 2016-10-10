@@ -79,7 +79,7 @@ class Hashids implements HashidsInterface
             throw new Exception(sprintf(self::E_ALPHABET_LENGTH, self::MIN_ALPHABET_LENGTH));
         }
 
-        if (is_int(strpos($this->_alphabet, ' '))) {
+        if (strpos($this->_alphabet, ' ') !== false) {
             throw new Exception(self::E_ALPHABET_SPACE);
         }
 
