@@ -1,17 +1,19 @@
 <?php
 
 /*
-    
+
     Hashids
     http://hashids.org/php
     (c) 2013 Ivan Akimov
-    
+
     https://github.com/ivanakimov/hashids.php
     hashids may be freely distributed under the MIT license.
-    
+
 */
 
 namespace Hashids;
+
+use Exception;
 
 class Hashids implements HashGenerator
 {
@@ -69,11 +71,11 @@ class Hashids implements HashGenerator
         }
 
         if (strlen($this->_alphabet) < self::MIN_ALPHABET_LENGTH) {
-            throw new \Exception(sprintf(self::E_ALPHABET_LENGTH, self::MIN_ALPHABET_LENGTH));
+            throw new Exception(sprintf(self::E_ALPHABET_LENGTH, self::MIN_ALPHABET_LENGTH));
         }
 
         if (is_int(strpos($this->_alphabet, ' '))) {
-            throw new \Exception(self::E_ALPHABET_SPACE);
+            throw new Exception(self::E_ALPHABET_SPACE);
         }
 
         $alphabet_array = str_split($this->_alphabet);
