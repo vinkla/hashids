@@ -1,6 +1,6 @@
 {
     "name": "hashids/hashids",
-    "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers.",
+    "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
     "keywords": ["hashids", "hashid", "hash", "ids", "youtube", "bitly", "encode", "decode", "obfuscate"],
     "homepage": "http://hashids.org/php",
     "license": "MIT",
@@ -27,9 +27,14 @@
             "Hashids\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "preferred-install": "dist"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
