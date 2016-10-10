@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**2.0.0**:
+
+- Dropped PHP 5.3 - 5.5 support
+
 **1.0.6**:
 
 - `CHANGELOG` moved to its own file (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/41))
@@ -38,7 +42,7 @@
     - Function `decrypt()` changed to `decode()`
     - Function `encrypt_hex()` changed to `encode_hex()`
     - Function `decrypt_hex()` changed to `decode_hex()`
-    
+
     Hashids was designed to encode integers, primary ids at most. We've had several requests to encrypt sensitive data with Hashids and this is the wrong algorithm for that. So to encourage more appropriate use, `encrypt/decrypt` is being "downgraded" to `encode/decode`.
 
 - Version tag added: `1.0`
@@ -64,7 +68,7 @@
 - Namespace `Hashids` added to library class
 
 **0.2.0 - Warning: Hashes change in this version:**
-    
+
 - Overall approximately **4x** faster
 - Consistent shuffle function uses slightly modified version of [Fisher–Yates algorithm](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
 - Generate large hash strings faster (more than 1000 chars)
@@ -97,5 +101,5 @@
 - Bug fixes
 
 **0.1.0**
-    
+
 - First commit
