@@ -35,6 +35,17 @@ class Hashids implements HashidsInterface
     private $_max_int_value = 1000000000;
     private $_salt;
 
+    /**
+     * Create a new hashids instance.
+     *
+     * @param string $salt
+     * @param integer $min_hash_length
+     * @param string $alphabet
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return void
+     */
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
     {
 
