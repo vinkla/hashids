@@ -304,9 +304,9 @@ class Hashids implements HashidsInterface
             foreach ($input_chars as $i => $char) {
                 $pos = strpos($alphabet, $char);
                 if ($this->_math_functions) {
-                    $number = Str::value(Math::add($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
+                    $number = Str::value(Math::add($number, $pos * Math::pow($alphabet_length, ($input_length - $i - 1))));
                 } else {
-                    $number += $pos * pow($alphabet_length, ($input_length - $i - 1));
+                    $number += $pos * Math::pow($alphabet_length, ($input_length - $i - 1));
                 }
             }
         }

@@ -55,4 +55,21 @@ class Math
             return bcdiv($a, $b);
         }
     }
+
+    /**
+     * Raise number into power.
+     *
+     * @param int $base
+     * @param int $exp
+     *
+     * @return int
+     */
+    public static function pow($base, $exp)
+    {
+        if (function_exists('gmp_pow')) {
+            return gmp_pow($base, $exp);
+        }
+
+        return pow($base, $exp);
+    }
 }
