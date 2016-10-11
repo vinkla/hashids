@@ -39,7 +39,7 @@ class Hashids implements HashidsInterface
      * Create a new hashids instance.
      *
      * @param string $salt
-     * @param integer $min_hash_length
+     * @param int $min_hash_length
      * @param string $alphabet
      *
      * @throws \InvalidArgumentException
