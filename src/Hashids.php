@@ -21,11 +21,8 @@ use InvalidArgumentException;
  */
 class Hashids implements HashidsInterface
 {
-    const VERSION = '1.0.6';
-
     /* internal settings */
 
-    const MIN_ALPHABET_LENGTH = 16;
     const SEP_DIV = 3.5;
     const GUARD_DIV = 12;
 
