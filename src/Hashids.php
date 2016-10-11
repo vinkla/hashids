@@ -42,7 +42,7 @@ class Hashids implements HashidsInterface
 
         if (function_exists('gmp_add')) {
             $this->_math_functions['add'] = 'gmp_add';
-            $this->_math_functions['div'] = 'gmp_div';
+            $this->_math_functions['div'] = 'gmp_div_q';
             $this->_math_functions['str'] = 'gmp_strval';
         } elseif (function_exists('bcadd')) {
             $this->_math_functions['add'] = 'bcadd';
