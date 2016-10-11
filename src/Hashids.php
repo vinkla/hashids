@@ -48,19 +48,9 @@ class Hashids implements HashidsInterface
      */
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
     {
+        $this->_math_functions = function_exists('gmp_add') || function_exists('bcadd');
 
         /* if either math precision library is present, raise $this->_max_int_value */
-
-        if (function_exists('gmp_add')) {
-            $this->_math_functions['add'] = 'gmp_add';
-            $this->_math_functions['div'] = 'gmp_div';
-            $this->_math_functions['str'] = 'gmp_strval';
-        } elseif (function_exists('bcadd')) {
-            $this->_math_functions['add'] = 'bcadd';
-            $this->_math_functions['div'] = 'bcdiv';
-            $this->_math_functions['str'] = 'strval';
-        }
-
         $this->_lower_max_int_value = $this->_max_int_value;
         if ($this->_math_functions) {
             $this->_max_int_value = PHP_INT_MAX;
@@ -293,7 +283,7 @@ class Hashids implements HashidsInterface
         do {
             $hash = $alphabet[$input % $alphabet_length].$hash;
             if ($input > $this->_lower_max_int_value && $this->_math_functions) {
-                $input = $this->_math_functions['str']($this->_math_functions['div']($input, $alphabet_length));
+                $input = Math::str(Math::div($input, $alphabet_length));
             } else {
                 $input = (int) ($input / $alphabet_length);
             }
@@ -314,7 +304,7 @@ class Hashids implements HashidsInterface
             foreach ($input_chars as $i => $char) {
                 $pos = strpos($alphabet, $char);
                 if ($this->_math_functions) {
-                    $number = $this->_math_functions['str']($this->_math_functions['add']($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
+                    $number = Math::str(Math::add($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
                 } else {
                     $number += $pos * pow($alphabet_length, ($input_length - $i - 1));
                 }
