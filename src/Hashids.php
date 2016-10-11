@@ -198,7 +198,37 @@ class Hashids implements HashidsInterface
             return $ret;
         }
 
-        return $this->_decode($hash, $this->_alphabet);
+        $alphabet = $this->_alphabet;
+
+        $ret = [];
+
+        $hash_breakdown = str_replace(str_split($this->_guards), ' ', $hash);
+        $hash_array = explode(' ', $hash_breakdown);
+
+        $i = 0;
+        if (count($hash_array) == 3 || count($hash_array) == 2) {
+            $i = 1;
+        }
+
+        $hash_breakdown = $hash_array[$i];
+        if (isset($hash_breakdown[0])) {
+            $lottery = $hash_breakdown[0];
+            $hash_breakdown = substr($hash_breakdown, 1);
+
+            $hash_breakdown = str_replace(str_split($this->_seps), ' ', $hash_breakdown);
+            $hash_array = explode(' ', $hash_breakdown);
+
+            foreach ($hash_array as $sub_hash) {
+                $alphabet = $this->shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
+                $ret[] = (int) $this->unhash($sub_hash, $alphabet);
+            }
+
+            if ($this->encode($ret) != $hash) {
+                $ret = [];
+            }
+        }
+
+        return $ret;
     }
 
     public function encode_hex($str)
@@ -232,39 +262,6 @@ class Hashids implements HashidsInterface
     public function get_max_int_value()
     {
         return $this->_max_int_value;
-    }
-
-    protected function _decode($hash, $alphabet)
-    {
-        $ret = [];
-
-        $hash_breakdown = str_replace(str_split($this->_guards), ' ', $hash);
-        $hash_array = explode(' ', $hash_breakdown);
-
-        $i = 0;
-        if (count($hash_array) == 3 || count($hash_array) == 2) {
-            $i = 1;
-        }
-
-        $hash_breakdown = $hash_array[$i];
-        if (isset($hash_breakdown[0])) {
-            $lottery = $hash_breakdown[0];
-            $hash_breakdown = substr($hash_breakdown, 1);
-
-            $hash_breakdown = str_replace(str_split($this->_seps), ' ', $hash_breakdown);
-            $hash_array = explode(' ', $hash_breakdown);
-
-            foreach ($hash_array as $sub_hash) {
-                $alphabet = $this->shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
-                $ret[] = (int) $this->unhash($sub_hash, $alphabet);
-            }
-
-            if ($this->encode($ret) != $hash) {
-                $ret = [];
-            }
-        }
-
-        return $ret;
     }
 
     protected function shuffle($alphabet, $salt)
