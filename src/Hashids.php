@@ -283,7 +283,7 @@ class Hashids implements HashidsInterface
         do {
             $hash = $alphabet[$input % $alphabet_length].$hash;
             if ($input > $this->_lower_max_int_value && $this->_math_functions) {
-                $input = Str::str(Math::divide($input, $alphabet_length));
+                $input = Str::value(Math::divide($input, $alphabet_length));
             } else {
                 $input = (int) ($input / $alphabet_length);
             }
@@ -304,7 +304,7 @@ class Hashids implements HashidsInterface
             foreach ($input_chars as $i => $char) {
                 $pos = strpos($alphabet, $char);
                 if ($this->_math_functions) {
-                    $number = Str::str(Math::add($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
+                    $number = Str::value(Math::add($number, $pos * pow($alphabet_length, ($input_length - $i - 1))));
                 } else {
                     $number += $pos * pow($alphabet_length, ($input_length - $i - 1));
                 }
