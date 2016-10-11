@@ -29,12 +29,14 @@ class Math
     public static function add($a, $b)
     {
         if (function_exists('gmp_add')) {
-            return gmp_add($a, $b);
+            return gmp_intval(gmp_add($a, $b));
         }
 
         if (function_exists('bcadd')) {
-            return bcadd($a, $b);
+            return intval(bcadd($a, $b));
         }
+
+        return $a + $b;
     }
 
     /**
@@ -48,12 +50,14 @@ class Math
     public static function divide($a, $b)
     {
         if (function_exists('gmp_div_q')) {
-            return gmp_div_q($a, $b);
+            return gmp_intval(gmp_div_q($a, $b));
         }
 
         if (function_exists('bcdiv')) {
-            return bcdiv($a, $b);
+            return intval(bcdiv($a, $b));
         }
+
+        return $a / $b;
     }
 
     /**
@@ -67,7 +71,7 @@ class Math
     public static function pow($base, $exp)
     {
         if (function_exists('gmp_pow')) {
-            return gmp_pow($base, $exp);
+            return gmp_intval(gmp_pow($base, $exp));
         }
 
         return pow($base, $exp);
