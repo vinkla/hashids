@@ -28,12 +28,12 @@ class Hashids implements HashidsInterface
 
     /* set at constructor */
 
-    private $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-    private $_seps = 'cfhistuCFHISTU';
-    private $_min_hash_length = 0;
-    private $_math_functions = [];
-    private $_max_int_value = 1000000000;
-    private $_salt;
+    protected $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    protected $_seps = 'cfhistuCFHISTU';
+    protected $_min_hash_length = 0;
+    protected $_math_functions = [];
+    protected $_max_int_value = 1000000000;
+    protected $_salt;
 
     /**
      * Create a new hashids instance.
@@ -53,7 +53,7 @@ class Hashids implements HashidsInterface
 
         if (function_exists('gmp_add')) {
             $this->_math_functions['add'] = 'gmp_add';
-            $this->_math_functions['div'] = 'gmp_div_q';
+            $this->_math_functions['div'] = 'gmp_div';
             $this->_math_functions['str'] = 'gmp_strval';
         } elseif (function_exists('bcadd')) {
             $this->_math_functions['add'] = 'bcadd';
@@ -189,7 +189,7 @@ class Hashids implements HashidsInterface
         return $this->_max_int_value;
     }
 
-    private function _encode(array $numbers)
+    protected function _encode(array $numbers)
     {
         $alphabet = $this->_alphabet;
         $numbers_size = count($numbers);
@@ -239,7 +239,7 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    private function _decode($hash, $alphabet)
+    protected function _decode($hash, $alphabet)
     {
         $ret = [];
 
@@ -272,7 +272,7 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    private function _consistent_shuffle($alphabet, $salt)
+    protected function _consistent_shuffle($alphabet, $salt)
     {
         $salt_length = strlen($salt);
         if (!$salt_length) {
@@ -292,7 +292,7 @@ class Hashids implements HashidsInterface
         return $alphabet;
     }
 
-    private function _hash($input, $alphabet)
+    protected function _hash($input, $alphabet)
     {
         $hash = '';
         $alphabet_length = strlen($alphabet);
@@ -309,7 +309,7 @@ class Hashids implements HashidsInterface
         return $hash;
     }
 
-    private function _unhash($input, $alphabet)
+    protected function _unhash($input, $alphabet)
     {
         $number = 0;
         $input_length = strlen($input);
