@@ -45,7 +45,7 @@ class Math
      *
      * @return int
      */
-    public static function div($a, $b)
+    public static function divide($a, $b)
     {
         if (function_exists('gmp_div_q')) {
             return gmp_div_q($a, $b);

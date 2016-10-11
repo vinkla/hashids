@@ -283,7 +283,7 @@ class Hashids implements HashidsInterface
         do {
             $hash = $alphabet[$input % $alphabet_length].$hash;
             if ($input > $this->_lower_max_int_value && $this->_math_functions) {
-                $input = Str::str(Math::div($input, $alphabet_length));
+                $input = Str::str(Math::divide($input, $alphabet_length));
             } else {
                 $input = (int) ($input / $alphabet_length);
             }
