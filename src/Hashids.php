@@ -202,7 +202,7 @@ class Hashids implements HashidsInterface
         $lottery = $ret = $alphabet[$numbers_hash_int % strlen($alphabet)];
         foreach ($numbers as $i => $number) {
             $alphabet = $this->_consistent_shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
-            $ret .= $last = $this->_hash($number, $alphabet);
+            $ret .= $last = $this->hash($number, $alphabet);
 
             if ($i + 1 < $numbers_size) {
                 $number %= (ord($last) + $i);
@@ -261,7 +261,7 @@ class Hashids implements HashidsInterface
 
             foreach ($hash_array as $sub_hash) {
                 $alphabet = $this->_consistent_shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
-                $ret[] = (int) $this->_unhash($sub_hash, $alphabet);
+                $ret[] = (int) $this->unhash($sub_hash, $alphabet);
             }
 
             if ($this->_encode($ret) != $hash) {
@@ -292,7 +292,7 @@ class Hashids implements HashidsInterface
         return $alphabet;
     }
 
-    protected function _hash($input, $alphabet)
+    protected function hash($input, $alphabet)
     {
         $hash = '';
         $alphabet_length = strlen($alphabet);
@@ -309,7 +309,7 @@ class Hashids implements HashidsInterface
         return $hash;
     }
 
-    protected function _unhash($input, $alphabet)
+    protected function unhash($input, $alphabet)
     {
         $number = 0;
         $input_length = strlen($input);
