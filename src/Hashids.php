@@ -142,55 +142,6 @@ class Hashids implements HashidsInterface
             }
         }
 
-        return $this->_encode($numbers);
-    }
-
-    public function decode($hash)
-    {
-        $ret = [];
-
-        if (!is_string($hash) || !($hash = trim($hash))) {
-            return $ret;
-        }
-
-        return $this->_decode($hash, $this->_alphabet);
-    }
-
-    public function encode_hex($str)
-    {
-        if (!ctype_xdigit((string) $str)) {
-            return '';
-        }
-
-        $numbers = trim(chunk_split($str, 12, ' '));
-        $numbers = explode(' ', $numbers);
-
-        foreach ($numbers as $i => $number) {
-            $numbers[$i] = hexdec('1'.$number);
-        }
-
-        return call_user_func_array([$this, 'encode'], $numbers);
-    }
-
-    public function decode_hex($hash)
-    {
-        $ret = '';
-        $numbers = $this->decode($hash);
-
-        foreach ($numbers as $i => $number) {
-            $ret .= substr(dechex($number), 1);
-        }
-
-        return $ret;
-    }
-
-    public function get_max_int_value()
-    {
-        return $this->_max_int_value;
-    }
-
-    protected function _encode(array $numbers)
-    {
         $alphabet = $this->_alphabet;
         $numbers_size = count($numbers);
         $numbers_hash_int = 0;
@@ -239,6 +190,50 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
+    public function decode($hash)
+    {
+        $ret = [];
+
+        if (!is_string($hash) || !($hash = trim($hash))) {
+            return $ret;
+        }
+
+        return $this->_decode($hash, $this->_alphabet);
+    }
+
+    public function encode_hex($str)
+    {
+        if (!ctype_xdigit((string) $str)) {
+            return '';
+        }
+
+        $numbers = trim(chunk_split($str, 12, ' '));
+        $numbers = explode(' ', $numbers);
+
+        foreach ($numbers as $i => $number) {
+            $numbers[$i] = hexdec('1'.$number);
+        }
+
+        return call_user_func_array([$this, 'encode'], $numbers);
+    }
+
+    public function decode_hex($hash)
+    {
+        $ret = '';
+        $numbers = $this->decode($hash);
+
+        foreach ($numbers as $i => $number) {
+            $ret .= substr(dechex($number), 1);
+        }
+
+        return $ret;
+    }
+
+    public function get_max_int_value()
+    {
+        return $this->_max_int_value;
+    }
+
     protected function _decode($hash, $alphabet)
     {
         $ret = [];
@@ -264,7 +259,7 @@ class Hashids implements HashidsInterface
                 $ret[] = (int) $this->unhash($sub_hash, $alphabet);
             }
 
-            if ($this->_encode($ret) != $hash) {
+            if ($this->encode($ret) != $hash) {
                 $ret = [];
             }
         }
@@ -275,7 +270,7 @@ class Hashids implements HashidsInterface
     protected function shuffle($alphabet, $salt)
     {
         $salt_length = strlen($salt);
-        
+
         if (!$salt_length) {
             return $alphabet;
         }
