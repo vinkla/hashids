@@ -55,20 +55,4 @@ class Math
             return bcdiv($a, $b);
         }
     }
-
-    /**
-     * Get string value of a variable.
-     *
-     * @param mixed $a
-     *
-     * @return string
-     */
-    public static function str($a)
-    {
-        if (function_exists('gmp_strval')) {
-            return gmp_strval($a);
-        }
-
-        return strval($a);
-    }
 }
