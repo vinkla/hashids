@@ -91,7 +91,7 @@ class Hashids implements HashidsInterface
 
         $this->_seps = implode('', array_intersect($alphabet_array, $seps_array));
         $this->_alphabet = implode('', array_diff($alphabet_array, $seps_array));
-        $this->_seps = $this->_consistent_shuffle($this->_seps, $this->_salt);
+        $this->_seps = $this->shuffle($this->_seps, $this->_salt);
 
         if (!$this->_seps || (strlen($this->_alphabet) / strlen($this->_seps)) > self::SEP_DIV) {
             $seps_length = (int) ceil(strlen($this->_alphabet) / self::SEP_DIV);
@@ -109,7 +109,7 @@ class Hashids implements HashidsInterface
             }
         }
 
-        $this->_alphabet = $this->_consistent_shuffle($this->_alphabet, $this->_salt);
+        $this->_alphabet = $this->shuffle($this->_alphabet, $this->_salt);
         $guard_count = (int) ceil(strlen($this->_alphabet) / self::GUARD_DIV);
 
         if (strlen($this->_alphabet) < 3) {
@@ -201,7 +201,7 @@ class Hashids implements HashidsInterface
 
         $lottery = $ret = $alphabet[$numbers_hash_int % strlen($alphabet)];
         foreach ($numbers as $i => $number) {
-            $alphabet = $this->_consistent_shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
+            $alphabet = $this->shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
             $ret .= $last = $this->hash($number, $alphabet);
 
             if ($i + 1 < $numbers_size) {
@@ -227,7 +227,7 @@ class Hashids implements HashidsInterface
 
         $half_length = (int) (strlen($alphabet) / 2);
         while (strlen($ret) < $this->_min_hash_length) {
-            $alphabet = $this->_consistent_shuffle($alphabet, $alphabet);
+            $alphabet = $this->shuffle($alphabet, $alphabet);
             $ret = substr($alphabet, $half_length).$ret.substr($alphabet, 0, $half_length);
 
             $excess = strlen($ret) - $this->_min_hash_length;
@@ -260,7 +260,7 @@ class Hashids implements HashidsInterface
             $hash_array = explode(' ', $hash_breakdown);
 
             foreach ($hash_array as $sub_hash) {
-                $alphabet = $this->_consistent_shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
+                $alphabet = $this->shuffle($alphabet, substr($lottery.$this->_salt.$alphabet, 0, strlen($alphabet)));
                 $ret[] = (int) $this->unhash($sub_hash, $alphabet);
             }
 
@@ -272,9 +272,10 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    protected function _consistent_shuffle($alphabet, $salt)
+    protected function shuffle($alphabet, $salt)
     {
         $salt_length = strlen($salt);
+        
         if (!$salt_length) {
             return $alphabet;
         }
