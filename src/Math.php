@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Hashids\Support;
+namespace Hashids;
 
 /**
  * This is the math class.

@@ -11,7 +11,6 @@
 
 namespace Hashids;
 
-use Hashids\Support\Math;
 use InvalidArgumentException;
 
 /**
