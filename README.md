@@ -1,24 +1,16 @@
-![hashids](http://hashids.org/public/img/hashids.gif)
-
-A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
-
-```php
-$hashids = new Hashids('this is my salt');
-
-// Encode values.
-$hashids->encode(4815162342);
-
-// Decode values.
-$hashids->decode('1LLb3b4ck');
-```
+[![hashids](http://hashids.org/public/img/hashids.gif "Hashids")](http://hashids.org/)
 
 [![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
 [![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
 [![Total Downloads](https://img.shields.io/packagist/dm/hashids/hashids.svg?style=flat)](https://github.com/hashids/hashids)
 [![Latest Version](https://img.shields.io/packagist/v/hashids/hashids.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
+[![Chat][chat-image]][chat-url]
 
-## Installation
+**Hashids** is small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database ids to the user: [http://hashids.org/php](http://hashids.org/php)
+
+## Getting started
+
 Require this package, with [Composer](https://getcomposer.org), in the root directory of your project.
 
 ```bash
