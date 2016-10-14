@@ -22,31 +22,30 @@ use PHPUnit_Framework_TestCase;
 class HashidsTest extends PHPUnit_Framework_TestCase
 {
     private $hashids = null;
-    private $salt = 'this is my salt';
-    private $min_hash_length = 1000;
-    private $custom_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    private $minHashLength = 1000;
+    private $customAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    private $max_id = 75; /* set higher to test locally */
+    private $maxId = 75; /* set higher to test locally */
 
     public function __construct()
     {
-        $this->hashids = new Hashids($this->salt);
-        $this->hashids_min_length = new Hashids($this->salt, $this->min_hash_length);
-        $this->hashids_alphabet = new Hashids($this->salt, 0, $this->custom_alphabet);
+        $this->hashids = new Hashids('this is my salt');
+        $this->hashidsMinLength = new Hashids('this is my salt', $this->minHashLength);
+        $this->hashidsAlphabet = new Hashids('this is my salt', 0, $this->customAlphabet);
     }
 
     public function testCollisions()
     {
         foreach ([
             $this->hashids,
-            $this->hashids_min_length,
-            $this->hashids_alphabet,
+            $this->hashidsMinLength,
+            $this->hashidsAlphabet,
         ] as $hashids) {
             $hashes = [];
 
             /* encode one number like [123] */
 
-            for ($i = 0; $i != $this->max_id; ++$i) {
+            for ($i = 0; $i != $this->maxId; ++$i) {
                 $hashes[] = $hashids->encode($i);
             }
 
@@ -59,17 +58,17 @@ class HashidsTest extends PHPUnit_Framework_TestCase
     {
         foreach ([
             $this->hashids,
-            $this->hashids_min_length,
-            $this->hashids_alphabet,
+            $this->hashidsMinLength,
+            $this->hashidsAlphabet,
         ] as $hashids) {
             $hashes = [];
-            $max_id = (int) ($this->max_id / 3);
+            $maxId = (int) ($this->maxId / 3);
 
             /* encode multiple numbers like [1, 2, 3] */
 
-            for ($i = 0; $i != $max_id; ++$i) {
-                for ($j = 0; $j != $max_id; ++$j) {
-                    for ($k = 0; $k != $max_id; ++$k) {
+            for ($i = 0; $i != $maxId; ++$i) {
+                for ($j = 0; $j != $maxId; ++$j) {
+                    for ($k = 0; $k != $maxId; ++$k) {
                         $hashes[] = $hashids->encode($i, $j, $k);
                     }
                 }
@@ -84,9 +83,9 @@ class HashidsTest extends PHPUnit_Framework_TestCase
     {
         $hashes = [];
 
-        for ($i = 0; $i != $this->max_id; ++$i) {
-            $hash = $this->hashids_min_length->encode($i);
-            if (strlen($hash) < $this->min_hash_length) {
+        for ($i = 0; $i != $this->maxId; ++$i) {
+            $hash = $this->hashidsMinLength->encode($i);
+            if (strlen($hash) < $this->minHashLength) {
                 $hashes[] = $hash;
             }
         }
@@ -98,25 +97,25 @@ class HashidsTest extends PHPUnit_Framework_TestCase
     {
         $corrupt = $hashes = [];
 
-        for ($i = 0; $i != $this->max_id; ++$i) {
+        for ($i = 0; $i != $this->maxId; ++$i) {
 
             /* create a random hash */
 
-            $random_hash = substr(md5(microtime()), rand(0, 10), rand(3, 12));
+            $randomHash = substr(md5(microtime()), rand(0, 10), rand(3, 12));
             if ($i % 2 == 0) {
-                $random_hash = strtoupper($random_hash);
+                $randomHash = strtoupper($randomHash);
             }
 
             /* decode it; check that it's empty */
 
-            $numbers = $this->hashids->decode($random_hash);
+            $numbers = $this->hashids->decode($randomHash);
             if ($numbers) {
 
                 /* could've accidentally generated correct hash, try to encode */
 
                 $hash = call_user_func_array([$this->hashids, 'encode'], $numbers);
-                if ($hash != $random_hash) {
-                    $corrupt[] = $random_hash;
+                if ($hash != $randomHash) {
+                    $corrupt[] = $randomHash;
                 }
             }
         }
@@ -127,10 +126,10 @@ class HashidsTest extends PHPUnit_Framework_TestCase
     public function testCustomAlphabet()
     {
         $hashes = [];
-        $alphabet_array = str_split($this->custom_alphabet);
+        $alphabet_array = str_split($this->customAlphabet);
 
-        for ($i = 0; $i != $this->max_id; ++$i) {
-            $hash = $this->hashids_alphabet->encode($i);
+        for ($i = 0; $i != $this->maxId; ++$i) {
+            $hash = $this->hashidsAlphabet->encode($i);
             $hash_array = str_split($hash);
 
             if (array_diff($hash_array, $alphabet_array)) {
@@ -145,7 +144,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
     {
         $hashes = [];
 
-        for ($i = PHP_INT_MAX, $j = $i - $this->max_id; $i != $j; --$i) {
+        for ($i = PHP_INT_MAX, $j = $i - $this->maxId; $i != $j; --$i) {
             $hash = $this->hashids->encode($i);
             $numbers = $this->hashids->decode($hash);
 
