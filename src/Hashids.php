@@ -21,16 +21,46 @@ use InvalidArgumentException;
  */
 class Hashids implements HashidsInterface
 {
-    /* internal settings */
-
+    /**
+     * The seps divider.
+     *
+     * @var float
+     */
     const SEP_DIV = 3.5;
+
+    /**
+     * The guard divider.
+     *
+     * @var float
+     */
     const GUARD_DIV = 12;
 
-    /* set at constructor */
-
+    /**
+     * The alphabet string.
+     *
+     * @var string
+     */
     protected $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+
+    /**
+     * The seps string.
+     *
+     * @var string
+     */
     protected $_seps = 'cfhistuCFHISTU';
+
+    /**
+     * The minimum hash length.
+     *
+     * @var int
+     */
     protected $_min_hash_length = 0;
+
+    /**
+     * The salt string.
+     *
+     * @var string
+     */
     protected $_salt;
 
     /**
@@ -46,8 +76,6 @@ class Hashids implements HashidsInterface
      */
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
     {
-        /* handle parameters */
-
         $this->_salt = $salt;
 
         if ((int) $min_hash_length > 0) {
@@ -101,6 +129,11 @@ class Hashids implements HashidsInterface
         }
     }
 
+    /**
+     * Encode parameters to generate a hash.
+     *
+     * @return string
+     */
     public function encode()
     {
         $ret = '';
@@ -170,6 +203,13 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
+    /**
+     * Decode a hash to the original parameter values.
+     *
+     * @param string $hash
+     *
+     * @return array
+     */
     public function decode($hash)
     {
         $ret = [];
@@ -211,6 +251,13 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
+    /**
+     * Encode hexadecimal values and generate a hash string.
+     *
+     * @param string $str
+     *
+     * @return string
+     */
     public function encodeHex($str)
     {
         if (!ctype_xdigit((string) $str)) {
@@ -227,6 +274,13 @@ class Hashids implements HashidsInterface
         return call_user_func_array([$this, 'encode'], $numbers);
     }
 
+    /**
+     * Decode a hexadecimal hash.
+     *
+     * @param string $hash
+     *
+     * @return string
+     */
     public function decodeHex($hash)
     {
         $ret = '';
@@ -239,6 +293,14 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
+    /**
+     * Shuffle alphabet by given salt.
+     *
+     * @param string $alphabet
+     * @param string $salt
+     *
+     * @return string
+     */
     protected function shuffle($alphabet, $salt)
     {
         $salt_length = strlen($salt);
@@ -260,6 +322,14 @@ class Hashids implements HashidsInterface
         return $alphabet;
     }
 
+    /**
+     * Hash given input value.
+     *
+     * @param string $input
+     * @param string $alphabet
+     *
+     * @return string
+     */
     protected function hash($input, $alphabet)
     {
         $hash = '';
@@ -274,6 +344,14 @@ class Hashids implements HashidsInterface
         return $hash;
     }
 
+    /**
+     * Unhash given input value.
+     *
+     * @param string $input
+     * @param string $alphabet
+     *
+     * @return int
+     */
     protected function unhash($input, $alphabet)
     {
         $number = 0;

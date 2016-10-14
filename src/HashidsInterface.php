@@ -20,38 +20,36 @@ namespace Hashids;
 interface HashidsInterface
 {
     /**
-     * Encodes a variable number of parameters to generate a hash.
+     * Encode parameters to generate a hash.
      *
-     * @param mixed ...
-     *
-     * @return string the generated hash
+     * @return string
      */
     public function encode();
 
     /**
-     * Decodes a hash to the original parameter values.
+     * Decode a hash to the original parameter values.
      *
-     * @param string $hash the hash to decode
+     * @param string $hash
      *
      * @return array
      */
     public function decode($hash);
 
     /**
-     * Encodes hexadecimal values to generate a hash.
+     * Encode hexadecimal values and generate a hash string.
      *
-     * @param string $str hexadecimal string
+     * @param string $str
      *
-     * @return string the generated hash
+     * @return string
      */
     public function encodeHex($str);
 
     /**
-     * Decodes hexadecimal hash.
+     * Decode a hexadecimal hash.
      *
      * @param string $hash
      *
-     * @return string hexadecimal string
+     * @return string
      */
     public function decodeHex($hash);
 }
