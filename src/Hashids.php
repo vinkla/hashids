@@ -40,7 +40,7 @@ class Hashids implements HashidsInterface
      *
      * @var string
      */
-    protected $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    protected $alphabet;
 
     /**
      * The seps string.
@@ -74,7 +74,7 @@ class Hashids implements HashidsInterface
      *
      * @return void
      */
-    public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
+    public function __construct($salt = '', $min_hash_length = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
     {
         $this->_salt = $salt;
 
@@ -83,26 +83,26 @@ class Hashids implements HashidsInterface
         }
 
         if ($alphabet) {
-            $this->_alphabet = implode('', array_unique(str_split($alphabet)));
+            $this->alphabet = implode('', array_unique(str_split($alphabet)));
         }
 
-        if (strlen($this->_alphabet) < 16) {
+        if (strlen($this->alphabet) < 16) {
             throw new InvalidArgumentException('Alphabet must contain at least 16 unique characters.');
         }
 
-        if (strpos($this->_alphabet, ' ') !== false) {
+        if (strpos($this->alphabet, ' ') !== false) {
             throw new InvalidArgumentException('Alphabet can\'t contain spaces.');
         }
 
-        $alphabet_array = str_split($this->_alphabet);
+        $alphabet_array = str_split($this->alphabet);
         $seps_array = str_split($this->_seps);
 
         $this->_seps = implode('', array_intersect($alphabet_array, $seps_array));
-        $this->_alphabet = implode('', array_diff($alphabet_array, $seps_array));
+        $this->alphabet = implode('', array_diff($alphabet_array, $seps_array));
         $this->_seps = $this->shuffle($this->_seps, $this->_salt);
 
-        if (!$this->_seps || (strlen($this->_alphabet) / strlen($this->_seps)) > self::SEP_DIV) {
-            $seps_length = (int) ceil(strlen($this->_alphabet) / self::SEP_DIV);
+        if (!$this->_seps || (strlen($this->alphabet) / strlen($this->_seps)) > self::SEP_DIV) {
+            $seps_length = (int) ceil(strlen($this->alphabet) / self::SEP_DIV);
 
             if ($seps_length == 1) {
                 ++$seps_length;
@@ -110,22 +110,22 @@ class Hashids implements HashidsInterface
 
             if ($seps_length > strlen($this->_seps)) {
                 $diff = $seps_length - strlen($this->_seps);
-                $this->_seps .= substr($this->_alphabet, 0, $diff);
-                $this->_alphabet = substr($this->_alphabet, $diff);
+                $this->_seps .= substr($this->alphabet, 0, $diff);
+                $this->alphabet = substr($this->alphabet, $diff);
             } else {
                 $this->_seps = substr($this->_seps, 0, $seps_length);
             }
         }
 
-        $this->_alphabet = $this->shuffle($this->_alphabet, $this->_salt);
-        $guard_count = (int) ceil(strlen($this->_alphabet) / self::GUARD_DIV);
+        $this->alphabet = $this->shuffle($this->alphabet, $this->_salt);
+        $guard_count = (int) ceil(strlen($this->alphabet) / self::GUARD_DIV);
 
-        if (strlen($this->_alphabet) < 3) {
+        if (strlen($this->alphabet) < 3) {
             $this->_guards = substr($this->_seps, 0, $guard_count);
             $this->_seps = substr($this->_seps, $guard_count);
         } else {
-            $this->_guards = substr($this->_alphabet, 0, $guard_count);
-            $this->_alphabet = substr($this->_alphabet, $guard_count);
+            $this->_guards = substr($this->alphabet, 0, $guard_count);
+            $this->alphabet = substr($this->alphabet, $guard_count);
         }
     }
 
@@ -155,7 +155,7 @@ class Hashids implements HashidsInterface
             }
         }
 
-        $alphabet = $this->_alphabet;
+        $alphabet = $this->alphabet;
         $numbers_size = count($numbers);
         $numbers_hash_int = 0;
 
@@ -218,7 +218,7 @@ class Hashids implements HashidsInterface
             return $ret;
         }
 
-        $alphabet = $this->_alphabet;
+        $alphabet = $this->alphabet;
 
         $ret = [];
 
