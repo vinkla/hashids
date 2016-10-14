@@ -12,14 +12,13 @@
 namespace Hashids\Tests;
 
 use Hashids\Hashids;
-use PHPUnit_Framework_TestCase;
 
 /**
  * This is the hashids test class.
  *
  * @author Ivan Akimov <ivan@barreleye.com>
  */
-class HashidsTest extends PHPUnit_Framework_TestCase
+class HashidsTest extends AbstractTestCase
 {
     private $hashids = null;
     private $minHashLength = 1000;
