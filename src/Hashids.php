@@ -31,7 +31,6 @@ class Hashids implements HashidsInterface
     protected $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     protected $_seps = 'cfhistuCFHISTU';
     protected $_min_hash_length = 0;
-    protected $_max_int_value = 1000000000;
     protected $_salt;
 
     /**
@@ -47,13 +46,6 @@ class Hashids implements HashidsInterface
      */
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
     {
-        /* if either math precision library is present, raise $this->_max_int_value */
-        $this->_lower_max_int_value = $this->_max_int_value;
-
-        if (function_exists('gmp_add') || function_exists('bcadd')) {
-            $this->_max_int_value = PHP_INT_MAX;
-        }
-
         /* handle parameters */
 
         $this->_salt = $salt;
@@ -125,7 +117,7 @@ class Hashids implements HashidsInterface
         foreach ($numbers as $number) {
             $is_number = ctype_digit((string) $number);
 
-            if (!$is_number || $number < 0 || $number > $this->_max_int_value) {
+            if (!$is_number || $number < 0 || $number > PHP_INT_MAX) {
                 return $ret;
             }
         }
@@ -245,11 +237,6 @@ class Hashids implements HashidsInterface
         }
 
         return $ret;
-    }
-
-    public function getMaxIntValue()
-    {
-        return $this->_max_int_value;
     }
 
     protected function shuffle($alphabet, $salt)

@@ -32,11 +32,7 @@ class Math
             return gmp_intval(gmp_add($a, $b));
         }
 
-        if (function_exists('bcadd')) {
-            return intval(bcadd($a, $b));
-        }
-
-        return $a + $b;
+        return intval(bcadd($a, $b));
     }
 
     /**
@@ -53,11 +49,7 @@ class Math
             return gmp_intval(gmp_div_q($a, $b));
         }
 
-        if (function_exists('bcdiv')) {
-            return intval(bcdiv($a, $b));
-        }
-
-        return $a / $b;
+        return intval(bcdiv($a, $b));
     }
 
     /**

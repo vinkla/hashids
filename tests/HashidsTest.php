@@ -144,9 +144,8 @@ class HashidsTest extends PHPUnit_Framework_TestCase
     public function testBigValues()
     {
         $hashes = [];
-        $max_int_value = $this->hashids->getMaxIntValue();
 
-        for ($i = $this->hashids->getMaxIntValue(), $j = $i - $this->max_id; $i != $j; --$i) {
+        for ($i = PHP_INT_MAX, $j = $i - $this->max_id; $i != $j; --$i) {
             $hash = $this->hashids->encode($i);
             $numbers = $this->hashids->decode($hash);
 
@@ -160,7 +159,7 @@ class HashidsTest extends PHPUnit_Framework_TestCase
 
     public function testOutOfBoundsValue()
     {
-        $hash = $this->hashids->encode($this->hashids->getMaxIntValue() + 1);
+        $hash = $this->hashids->encode(PHP_INT_MAX + 1);
         $this->assertSame('', $hash);
     }
 
