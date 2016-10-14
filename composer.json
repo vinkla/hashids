@@ -12,7 +12,8 @@
         },
         {
             "name": "Vincent Klaiber",
-            "email": "hello@vinkla.com"
+            "email": "hello@vinkla.com",
+            "homepage": "https://vinkla.com"
         }
     ],
     "require": {
