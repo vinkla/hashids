@@ -16,7 +16,7 @@ use Hashids\Hashids;
 /**
  * This is the hashids test class.
  *
- * @author Ivan Akimov <ivan@barreleye.com>
+ * @author Vincent Klaiber <hello@vinkla.com>
  */
 class HashidsTest extends AbstractTestCase
 {
