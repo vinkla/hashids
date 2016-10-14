@@ -9,6 +9,10 @@
             "name": "Ivan Akimov",
             "email": "ivan@barreleye.com",
             "homepage": "https://twitter.com/IvanAkimov"
+        },
+        {
+            "name": "Vincent Klaiber",
+            "email": "hello@vinkla.com"
         }
     ],
     "require": {
