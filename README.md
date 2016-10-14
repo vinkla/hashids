@@ -74,6 +74,22 @@ array(3) {
 
 [You can find the full documentation on our website.](http://hashids.org)
 
+## Examples
+
+You can encode a single number value.
+
+```php
+$hashids->encode(1337);
+```
+
+You can encode several numbers at once into one ID.
+
+```php
+$hashids->encode(1337, 5, 77, 12345678);
+// or
+$hashids->encode([1337, 5, 77, 12345678]);
+```
+
 ## Curses! #$%@
 
 This code was written with the intent of placing created ids in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.

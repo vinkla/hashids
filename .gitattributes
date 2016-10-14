@@ -1,6 +1,5 @@
 * text=auto
 
-/examples export-ignore
 /tests export-ignore
 /.editorconfig export-ignore
 /.gitattributes export-ignore
