@@ -31,9 +31,6 @@ class HashidsTest extends AbstractTestCase
         $this->hashids = new Hashids('this is my salt');
         $this->hashidsMinLength = new Hashids('this is my salt', $this->minHashLength);
         $this->hashidsAlphabet = new Hashids('this is my salt', 0, $this->customAlphabet);
-
-
-        die(var_dump($this->hashids->encode(1, 2, 3)));
     }
 
     /**
