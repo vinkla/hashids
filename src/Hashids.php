@@ -82,7 +82,7 @@ class Hashids implements HashidsInterface
      *
      * @return void
      */
-    public function __construct($salt, $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
+    public function __construct($salt = '', $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
     {
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
