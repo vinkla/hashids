@@ -31,7 +31,6 @@ class Hashids implements HashidsInterface
     protected $_alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
     protected $_seps = 'cfhistuCFHISTU';
     protected $_min_hash_length = 0;
-    protected $_math_functions = [];
     protected $_max_int_value = 1000000000;
     protected $_salt;
 
@@ -48,11 +47,10 @@ class Hashids implements HashidsInterface
      */
     public function __construct($salt = '', $min_hash_length = 0, $alphabet = '')
     {
-        $this->_math_functions = function_exists('gmp_add') || function_exists('bcadd');
-
         /* if either math precision library is present, raise $this->_max_int_value */
         $this->_lower_max_int_value = $this->_max_int_value;
-        if ($this->_math_functions) {
+
+        if (function_exists('gmp_add') || function_exists('bcadd')) {
             $this->_max_int_value = PHP_INT_MAX;
         }
 
