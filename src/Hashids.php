@@ -47,7 +47,7 @@ class Hashids implements HashidsInterface
      *
      * @var string
      */
-    protected $_seps = 'cfhistuCFHISTU';
+    protected $seps = 'cfhistuCFHISTU';
 
     /**
      * The minimum hash length.
@@ -95,25 +95,25 @@ class Hashids implements HashidsInterface
         }
 
         $alphabet_array = str_split($this->alphabet);
-        $seps_array = str_split($this->_seps);
+        $seps_array = str_split($this->seps);
 
-        $this->_seps = implode('', array_intersect($alphabet_array, $seps_array));
+        $this->seps = implode('', array_intersect($alphabet_array, $seps_array));
         $this->alphabet = implode('', array_diff($alphabet_array, $seps_array));
-        $this->_seps = $this->shuffle($this->_seps, $this->_salt);
+        $this->seps = $this->shuffle($this->seps, $this->_salt);
 
-        if (!$this->_seps || (strlen($this->alphabet) / strlen($this->_seps)) > self::SEP_DIV) {
+        if (!$this->seps || (strlen($this->alphabet) / strlen($this->seps)) > self::SEP_DIV) {
             $seps_length = (int) ceil(strlen($this->alphabet) / self::SEP_DIV);
 
             if ($seps_length == 1) {
                 ++$seps_length;
             }
 
-            if ($seps_length > strlen($this->_seps)) {
-                $diff = $seps_length - strlen($this->_seps);
-                $this->_seps .= substr($this->alphabet, 0, $diff);
+            if ($seps_length > strlen($this->seps)) {
+                $diff = $seps_length - strlen($this->seps);
+                $this->seps .= substr($this->alphabet, 0, $diff);
                 $this->alphabet = substr($this->alphabet, $diff);
             } else {
-                $this->_seps = substr($this->_seps, 0, $seps_length);
+                $this->seps = substr($this->seps, 0, $seps_length);
             }
         }
 
@@ -121,8 +121,8 @@ class Hashids implements HashidsInterface
         $guard_count = (int) ceil(strlen($this->alphabet) / self::GUARD_DIV);
 
         if (strlen($this->alphabet) < 3) {
-            $this->_guards = substr($this->_seps, 0, $guard_count);
-            $this->_seps = substr($this->_seps, $guard_count);
+            $this->_guards = substr($this->seps, 0, $guard_count);
+            $this->seps = substr($this->seps, $guard_count);
         } else {
             $this->_guards = substr($this->alphabet, 0, $guard_count);
             $this->alphabet = substr($this->alphabet, $guard_count);
@@ -170,8 +170,8 @@ class Hashids implements HashidsInterface
 
             if ($i + 1 < $numbers_size) {
                 $number %= (ord($last) + $i);
-                $seps_index = $number % strlen($this->_seps);
-                $ret .= $this->_seps[$seps_index];
+                $seps_index = $number % strlen($this->seps);
+                $ret .= $this->seps[$seps_index];
             }
         }
 
@@ -235,7 +235,7 @@ class Hashids implements HashidsInterface
             $lottery = $hash_breakdown[0];
             $hash_breakdown = substr($hash_breakdown, 1);
 
-            $hash_breakdown = str_replace(str_split($this->_seps), ' ', $hash_breakdown);
+            $hash_breakdown = str_replace(str_split($this->seps), ' ', $hash_breakdown);
             $hash_array = explode(' ', $hash_breakdown);
 
             foreach ($hash_array as $sub_hash) {
