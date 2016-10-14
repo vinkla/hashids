@@ -33,6 +33,22 @@ class HashidsTest extends AbstractTestCase
         $this->hashidsAlphabet = new Hashids('this is my salt', 0, $this->customAlphabet);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testWihoutUniqueAlphabet()
+    {
+        new Hashids('this is my salt', 0, 'AAAAAAAAAAA');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAlphabetWithSpaces()
+    {
+        new Hashids('this is my salt', 0, 'AA AA AA');
+    }
+
     public function testCollisions()
     {
         foreach ([
