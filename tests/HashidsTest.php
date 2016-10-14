@@ -78,7 +78,7 @@ class HashidsTest extends AbstractTestCase
         }
     }
 
-    public function testParams()
+    public function testCustomParams()
     {
         $maps = [
             'nej1m3d5a6yn875e7gr9kbwpqol02q' => [0],
@@ -111,7 +111,7 @@ class HashidsTest extends AbstractTestCase
         }
     }
 
-    public function testParamsHex()
+    public function testCustomParamsHex()
     {
         $maps = [
             '0dbq3jwa8p4b3gk6gb8bv21goerm96' => 'deadbeef',
