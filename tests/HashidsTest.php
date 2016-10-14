@@ -138,6 +138,27 @@ class HashidsTest extends AbstractTestCase
         }
     }
 
+    public function testSalt()
+    {
+        $numbers = [1, 2, 3];
+
+        $salts = [
+            '',
+            '   ',
+            'this is my salt',
+            'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()-_=+\\|\'";:/?.>,<{[}]',
+            '`~!@#$%^&*()-_=+\\|\'";:/?.>,<{[}]',
+        ];
+
+        foreach ($salts as $salt) {
+            $hashids = new Hashids($salt);
+
+            $id = $hashids->encode($numbers);
+
+            $this->assertSame($hashids->decode($id), $numbers);
+        }
+    }
+
     public function testMinLength()
     {
         $numbers = [1, 2, 3];
