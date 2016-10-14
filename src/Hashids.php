@@ -54,7 +54,7 @@ class Hashids implements HashidsInterface
      *
      * @var int
      */
-    protected $_min_hash_length = 0;
+    protected $minHashLength;
 
     /**
      * The salt string.
@@ -67,20 +67,17 @@ class Hashids implements HashidsInterface
      * Create a new hashids instance.
      *
      * @param string $salt
-     * @param int $min_hash_length
+     * @param int $minHashLength
      * @param string $alphabet
      *
      * @throws \InvalidArgumentException
      *
      * @return void
      */
-    public function __construct($salt = '', $min_hash_length = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
+    public function __construct($salt = '', $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
     {
         $this->_salt = $salt;
-
-        if ((int) $min_hash_length > 0) {
-            $this->_min_hash_length = (int) $min_hash_length;
-        }
+        $this->minHashLength = $minHashLength;
 
         if ($alphabet) {
             $this->alphabet = implode('', array_unique(str_split($alphabet)));
@@ -175,13 +172,13 @@ class Hashids implements HashidsInterface
             }
         }
 
-        if (strlen($ret) < $this->_min_hash_length) {
+        if (strlen($ret) < $this->minHashLength) {
             $guard_index = ($numbers_hash_int + ord($ret[0])) % strlen($this->_guards);
 
             $guard = $this->_guards[$guard_index];
             $ret = $guard.$ret;
 
-            if (strlen($ret) < $this->_min_hash_length) {
+            if (strlen($ret) < $this->minHashLength) {
                 $guard_index = ($numbers_hash_int + ord($ret[2])) % strlen($this->_guards);
                 $guard = $this->_guards[$guard_index];
 
@@ -190,13 +187,13 @@ class Hashids implements HashidsInterface
         }
 
         $half_length = (int) (strlen($alphabet) / 2);
-        while (strlen($ret) < $this->_min_hash_length) {
+        while (strlen($ret) < $this->minHashLength) {
             $alphabet = $this->shuffle($alphabet, $alphabet);
             $ret = substr($alphabet, $half_length).$ret.substr($alphabet, 0, $half_length);
 
-            $excess = strlen($ret) - $this->_min_hash_length;
+            $excess = strlen($ret) - $this->minHashLength;
             if ($excess > 0) {
-                $ret = substr($ret, $excess / 2, $this->_min_hash_length);
+                $ret = substr($ret, $excess / 2, $this->minHashLength);
             }
         }
 
