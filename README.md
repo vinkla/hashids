@@ -1,8 +1,16 @@
-![hashids](http://hashids.org/public/img/hashids-logo-normal.png)
-
-## Full Documentation
+![hashids](http://hashids.org/public/img/hashids.gif)
 
 A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
+
+```php
+$hashids = new Hashids('this is my salt');
+
+// Encode values.
+$hashids->encode(4815162342);
+
+// Decode values.
+$hashids->decode('1LLb3b4ck');
+```
 
 [![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
 [![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
@@ -10,32 +18,13 @@ A small PHP class to generate YouTube-like ids from numbers. Read documentation 
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
 
 ## Installation
+Require this package, with [Composer](https://getcomposer.org), in the root directory of your project.
 
-You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package). In your `composer.json` file use:
-
-``` json
-{
-    "require": {
-        "hashids/hashids": "^1.0"
-    }
-}
+```bash
+$ composer require hashids/hashids
 ```
 
-And run: `php composer.phar install`. After that you can require the autoloader and use Hashids:
-
-``` php
-require_once 'vendor/autoload.php';
-
-use Hashids\Hashids;
-
-$hashids = new Hashids('this is my salt');
-```
-
-## Updating from v0.3 to 1.0?
-
-Read the [CHANGELOG](CHANGELOG.md)!
-
-## Example Usage
+## Usage
 
 The simplest way to use Hashids:
 
@@ -83,6 +72,8 @@ array(3) {
 }
 ```
 
+[You can find the full documentation on our website.](http://hashids.org)
+
 ## Curses! #$%@
 
 This code was written with the intent of placing created ids in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
@@ -99,11 +90,9 @@ Each number passed to the constructor **cannot be negative** or **greater than 1
 
 PHP starts approximating numbers when it does arithmetic on large integers (by converting them to floats). Which is usually not a big issue, but a problem when precise integers are needed.
 
-However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) **--with-gmp**, or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) **--enable-bcmath** libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems and **int(9223372036854775807)** on 64-bit.
+However, if you have either [GNU Multiple Precision](https://secure.php.net/manual/en/book.gmp.php) **--with-gmp**, or [BCMath Arbitrary Precision Mathematics](https://secure.php.net/manual/en/book.bc.php) **--enable-bcmath** libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems and **int(9223372036854775807)** on 64-bit.
 
 It will then use regular arithmetic on numbers less than 1 billion (because it's faster), and one of these libraries if greater than. GMP takes precedence over BCMath.
-
-You can get the upper limit by doing: `$hashids->get_max_int_value();` (which will stay at **1 billion** if neither of the libraries is installed).
 
 ## Speed
 
@@ -123,13 +112,7 @@ On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly:
 
 *Sidenote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
 
-## Notes
-
-- If you want to squeeze out even more performance, set a shorter alphabet. Hashes will be less random and longer, but calculating them will be faster.
-
-## Contact
-
-I am on the internets [@IvanAkimov](http://twitter.com/ivanakimov)
+> If you want to squeeze out even more performance, set a shorter alphabet. Hashes will be less random and longer, but calculating them will be faster.
 
 ## License
 
