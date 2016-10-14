@@ -227,10 +227,7 @@ class Hashids implements HashidsInterface
         $hashBreakdown = str_replace(str_split($this->guards), ' ', $hash);
         $hashArray = explode(' ', $hashBreakdown);
 
-        $i = 0;
-        if (count($hashArray) == 3 || count($hashArray) == 2) {
-            $i = 1;
-        }
+        $i = count($hashArray) == 3 || count($hashArray) == 2 ? 1 : 0;
 
         $hashBreakdown = $hashArray[$i];
 
