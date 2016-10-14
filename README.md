@@ -26,7 +26,7 @@ $hashids = new Hashids();
 $hashids->encode(1);
 ```
 
-> **Note:** Hashids requires the [BCMath](https://secure.php.net/manual/en/book.bc.php) extension in order to work. You can optionally use the [GMP](https://secure.php.net/manual/en/book.gmp.php) extension as well.
+> **Note:** Hashids requires the [BCMath](https://secure.php.net/manual/en/book.bc.php) extension in order to work. Optionally you can use the [GMP](https://secure.php.net/manual/en/book.gmp.php) extension.
 
 ## Quick Example
 
