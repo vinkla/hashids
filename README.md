@@ -5,7 +5,6 @@
 [![Total Downloads](https://img.shields.io/packagist/dm/hashids/hashids.svg?style=flat)](https://github.com/hashids/hashids)
 [![Latest Version](https://img.shields.io/packagist/v/hashids/hashids.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
-[![Chat][chat-image]][chat-url]
 
 **Hashids** is small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database ids to the user: [http://hashids.org/php](http://hashids.org/php)
 
