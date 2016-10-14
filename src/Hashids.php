@@ -219,7 +219,7 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    public function encode_hex($str)
+    public function encodeHex($str)
     {
         if (!ctype_xdigit((string) $str)) {
             return '';
@@ -235,7 +235,7 @@ class Hashids implements HashidsInterface
         return call_user_func_array([$this, 'encode'], $numbers);
     }
 
-    public function decode_hex($hash)
+    public function decodeHex($hash)
     {
         $ret = '';
         $numbers = $this->decode($hash);
@@ -247,7 +247,7 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    public function get_max_int_value()
+    public function getMaxIntValue()
     {
         return $this->_max_int_value;
     }

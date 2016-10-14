@@ -44,7 +44,7 @@ interface HashidsInterface
      *
      * @return string the generated hash
      */
-    public function encode_hex($str);
+    public function encodeHex($str);
 
     /**
      * Decodes hexadecimal hash.
@@ -53,5 +53,5 @@ interface HashidsInterface
      *
      * @return string hexadecimal string
      */
-    public function decode_hex($hash);
+    public function decodeHex($hash);
 }
