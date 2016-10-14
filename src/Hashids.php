@@ -78,10 +78,7 @@ class Hashids implements HashidsInterface
     {
         $this->_salt = $salt;
         $this->minHashLength = $minHashLength;
-
-        if ($alphabet) {
-            $this->alphabet = implode('', array_unique(str_split($alphabet)));
-        }
+        $this->alphabet = implode('', array_unique(str_split($alphabet)));
 
         if (strlen($this->alphabet) < 16) {
             throw new InvalidArgumentException('Alphabet must contain at least 16 unique characters.');
