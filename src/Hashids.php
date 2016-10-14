@@ -11,6 +11,7 @@
 
 namespace Hashids;
 
+use Exception;
 use InvalidArgumentException;
 
 /**
@@ -77,12 +78,17 @@ class Hashids implements HashidsInterface
      * @param int $minHashLength
      * @param string $alphabet
      *
+     * @throws \Exception
      * @throws \InvalidArgumentException
      *
      * @return void
      */
     public function __construct($salt, $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
     {
+        if (!extension_loaded('gmp') && !extension_loaded('bcmath')) {
+            throw new Exception('Hashids requires either the gmp or bcmath extension.');
+        }
+
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
         $this->alphabet = implode('', array_unique(str_split($alphabet)));
