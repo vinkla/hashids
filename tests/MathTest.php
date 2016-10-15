@@ -22,21 +22,18 @@ class MathTest extends AbstractTestCase
 {
     public function testAdd()
     {
-        // TODO: This should test big numbers.
         $this->assertSame(3, Math::add(1, 2));
         $this->assertTrue(is_int(Math::add(1, 2)));
     }
 
     public function testDivide()
     {
-        // TODO: This should test big numbers.
         $this->assertSame(2, Math::divide(4, 2));
         $this->assertTrue(is_int(Math::divide(4, 2)));
     }
 
     public function testPow()
     {
-        // TODO: This should test big numbers.
         $this->assertSame(16, Math::pow(4, 2));
         $this->assertTrue(is_int(Math::pow(4, 2)));
     }
