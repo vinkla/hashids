@@ -2,8 +2,13 @@
 
 **2.0.0**:
 
-- Dropped PHP 5.3 - 5.5 support
+- Added .editorconfig file
+- Added Scrutinizer integration
+- Added StyleCI integration
 - Dropped HHVM support
+- Dropped PHP 5.3 - 5.5 support
+- Updated file structure
+- Updated test suite
 
 **1.0.6**:
 
