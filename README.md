@@ -115,7 +115,7 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 
 	$id = $hashids->encode(1);
 
-	$hashids->encode($id); // [1]
+	$hashids->decode($id); // [1]
 	```
 
 2. Encoding negative numbers is not supported.
