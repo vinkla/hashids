@@ -8,7 +8,10 @@ php:
 sudo: false
 
 install:
-  - travis_retry composer install --no-interaction --prefer-source
+  - travis_retry composer install --no-interaction
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover clover.xml
+
+after_script:
+  - bash <(curl -s https://codecov.io/bash)

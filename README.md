@@ -2,6 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
 [![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ivanakimov/hashids.php.svg?style=flat)](https://codecov.io/github/ivanakimov/hashids.php)
 [![Total Downloads](https://img.shields.io/packagist/dm/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
 [![Latest Version](https://img.shields.io/packagist/v/hashids/hashids.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
