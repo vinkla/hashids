@@ -11,8 +11,6 @@
 
 namespace Hashids;
 
-use InvalidArgumentException;
-
 /**
  * This is the hashids class.
  *
@@ -77,8 +75,7 @@ class Hashids implements HashidsInterface
      * @param int $minHashLength
      * @param string $alphabet
      *
-     * @throws \Exception
-     * @throws \InvalidArgumentException
+     * @throws \Hashids\HashidsException
      *
      * @return void
      */
@@ -89,11 +86,11 @@ class Hashids implements HashidsInterface
         $this->alphabet = implode('', array_unique(str_split($alphabet)));
 
         if (strlen($this->alphabet) < 16) {
-            throw new InvalidArgumentException('Alphabet must contain at least 16 unique characters.');
+            throw new HashidsException('Alphabet must contain at least 16 unique characters.');
         }
 
         if (strpos($this->alphabet, ' ') !== false) {
-            throw new InvalidArgumentException('Alphabet can\'t contain spaces.');
+            throw new HashidsException('Alphabet can\'t contain spaces.');
         }
 
         $alphabetArray = str_split($this->alphabet);

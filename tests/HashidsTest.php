@@ -21,7 +21,7 @@ use Hashids\Hashids;
 class HashidsTest extends AbstractTestCase
 {
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \Hashids\HashidsException
      */
     public function testSmallAlphabet()
     {
@@ -29,7 +29,7 @@ class HashidsTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \Hashids\HashidsException
      */
     public function testAlphabetWithSpace()
     {
