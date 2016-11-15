@@ -1,6 +1,6 @@
 # CHANGELOG
 
-**2.0.0**:
+**2.0.0 (released 2016-11-15)**:
 
 - Added .editorconfig file
 - Added Scrutinizer integration
