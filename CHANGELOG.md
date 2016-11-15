@@ -8,6 +8,7 @@
 - Dropped HHVM support
 - Dropped PHP 5.3 - 5.5 support
 - Updated file structure
+- Updated how separators are generated
 - Updated test suite
 
 **1.0.6**:
