@@ -99,23 +99,17 @@ class Hashids implements HashidsInterface
         $alphabetArray = str_split($this->alphabet);
         $sepsArray = str_split($this->seps);
 
-        $this->seps = implode('', array_intersect($alphabetArray, $sepsArray));
+        $this->seps = implode('', array_intersect($sepsArray, $alphabetArray));
         $this->alphabet = implode('', array_diff($alphabetArray, $sepsArray));
         $this->seps = $this->shuffle($this->seps, $this->salt);
 
         if (!$this->seps || (strlen($this->alphabet) / strlen($this->seps)) > self::SEP_DIV) {
             $sepsLength = (int) ceil(strlen($this->alphabet) / self::SEP_DIV);
 
-            if ($sepsLength == 1) {
-                ++$sepsLength;
-            }
-
             if ($sepsLength > strlen($this->seps)) {
                 $diff = $sepsLength - strlen($this->seps);
                 $this->seps .= substr($this->alphabet, 0, $diff);
                 $this->alphabet = substr($this->alphabet, $diff);
-            } else {
-                $this->seps = substr($this->seps, 0, $sepsLength);
             }
         }
 
