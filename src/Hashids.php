@@ -34,6 +34,13 @@ class Hashids implements HashidsInterface
     const GUARD_DIV = 12;
 
     /**
+     * The default alphabet.
+     *
+     * @var string
+     */
+    const ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+
+    /**
      * The alphabet string.
      *
      * @var string
@@ -79,7 +86,7 @@ class Hashids implements HashidsInterface
      *
      * @return void
      */
-    public function __construct($salt = '', $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
+    public function __construct($salt = '', $minHashLength = 0, $alphabet = Hashids::ALPHABET)
     {
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
