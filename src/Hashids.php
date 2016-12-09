@@ -101,9 +101,9 @@ class Hashids implements HashidsInterface
      * @return void
      */
     public function __construct(
-        $salt = Hashids::DEFAULT_SALT,
-        $minHashLength = Hashids::DEFAULT_MIN_HASH_LENGTH,
-        $alphabet = Hashids::DEFAULT_ALPHABET)
+        $salt = static::DEFAULT_SALT,
+        $minHashLength = static::DEFAULT_MIN_HASH_LENGTH,
+        $alphabet = static::DEFAULT_ALPHABET)
     {
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
