@@ -103,8 +103,8 @@ class Hashids implements HashidsInterface
     public function __construct(
         $salt = static::DEFAULT_SALT,
         $minHashLength = static::DEFAULT_MIN_HASH_LENGTH,
-        $alphabet = static::DEFAULT_ALPHABET)
-    {
+        $alphabet = static::DEFAULT_ALPHABET
+    ) {
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
         $this->alphabet = implode('', array_unique(str_split($alphabet)));
