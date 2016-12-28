@@ -22,19 +22,21 @@ class MathTest extends AbstractTestCase
 {
     public function testAdd()
     {
-        $this->assertSame(3, Math::add(1, 2));
-        $this->assertTrue(is_int(Math::add(1, 2)));
+        $this->assertEquals(3, Math::add(1, 2));
+    }
+
+    public function testMultiply()
+    {
+        $this->assertEquals(12, Math::multiply(2, 6));
     }
 
     public function testDivide()
     {
-        $this->assertSame(2, Math::divide(4, 2));
-        $this->assertTrue(is_int(Math::divide(4, 2)));
+        $this->assertEquals(2, Math::divide(4, 2));
     }
 
     public function testPow()
     {
-        $this->assertSame(16, Math::pow(4, 2));
-        $this->assertTrue(is_int(Math::pow(4, 2)));
+        $this->assertEquals(16, Math::pow(4, 2));
     }
 }
