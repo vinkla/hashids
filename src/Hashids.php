@@ -143,7 +143,7 @@ class Hashids implements HashidsInterface
         foreach ($numbers as $number) {
             $isNumber = ctype_digit((string) $number);
 
-            if (!$isNumber || $number < 0 || $number > PHP_INT_MAX) {
+            if (!$isNumber) {
                 return $ret;
             }
         }
@@ -153,7 +153,7 @@ class Hashids implements HashidsInterface
         $numbersHashInt = 0;
 
         foreach ($numbers as $i => $number) {
-            $numbersHashInt += ($number % ($i + 100));
+            $numbersHashInt += Math::mod($number, ($i + 100));
         }
 
         $lottery = $ret = $alphabet[$numbersHashInt % strlen($alphabet)];
@@ -163,7 +163,7 @@ class Hashids implements HashidsInterface
 
             if ($i + 1 < $numbersSize) {
                 $number %= (ord($last) + $i);
-                $sepsIndex = $number % strlen($this->seps);
+                $sepsIndex = Math::mod($number, strlen($this->seps));
                 $ret .= $this->seps[$sepsIndex];
             }
         }
@@ -231,7 +231,12 @@ class Hashids implements HashidsInterface
 
             foreach ($hashArray as $subHash) {
                 $alphabet = $this->shuffle($alphabet, substr($lottery.$this->salt.$alphabet, 0, strlen($alphabet)));
-                $ret[] = (int) $this->unhash($subHash, $alphabet);
+                $result = $this->unhash($subHash, $alphabet);
+                if(Math::comp($result, PHP_INT_MAX) < 0){
+                  $ret[] = Math::intval($result);
+                } else {
+                  $ret[] = $result;
+                }
             }
 
             if ($this->encode($ret) != $hash) {
@@ -327,7 +332,7 @@ class Hashids implements HashidsInterface
         $alphabetLength = strlen($alphabet);
 
         do {
-            $hash = $alphabet[$input % $alphabetLength].$hash;
+            $hash = $alphabet[Math::mod($input, $alphabetLength)].$hash;
 
             $input = Math::divide($input, $alphabetLength);
         } while ($input);
@@ -355,7 +360,7 @@ class Hashids implements HashidsInterface
             foreach ($inputChars as $i => $char) {
                 $pos = strpos($alphabet, $char);
 
-                $number = Math::add($number, $pos * Math::pow($alphabetLength, ($inputLength - $i - 1)));
+                $number = Math::add($number, Math::multiply($pos, Math::pow($alphabetLength, ($inputLength - $i - 1))));
             }
         }
 
