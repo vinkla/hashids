@@ -251,8 +251,8 @@ class HashidsTest extends AbstractTestCase
         }
     }
 
-
-    public function bigNumberDataProvider(){
+    public function bigNumberDataProvider()
+    {
         return [
             [2147483647, 'ykJWW1g'], //max 32-bit signed integer
             [4294967295, 'j4r6j8Y'], // max 32-bit unsigned integer
@@ -262,8 +262,8 @@ class HashidsTest extends AbstractTestCase
     }
 
     /**
-   * @dataProvider bigNumberDataProvider
-   */
+     * @dataProvider bigNumberDataProvider
+     */
     public function testBigNumberEncode($number, $hash)
     {
         $hashids = new Hashids('this is my salt');
@@ -272,8 +272,8 @@ class HashidsTest extends AbstractTestCase
     }
 
     /**
-   * @dataProvider bigNumberDataProvider
-   */
+     * @dataProvider bigNumberDataProvider
+     */
     public function testBigNumberDecode($number, $hash)
     {
         $hashids = new Hashids('this is my salt');

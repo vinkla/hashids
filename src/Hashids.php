@@ -153,7 +153,7 @@ class Hashids implements HashidsInterface
         $numbersHashInt = 0;
 
         foreach ($numbers as $i => $number) {
-            $numbersHashInt += Math::mod($number, ($i + 100));
+            $numbersHashInt += Math::intval(Math::mod($number, ($i + 100)));
         }
 
         $lottery = $ret = $alphabet[$numbersHashInt % strlen($alphabet)];
@@ -163,7 +163,7 @@ class Hashids implements HashidsInterface
 
             if ($i + 1 < $numbersSize) {
                 $number %= (ord($last) + $i);
-                $sepsIndex = Math::mod($number, strlen($this->seps));
+                $sepsIndex = Math::intval(Math::mod($number, strlen($this->seps)));
                 $ret .= $this->seps[$sepsIndex];
             }
         }
@@ -232,10 +232,10 @@ class Hashids implements HashidsInterface
             foreach ($hashArray as $subHash) {
                 $alphabet = $this->shuffle($alphabet, substr($lottery.$this->salt.$alphabet, 0, strlen($alphabet)));
                 $result = $this->unhash($subHash, $alphabet);
-                if(Math::comp($result, PHP_INT_MAX) < 0){
-                  $ret[] = Math::intval($result);
+                if (Math::comp($result, PHP_INT_MAX) <= 0) {
+                    $ret[] = Math::intval($result);
                 } else {
-                  $ret[] = $result;
+                    $ret[] = Math::strval($result);
                 }
             }
 
@@ -332,10 +332,10 @@ class Hashids implements HashidsInterface
         $alphabetLength = strlen($alphabet);
 
         do {
-            $hash = $alphabet[Math::mod($input, $alphabetLength)].$hash;
+            $hash = $alphabet[Math::intval(Math::mod($input, $alphabetLength))].$hash;
 
             $input = Math::divide($input, $alphabetLength);
-        } while ($input);
+        } while (Math::comp(0, $input) != 0);
 
         return $hash;
     }

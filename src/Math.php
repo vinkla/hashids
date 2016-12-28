@@ -36,10 +36,10 @@ class Math
     }
 
     /**
-     * Multiply two arbitrary-length integers
+     * Multiply two arbitrary-length integers.
      *
-     * @param string $base
-     * @param string $exp
+     * @param string $a
+     * @param string $b
      *
      * @return string
      */
@@ -136,4 +136,35 @@ class Math
         return intval($a);
     }
 
+    /**
+     * Converts arbitrary-length integer to PHP string.
+     *
+     * @param string $a
+     *
+     * @return string
+     */
+    public static function strval($a)
+    {
+        if (function_exists('gmp_strval')) {
+            return gmp_strval($a);
+        }
+
+        return $a;
+    }
+
+    /**
+     * Converts PHP integer to arbitrary-length integer.
+     *
+     * @param int $a
+     *
+     * @return string
+     */
+    public static function get($a)
+    {
+        if (function_exists('gmp_init')) {
+            return gmp_init($a);
+        }
+
+        return $a;
+    }
 }
