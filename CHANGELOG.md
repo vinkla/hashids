@@ -7,7 +7,7 @@
 **2.0.0 (released 2016-11-15)**:
 
 - Added .editorconfig file
-- Added Scrutinizer integration
+- Added Codecov coverage
 - Added StyleCI integration
 - Dropped HHVM support
 - Dropped PHP 5.3 - 5.5 support
