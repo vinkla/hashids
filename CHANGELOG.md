@@ -2,7 +2,7 @@
 
 **2.0.1 (released 2016-12-29)**:
 
-- Fix bug related to big numbers (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/76))
+- Fix bug related to big numbers (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/75))
 
 **2.0.0 (released 2016-11-15)**:
 
