@@ -250,4 +250,34 @@ class HashidsTest extends AbstractTestCase
             $this->assertLessThanOrEqual(strlen($encodedId), $minLength);
         }
     }
+
+    public function bigNumberDataProvider()
+    {
+        return [
+            [2147483647, 'ykJWW1g'], //max 32-bit signed integer
+            [4294967295, 'j4r6j8Y'], // max 32-bit unsigned integer
+            ['9223372036854775807', 'jvNx4BjM5KYjv'], // max 64-bit signed integer
+            ['18446744073709551615', 'zXVjmzBamYlqX'], // max 64-bit unsigned integer
+        ];
+    }
+
+    /**
+     * @dataProvider bigNumberDataProvider
+     */
+    public function testBigNumberEncode($number, $hash)
+    {
+        $hashids = new Hashids('this is my salt');
+        $encoded = $hashids->encode($number);
+        $this->assertEquals($hash, $encoded);
+    }
+
+    /**
+     * @dataProvider bigNumberDataProvider
+     */
+    public function testBigNumberDecode($number, $hash)
+    {
+        $hashids = new Hashids('this is my salt');
+        $decoded = $hashids->decode($hash);
+        $this->assertEquals($number, $decoded[0]);
+    }
 }
