@@ -32,7 +32,7 @@ class Math
             return gmp_add($a, $b);
         }
 
-        return bcadd($a, $b);
+        return bcadd($a, $b, 0);
     }
 
     /**
@@ -49,7 +49,7 @@ class Math
             return gmp_mul($a, $b);
         }
 
-        return bcmul($a, $b);
+        return bcmul($a, $b, 0);
     }
 
     /**
@@ -66,7 +66,7 @@ class Math
             return gmp_div_q($a, $b);
         }
 
-        return bcdiv($a, $b);
+        return bcdiv($a, $b, 0);
     }
 
     /**
@@ -83,7 +83,7 @@ class Math
             return gmp_pow($base, $exp);
         }
 
-        return bcpow($base, $exp);
+        return bcpow($base, $exp, 0);
     }
 
     /**
@@ -117,7 +117,7 @@ class Math
             return gmp_cmp($a, $b);
         }
 
-        return bccomp($a, $b);
+        return bccomp($a, $b, 0);
     }
 
     /**

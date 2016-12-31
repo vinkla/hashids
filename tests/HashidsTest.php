@@ -280,4 +280,15 @@ class HashidsTest extends AbstractTestCase
         $decoded = $hashids->decode($hash);
         $this->assertEquals($number, $decoded[0]);
     }
+
+    /**
+     * @requires function bcscale
+     */
+    public function testBehaviourForDifferentBCMathAccuracy()
+    {
+            bcscale(2);
+            $hashids = new Hashids('this is my salt', 12);
+            $encoded = $hashids->encode(1);
+            $this->assertEquals('DngB0NV05ev1', $encoded);
+    }
 }
