@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**2.0.2 (released 2016-12-29)**:
+
+- Fix bug related to bc math accuracy (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/79))
+
 **2.0.1 (released 2016-12-29)**:
 
 - Fix bug related to big numbers (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/75))

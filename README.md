@@ -110,9 +110,9 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 1. When decoding, output is always an array of numbers (even if you encode only one number):
 
 	```php
-    use Hashids\Hashids;
+  use Hashids\Hashids;
 
-    $hashids = new Hashids();
+  $hashids = new Hashids();
 
 	$id = $hashids->encode(1);
 
@@ -123,9 +123,9 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 3. If you pass bogus input to `encode()`, an empty string will be returned:
 
 	```php
-    use Hashids\Hashids;
+  use Hashids\Hashids;
 
-    $hashids = new Hashids();
+  $hashids = new Hashids();
 
 	$id = $hashids->encode('123a');
 
