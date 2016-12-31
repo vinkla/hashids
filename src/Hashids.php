@@ -357,10 +357,10 @@ class Hashids implements HashidsInterface
             $alphabetLength = strlen($alphabet);
             $inputChars = str_split($input);
 
-            foreach ($inputChars as $i => $char) {
-                $pos = strpos($alphabet, $char);
-
-                $number = Math::add($number, Math::multiply($pos, Math::pow($alphabetLength, ($inputLength - $i - 1))));
+            foreach ($inputChars as $char) {
+                $position = strpos($alphabet, $char);
+                $number = Math::multiply($number, $alphabetLength);
+                $number = Math::add($number, $position);
             }
         }
 
