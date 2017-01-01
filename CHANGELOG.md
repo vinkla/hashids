@@ -1,6 +1,6 @@
 # CHANGELOG
 
-**2.0.3 (released 2016-01-01)**:
+**2.0.3 (released 2017-01-01)**:
 
 - Implemented unhash using Horner's method (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/80))
 
