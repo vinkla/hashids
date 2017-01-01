@@ -232,10 +232,10 @@ class Hashids implements HashidsInterface
             foreach ($hashArray as $subHash) {
                 $alphabet = $this->shuffle($alphabet, substr($lottery.$this->salt.$alphabet, 0, strlen($alphabet)));
                 $result = $this->unhash($subHash, $alphabet);
-                if (Math::comp($result, PHP_INT_MAX) <= 0) {
-                    $ret[] = Math::intval($result);
-                } else {
+                if (Math::greaterThan($result, PHP_INT_MAX)) {
                     $ret[] = Math::strval($result);
+                } else {
+                    $ret[] = Math::intval($result);
                 }
             }
 
@@ -335,7 +335,7 @@ class Hashids implements HashidsInterface
             $hash = $alphabet[Math::intval(Math::mod($input, $alphabetLength))].$hash;
 
             $input = Math::divide($input, $alphabetLength);
-        } while (Math::comp(0, $input) != 0);
+        } while (Math::greaterThan($input, 0));
 
         return $hash;
     }

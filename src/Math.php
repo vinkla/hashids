@@ -70,23 +70,6 @@ class Math
     }
 
     /**
-     * Raise arbitrary-length integer into power.
-     *
-     * @param string $base
-     * @param string $exp
-     *
-     * @return string
-     */
-    public static function pow($base, $exp)
-    {
-        if (function_exists('gmp_pow')) {
-            return gmp_pow($base, $exp);
-        }
-
-        return bcpow($base, $exp, 0);
-    }
-
-    /**
      * Compute arbitrary-length integer modulo.
      *
      * @param string $n
@@ -104,20 +87,20 @@ class Math
     }
 
     /**
-     * Compares two arbitrary-length integer modulo.
+     * Compares two arbitrary-length integers.
      *
      * @param string $a
      * @param string $b
      *
-     * @return int
+     * @return bool
      */
-    public static function comp($a, $b)
+    public static function greaterThan($a, $b)
     {
         if (function_exists('gmp_cmp')) {
-            return gmp_cmp($a, $b);
+            return gmp_cmp($a, $b) > 0;
         }
 
-        return bccomp($a, $b, 0);
+        return bccomp($a, $b, 0) > 0;
     }
 
     /**
