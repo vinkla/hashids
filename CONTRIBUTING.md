@@ -4,11 +4,12 @@ Contributions are welcome, and are accepted via pull requests. Please review the
 
 ## Guidelines
 
-* Please follow the [PSR-2 Coding Standard](http://php-fig.org/psr/psr-2) and [PHP-FIG Naming Conventions](http://php-fig.org/bylaws/psr-naming-conventions).
-* Ensure that the current tests pass, and if you've added something new, add the tests where relevant.
-* Remember that we follow [SemVer](http://semver.org). If you are changing the behavior, or the public api, you may need to update the docs.
-* Send a coherent commit history, making sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash](https://git-scm.com/book/en/Git-Tools-Rewriting-History) them before submitting.
-* You may also need to [rebase](https://git-scm.com/book/en/Git-Branching-Rebasing) to avoid merge conflicts.
+- Please follow the [PSR-2 Coding Style Guide](http://www.php-fig.org/psr/psr-2), enforced by [StyleCI](https://styleci.io).
+- Ensure that the current tests pass, and if you've added something new, add the tests where relevant.
+- Send a coherent commit history, making sure each individual commit in your pull request is meaningful.
+- You may need to [rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) to avoid merge conflicts.
+- If you are changing the behavior, or the public api, you may need to update the docs.
+- Please remember that we follow [SemVer](http://semver.org).
 
 ## Running Tests
 
@@ -16,16 +17,16 @@ You will need an install of [Composer](https://getcomposer.org) before continuin
 
 First, install the dependencies:
 
-```bash
+```sh
 $ composer install
 ```
 
-Then run PHPUnit:
+Then run [PHPUnit](https://phpunit.de):
 
-```bash
+```sh
 $ vendor/bin/phpunit
 ```
 
 If the test suite passes on your local machine you should be good to go.
 
-When you make a pull request, the tests will automatically be run again by [Travis CI](https://travis-ci.org/) on multiple PHP versions.
+When you make a pull request, the tests will automatically be run again by [Travis CI](https://travis-ci.org).
