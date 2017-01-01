@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**2.0.3 (released 2016-01-01)**:
+
+- Implemented unhash using Horner's method (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/80))
+
 **2.0.2 (released 2016-12-29)**:
 
 - Fix bug related to bc math accuracy (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/79))
