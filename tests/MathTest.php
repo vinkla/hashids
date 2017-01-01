@@ -35,16 +35,11 @@ class MathTest extends AbstractTestCase
         $this->assertEquals(Math::get(2), Math::divide(4, 2));
     }
 
-    public function testPow()
+    public function testGreaterThan()
     {
-        $this->assertEquals(Math::get(16), Math::pow(4, 2));
-    }
-
-    public function testComp()
-    {
-        $this->assertGreaterThan(0, Math::comp('18446744073709551615', '9223372036854775807'));
-        $this->assertLessThan(0, Math::comp('9223372036854775807', '18446744073709551615'));
-        $this->assertEquals(0, Math::comp('9223372036854775807', '9223372036854775807'));
+        $this->assertTrue(Math::greaterThan('18446744073709551615', '9223372036854775807'));
+        $this->assertFalse(Math::greaterThan('9223372036854775807', '18446744073709551615'));
+        $this->assertFalse(Math::greaterThan('9223372036854775807', '9223372036854775807'));
     }
 
     public function testMod()
