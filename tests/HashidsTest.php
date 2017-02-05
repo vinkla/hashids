@@ -12,13 +12,14 @@
 namespace Hashids\Tests;
 
 use Hashids\Hashids;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This is the hashids test class.
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  */
-class HashidsTest extends AbstractTestCase
+class HashidsTest extends TestCase
 {
     /**
      * @expectedException \Hashids\HashidsException

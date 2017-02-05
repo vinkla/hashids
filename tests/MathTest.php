@@ -12,13 +12,14 @@
 namespace Hashids\Tests;
 
 use Hashids\Math;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This is the math test class.
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  */
-class MathTest extends AbstractTestCase
+class MathTest extends TestCase
 {
     public function testAdd()
     {
