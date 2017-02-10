@@ -34,6 +34,27 @@ class Hashids implements HashidsInterface
     const GUARD_DIV = 12;
 
     /**
+     * The default salt.
+     *
+     * @var string
+     */
+    const DEFAULT_SALT = '';
+
+    /**
+     * The default mininum hash length.
+     *
+     * @var int
+     */
+    const DEFAULT_MIN_HASH_LENGTH = 0;
+
+    /**
+     * The default alphabet.
+     *
+     * @var string
+     */
+    const DEFAULT_ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+
+    /**
      * The alphabet string.
      *
      * @var string
@@ -79,8 +100,11 @@ class Hashids implements HashidsInterface
      *
      * @return void
      */
-    public function __construct($salt = '', $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
-    {
+    public function __construct(
+        $salt = self::DEFAULT_SALT,
+        $minHashLength = self::DEFAULT_MIN_HASH_LENGTH,
+        $alphabet = self::DEFAULT_ALPHABET
+    ) {
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
         $this->alphabet = implode('', array_unique(str_split($alphabet)));
