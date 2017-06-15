@@ -125,14 +125,15 @@ class Hashids implements HashidsInterface
     /**
      * Encode parameters to generate a hash.
      *
+     * @param mixed $numbers
+     *
      * @return string
      */
-    public function encode()
+    public function encode(...$numbers)
     {
         $ret = '';
-        $numbers = func_get_args();
 
-        if (func_num_args() == 1 && is_array(func_get_arg(0))) {
+        if (1 === count($numbers) && is_array($numbers[0])) {
             $numbers = $numbers[0];
         }
 

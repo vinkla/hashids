@@ -22,9 +22,11 @@ interface HashidsInterface
     /**
      * Encode parameters to generate a hash.
      *
+     * @param mixed $numbers
+     *
      * @return string
      */
-    public function encode();
+    public function encode(...$numbers);
 
     /**
      * Decode a hash to the original parameter values.
