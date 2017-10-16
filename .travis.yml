@@ -8,8 +8,9 @@ php:
 
 env:
   matrix:
-    - PHP_OPTIONS="-d disable_functions=bcadd,bccomp,bcdiv,bcmod,bcmul,bcpow,bcpowmod,bcscale,bcsqrt,bcsub"
-    - PHP_OPTIONS="-d disable_functions=gmp_abs,gmp_add,gmp_and,gmp_clrbit,gmp_cmp,gmp_com,gmp_div,gmp_divexact,gmp_div_q,gmp_div_qr,gmp_div_r,gmp_export,gmp_fact,gmp_gcd,gmp_gcdext,gmp_hamdist,gmp_import,gmp_init,gmp_intval,gmp_invert,gmp_jacobi,gmp_legendre,gmp_mod,gmp_mul,gmp_neg,gmp_nextprime,gmp_or,gmp_perfect_square,gmp_popcount,gmp_pow,gmp_powm,gmp_prob_prime,gmp_random,gmp_random_bits,gmp_random_range,gmp_random_seed,gmp_root,gmp_rootrem,gmp_scan0,gmp_scan1,gmp_setbit,gmp_sign,gmp_sqrt,gmp_sqrtrem,gmp_strval,gmp_sub,gmp_testbit,gmp_xor"
+    - OPTIONS="-d disable_functions=bcadd,bccomp,bcdiv,bcmod,bcmul,bcpow,bcpowmod,bcscale,bcsqrt,bcsub" SUITE=standard
+    - OPTIONS="-d disable_functions=gmp_abs,gmp_add,gmp_and,gmp_clrbit,gmp_cmp,gmp_com,gmp_div,gmp_divexact,gmp_div_q,gmp_div_qr,gmp_div_r,gmp_export,gmp_fact,gmp_gcd,gmp_gcdext,gmp_hamdist,gmp_import,gmp_init,gmp_intval,gmp_invert,gmp_jacobi,gmp_legendre,gmp_mod,gmp_mul,gmp_neg,gmp_nextprime,gmp_or,gmp_perfect_square,gmp_popcount,gmp_pow,gmp_powm,gmp_prob_prime,gmp_random,gmp_random_bits,gmp_random_range,gmp_random_seed,gmp_root,gmp_rootrem,gmp_scan0,gmp_scan1,gmp_setbit,gmp_sign,gmp_sqrt,gmp_sqrtrem,gmp_strval,gmp_sub,gmp_testbit,gmp_xor" SUITE=standard
+    - OPTIONS="-d disable_functions=bcadd,bccomp,bcdiv,bcmod,bcmul,bcpow,bcpowmod,bcscale,bcsqrt,bcsub,gmp_abs,gmp_add,gmp_and,gmp_clrbit,gmp_cmp,gmp_com,gmp_div,gmp_divexact,gmp_div_q,gmp_div_qr,gmp_div_r,gmp_export,gmp_fact,gmp_gcd,gmp_gcdext,gmp_hamdist,gmp_import,gmp_init,gmp_intval,gmp_invert,gmp_jacobi,gmp_legendre,gmp_mod,gmp_mul,gmp_neg,gmp_nextprime,gmp_or,gmp_perfect_square,gmp_popcount,gmp_pow,gmp_powm,gmp_prob_prime,gmp_random,gmp_random_bits,gmp_random_range,gmp_random_seed,gmp_root,gmp_rootrem,gmp_scan0,gmp_scan1,gmp_setbit,gmp_sign,gmp_sqrt,gmp_sqrtrem,gmp_strval,gmp_sub,gmp_testbit,gmp_xor" SUITE=functionless
 
 sudo: false
 
@@ -17,7 +18,7 @@ install:
   - travis_retry composer install --no-interaction
 
 script:
-  - php $PHP_OPTIONS vendor/bin/phpunit --coverage-clover clover.xml
+  - php $OPTIONS vendor/bin/phpunit --testsuite $SUITE --coverage-clover clover.xml
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)

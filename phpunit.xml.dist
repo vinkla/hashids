@@ -16,8 +16,12 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Hashids Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="standard">
+            <file>tests/HashidsTest.php</file>
+            <file>tests/MathTest.php</file>
+        </testsuite>
+        <testsuite name="functionless">
+            <file>tests/RuntimeExceptionTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
