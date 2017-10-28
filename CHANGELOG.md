@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**2.0.4 (released 2017-10-28)**:
+
+- Remove ext-bcmath requirement ([#91](https://github.com/ivanakimov/hashids.php/pull/91))
+
 **2.0.3 (released 2017-01-01)**:
 
 - Implemented unhash using Horner's method (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/80))
