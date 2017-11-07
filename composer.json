@@ -41,7 +41,7 @@
         }
     },
     "suggest": {
-       "ext-bcmatch": "Required to use BC Math arbitrary precision mathematics (*).",
+       "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
        "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
      },
     "minimum-stability": "dev",
