@@ -41,6 +41,13 @@ class Hashids implements HashidsInterface
     protected $alphabet;
 
     /**
+     * Shuffled alphabets, referenced by alphabet and salt.
+     *
+     * @var array
+     */
+    protected $shuffledAlphabets;
+
+    /**
      * The seps string.
      *
      * @var string
@@ -300,6 +307,12 @@ class Hashids implements HashidsInterface
      */
     protected function shuffle($alphabet, $salt)
     {
+        $key = $alphabet.' '.$salt;
+
+        if (isset($this->shuffledAlphabets[$key])) {
+            return $this->shuffledAlphabets[$key];
+        }
+
         $saltLength = strlen($salt);
 
         if (!$saltLength) {
@@ -315,6 +328,8 @@ class Hashids implements HashidsInterface
             $alphabet[$j] = $alphabet[$i];
             $alphabet[$i] = $temp;
         }
+
+        $this->shuffledAlphabets[$key] = $alphabet;
 
         return $alphabet;
     }
