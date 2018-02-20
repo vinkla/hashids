@@ -307,7 +307,8 @@ class Hashids implements HashidsInterface
      */
     protected function shuffle($alphabet, $salt)
     {
-        $key = $alphabet . ' ' . $salt;
+        $key = $alphabet.' '.$salt;
+        
         if (isset($this->shuffledAlphabets[$key])) {
             return $this->shuffledAlphabets[$key];
         }
