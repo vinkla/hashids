@@ -17,11 +17,7 @@
 >
     <testsuites>
         <testsuite name="standard">
-            <file>tests/HashidsTest.php</file>
-            <file>tests/MathTest.php</file>
-        </testsuite>
-        <testsuite name="functionless">
-            <file>tests/RuntimeExceptionTest.php</file>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
