@@ -34,7 +34,7 @@ class Math
      *
      * @return string
      */
-    public function add($a, $b)
+    public static function add($a, $b)
     {
         return MathFactory::create()->add($a, $b);
     }
@@ -49,7 +49,7 @@ class Math
      *
      * @return string
      */
-    public function multiply($a, $b)
+    public static function multiply($a, $b)
     {
         return MathFactory::create()->multiply($a, $b);
     }
@@ -64,7 +64,7 @@ class Math
      *
      * @return string
      */
-    public function divide($a, $b)
+    public static function divide($a, $b)
     {
         return MathFactory::create()->divide($a, $b);
     }
@@ -79,7 +79,7 @@ class Math
      *
      * @return string
      */
-    public function mod($n, $d)
+    public static function mod($n, $d)
     {
         return MathFactory::create()->mod($n, $d);
     }
@@ -94,7 +94,7 @@ class Math
      *
      * @return bool
      */
-    public function greaterThan($a, $b)
+    public static function greaterThan($a, $b)
     {
         return MathFactory::create()->greaterThan($a, $b);
     }
@@ -108,7 +108,7 @@ class Math
      *
      * @return int
      */
-    public function intval($a)
+    public static function intval($a)
     {
         return MathFactory::create()->intval($a);
     }
@@ -122,7 +122,7 @@ class Math
      *
      * @return string
      */
-    public function strval($a)
+    public static function strval($a)
     {
         return MathFactory::create()->strval($a);
     }
@@ -136,7 +136,7 @@ class Math
      *
      * @return string
      */
-    public function get($a)
+    public static function get($a)
     {
         return MathFactory::create()->get($a);
     }
