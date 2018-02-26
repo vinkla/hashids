@@ -112,7 +112,7 @@ class Hashids implements HashidsInterface
         } else {
             throw new RuntimeException('Missing BC Math or GMP extension.');
         }
-        // @codeCoverageIgnoreStop
+        // @codeCoverageIgnoreEnd
 
         if (strlen($this->alphabet) < 16) {
             throw new HashidsException('Alphabet must contain at least 16 unique characters.');
