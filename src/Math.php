@@ -24,56 +24,118 @@ use Hashids\Math\MathFactory;
 class Math
 {
     /**
+     * Add two arbitrary-length integers.
+     *
+     * @param string $a
+     * @param string $b
+     *
      * @throws \RuntimeException
+     *
+     * @return string
      */
-    public static function add($a, $b)
+    public function add($a, $b)
     {
         return MathFactory::create()->add($a, $b);
     }
 
     /**
+     * Multiply two arbitrary-length integers.
+     *
+     * @param string $a
+     * @param string $b
+     *
      * @throws \RuntimeException
+     *
+     * @return string
      */
-    public static function multiply($a, $b)
+    public function multiply($a, $b)
     {
         return MathFactory::create()->multiply($a, $b);
     }
 
     /**
+     * Divide two arbitrary-length integers.
+     *
+     * @param string $a
+     * @param string $b
+     *
      * @throws \RuntimeException
+     *
+     * @return string
      */
-    public static function divide($a, $b)
+    public function divide($a, $b)
     {
         return MathFactory::create()->divide($a, $b);
     }
 
     /**
+     * Compute arbitrary-length integer modulo.
+     *
+     * @param string $n
+     * @param string $d
+     *
      * @throws \RuntimeException
+     *
+     * @return string
      */
-    public static function mod($n, $d)
+    public function mod($n, $d)
     {
         return MathFactory::create()->mod($n, $d);
     }
 
     /**
+     * Compares two arbitrary-length integers.
+     *
+     * @param string $a
+     * @param string $b
+     *
      * @throws \RuntimeException
+     *
+     * @return bool
      */
-    public static function greaterThan($a, $b)
+    public function greaterThan($a, $b)
     {
         return MathFactory::create()->greaterThan($a, $b);
     }
 
-    public static function intval($a)
+    /**
+     * Converts arbitrary-length integer to PHP integer.
+     *
+     * @param string $a
+     *
+     * @throws \RuntimeException
+     *
+     * @return int
+     */
+    public function intval($a)
     {
         return MathFactory::create()->intval($a);
     }
 
-    public static function strval($a)
+    /**
+     * Converts arbitrary-length integer to PHP string.
+     *
+     * @param string $a
+     *
+     * @throws \RuntimeException
+     *
+     * @return string
+     */
+    public function strval($a)
     {
         return MathFactory::create()->strval($a);
     }
 
-    public static function get($a)
+    /**
+     * Converts PHP integer to arbitrary-length integer.
+     *
+     * @param int $a
+     *
+     * @throws \RuntimeException
+     *
+     * @return string
+     */
+    public function get($a)
     {
         return MathFactory::create()->get($a);
     }

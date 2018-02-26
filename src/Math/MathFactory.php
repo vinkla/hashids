@@ -28,6 +28,7 @@ class MathFactory
      * @throws RuntimeException
      *
      * @return MathInterface
+     *
      * @codeCoverageIgnore
      */
     public static function create()
