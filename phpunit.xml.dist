@@ -19,6 +19,7 @@
         <testsuite name="standard">
             <file>tests/HashidsTest.php</file>
             <file>tests/MathTest.php</file>
+            <file>tests/Math/MathInterfaceTest.php</file>
         </testsuite>
         <testsuite name="functionless">
             <file>tests/RuntimeExceptionTest.php</file>
