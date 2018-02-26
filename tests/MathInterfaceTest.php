@@ -9,7 +9,7 @@
 * file that was distributed with this source code.
 */
 
-namespace Hashids\Tests\Math;
+namespace Hashids\Tests;
 
 use Hashids\Math\Bc;
 use Hashids\Math\Gmp;
