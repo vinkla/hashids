@@ -25,16 +25,17 @@ class MathFactory
     /**
      * Create a new MathInterface instance.
      *
-     * @return MathInterface
      * @throws RuntimeException
+     *
+     * @return MathInterface
      * @codeCoverageIgnore
      */
     public static function create()
     {
         if (extension_loaded('gmp')) {
-            return new Gmp;
+            return new Gmp();
         } elseif (extension_loaded('bcmath')) {
-            return new Bc;
+            return new Bc();
         } else {
             throw new RuntimeException('Missing BC Math or GMP extension.');
         }

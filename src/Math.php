@@ -11,15 +11,15 @@
 
 namespace Hashids;
 
-use Hashids\Math\MathInterface;
 use Hashids\Math\MathFactory;
-use RuntimeException;
+use Hashids\Math\MathInterface;
 
 /**
  * This is the math class.
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  * @author Jakub Kramarz <lenwe@lenwe.net>
+ *
  * @deprecated No longer used in internal code.
  */
 class Math implements MathInterface

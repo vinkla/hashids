@@ -16,7 +16,7 @@ use Hashids\Math\Gmp;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test available MathInterface classes
+ * Test available MathInterface classes.
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  */
@@ -25,8 +25,8 @@ class MathInterfaceTest extends TestCase
     public function mathProvider()
     {
         return [
-            [new Bc],
-            [new Gmp],
+            [new Bc()],
+            [new Gmp()],
         ];
     }
 

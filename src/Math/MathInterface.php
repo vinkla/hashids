@@ -12,7 +12,7 @@
 namespace Hashids\Math;
 
 /**
- * Interface for different math extensions
+ * Interface for different math extensions.
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  * @author Jakub Kramarz <lenwe@lenwe.net>
