@@ -20,6 +20,7 @@ use RuntimeException;
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  * @author Jakub Kramarz <lenwe@lenwe.net>
+ * @deprecated No longer used in internal code.
  */
 class Math implements MathInterface
 {
