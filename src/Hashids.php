@@ -19,6 +19,7 @@ use Hashids\Math\MathInterface;
  *
  * @author Ivan Akimov <ivan@barreleye.com>
  * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Johnson Page <jwpage@gmail.com>
  */
 class Hashids implements HashidsInterface
 {

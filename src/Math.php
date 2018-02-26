@@ -18,6 +18,7 @@ use Hashids\Math\MathFactory;
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  * @author Jakub Kramarz <lenwe@lenwe.net>
+ * @author Johnson Page <jwpage@gmail.com>
  *
  * @deprecated No longer used in internal code.
  */

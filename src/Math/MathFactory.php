@@ -17,8 +17,7 @@ use RuntimeException;
  * Factory for dynamically creating a MathInterface instance based on
  * available extensions.
  *
- * @author Vincent Klaiber <hello@vinkla.com>
- * @author Jakub Kramarz <lenwe@lenwe.net>
+ * @author Johnson Page <wjpage@gmail.com>
  */
 class MathFactory
 {

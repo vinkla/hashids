@@ -18,6 +18,7 @@ use PHPUnit\Framework\TestCase;
  * This is the math test class.
  *
  * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Johnson Page <jwpage@gmail.com>
  */
 class MathTest extends TestCase
 {

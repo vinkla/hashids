@@ -16,6 +16,7 @@ namespace Hashids\Math;
  *
  * @author Vincent Klaiber <hello@vinkla.com>
  * @author Jakub Kramarz <lenwe@lenwe.net>
+ * @author Johnson Page <jwpage@gmail.com>
  */
 interface MathInterface
 {
