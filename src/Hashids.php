@@ -82,7 +82,7 @@ class Hashids implements HashidsInterface
     /**
      * The math class.
      *
-     * @var MathInterface
+     * @var \Hashids\Math\MathInterface
      */
     protected $math;
 
