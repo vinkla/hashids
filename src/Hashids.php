@@ -172,7 +172,7 @@ class Hashids implements HashidsInterface
         $numbersHashInt = 0;
 
         foreach ($numbers as $i => $number) {
-            $numbersHashInt += $this->math::intval($this->math::mod($number, ($i + 100)));
+            $numbersHashInt += $this->math->intval($this->math->mod($number, ($i + 100)));
         }
 
         $lottery = $ret = $alphabet[$numbersHashInt % strlen($alphabet)];
@@ -182,7 +182,7 @@ class Hashids implements HashidsInterface
 
             if ($i + 1 < $numbersSize) {
                 $number %= (ord($last) + $i);
-                $sepsIndex = $this->math::intval($this->math::mod($number, strlen($this->seps)));
+                $sepsIndex = $this->math->intval($this->math->mod($number, strlen($this->seps)));
                 $ret .= $this->seps[$sepsIndex];
             }
         }
@@ -251,10 +251,10 @@ class Hashids implements HashidsInterface
             foreach ($hashArray as $subHash) {
                 $alphabet = $this->shuffle($alphabet, substr($lottery.$this->salt.$alphabet, 0, strlen($alphabet)));
                 $result = $this->unhash($subHash, $alphabet);
-                if ($this->math::greaterThan($result, PHP_INT_MAX)) {
-                    $ret[] = $this->math::strval($result);
+                if ($this->math->greaterThan($result, PHP_INT_MAX)) {
+                    $ret[] = $this->math->strval($result);
                 } else {
-                    $ret[] = $this->math::intval($result);
+                    $ret[] = $this->math->intval($result);
                 }
             }
 
@@ -359,10 +359,10 @@ class Hashids implements HashidsInterface
         $alphabetLength = strlen($alphabet);
 
         do {
-            $hash = $alphabet[$this->math::intval($this->math::mod($input, $alphabetLength))].$hash;
+            $hash = $alphabet[$this->math->intval($this->math->mod($input, $alphabetLength))].$hash;
 
-            $input = $this->math::divide($input, $alphabetLength);
-        } while ($this->math::greaterThan($input, 0));
+            $input = $this->math->divide($input, $alphabetLength);
+        } while ($this->math->greaterThan($input, 0));
 
         return $hash;
     }
@@ -386,8 +386,8 @@ class Hashids implements HashidsInterface
 
             foreach ($inputChars as $char) {
                 $position = strpos($alphabet, $char);
-                $number = $this->math::multiply($number, $alphabetLength);
-                $number = $this->math::add($number, $position);
+                $number = $this->math->multiply($number, $alphabetLength);
+                $number = $this->math->add($number, $position);
             }
         }
 
