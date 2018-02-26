@@ -19,42 +19,42 @@ namespace Hashids\Math;
  */
 class Gmp implements MathInterface
 {
-    public static function add($a, $b)
+    public function add($a, $b)
     {
         return gmp_add($a, $b);
     }
 
-    public static function multiply($a, $b)
+    public function multiply($a, $b)
     {
         return gmp_mul($a, $b);
     }
 
-    public static function divide($a, $b)
+    public function divide($a, $b)
     {
         return gmp_div_q($a, $b);
     }
 
-    public static function mod($n, $d)
+    public function mod($n, $d)
     {
         return gmp_mod($n, $d);
     }
 
-    public static function greaterThan($a, $b)
+    public function greaterThan($a, $b)
     {
         return gmp_cmp($a, $b) > 0;
     }
 
-    public static function intval($a)
+    public function intval($a)
     {
         return gmp_intval($a);
     }
 
-    public static function strval($a)
+    public function strval($a)
     {
         return gmp_strval($a);
     }
 
-    public static function get($a)
+    public function get($a)
     {
         return gmp_init($a);
     }

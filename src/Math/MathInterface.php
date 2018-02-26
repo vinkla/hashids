@@ -27,7 +27,7 @@ interface MathInterface
      *
      * @return string
      */
-    public static function add($a, $b);
+    public function add($a, $b);
 
     /**
      * Multiply two arbitrary-length integers.
@@ -37,7 +37,7 @@ interface MathInterface
      *
      * @return string
      */
-    public static function multiply($a, $b);
+    public function multiply($a, $b);
 
     /**
      * Divide two arbitrary-length integers.
@@ -47,7 +47,7 @@ interface MathInterface
      *
      * @return string
      */
-    public static function divide($a, $b);
+    public function divide($a, $b);
 
     /**
      * Compute arbitrary-length integer modulo.
@@ -57,7 +57,7 @@ interface MathInterface
      *
      * @return string
      */
-    public static function mod($n, $d);
+    public function mod($n, $d);
 
     /**
      * Compares two arbitrary-length integers.
@@ -67,7 +67,7 @@ interface MathInterface
      *
      * @return bool
      */
-    public static function greaterThan($a, $b);
+    public function greaterThan($a, $b);
 
     /**
      * Converts arbitrary-length integer to PHP integer.
@@ -76,7 +76,7 @@ interface MathInterface
      *
      * @return int
      */
-    public static function intval($a);
+    public function intval($a);
 
     /**
      * Converts arbitrary-length integer to PHP string.
@@ -85,7 +85,7 @@ interface MathInterface
      *
      * @return string
      */
-    public static function strval($a);
+    public function strval($a);
 
     /**
      * Converts PHP integer to arbitrary-length integer.
@@ -94,5 +94,5 @@ interface MathInterface
      *
      * @return string
      */
-    public static function get($a);
+    public function get($a);
 }

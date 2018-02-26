@@ -12,7 +12,6 @@
 namespace Hashids;
 
 use Hashids\Math\MathFactory;
-use Hashids\Math\MathInterface;
 
 /**
  * This is the math class.
@@ -22,7 +21,7 @@ use Hashids\Math\MathInterface;
  *
  * @deprecated No longer used in internal code.
  */
-class Math implements MathInterface
+class Math
 {
     /**
      * @throws \RuntimeException
