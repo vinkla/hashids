@@ -110,7 +110,7 @@ class Hashids implements HashidsInterface
         } elseif (extension_loaded('bcmath')) {
             $this->math = new Bc();
         } else {
-            throw new RuntimeException('Missing BC Math or GMP extension.');
+            throw new \RuntimeException('Missing BC Math or GMP extension.');
         }
         // @codeCoverageIgnoreEnd
 
