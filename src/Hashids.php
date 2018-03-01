@@ -13,6 +13,7 @@ namespace Hashids;
 
 use Hashids\Math\Bc;
 use Hashids\Math\Gmp;
+use RuntimeException;
 
 /**
  * This is the hashids class.
