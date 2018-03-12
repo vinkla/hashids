@@ -1,9 +1,9 @@
 # CHANGELOG
 
-**3.0.0 (upcoming)**:
+**3.0.0 (released 2018-03-12)**:
 
-- Added BC and GMP math classes (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/106))
-- Update and optimize alphabet shuffling (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/105))
+- Added BC and GMP math classes (thanks [@jwpage](https://github.com/ivanakimov/hashids.php/pull/106))
+- Update and optimize alphabet shuffling (thanks [@jwpage](https://github.com/ivanakimov/hashids.php/pull/105))
 - Removed PHP 5.0 support ([#107](https://github.com/ivanakimov/hashids.php/pull/107))
 
 **2.0.4 (released 2017-10-28)**:
