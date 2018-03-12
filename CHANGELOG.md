@@ -1,5 +1,11 @@
 # CHANGELOG
 
+**3.0.0 (upcoming)**:
+
+- Added BC and GMP math classes (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/106))
+- Update and optimize alphabet shuffling (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/105))
+- Removed PHP 5.0 support ([#107](https://github.com/ivanakimov/hashids.php/pull/107))
+
 **2.0.4 (released 2017-10-28)**:
 
 - Remove ext-bcmath requirement ([#91](https://github.com/ivanakimov/hashids.php/pull/91))
