@@ -95,7 +95,6 @@ class Hashids implements HashidsInterface
      * @param string $alphabet
      *
      * @throws \Hashids\HashidsException
-     * @throws \RuntimeException
      *
      * @return void
      */
@@ -104,16 +103,7 @@ class Hashids implements HashidsInterface
         $this->salt = $salt;
         $this->minHashLength = $minHashLength;
         $this->alphabet = implode('', array_unique(str_split($alphabet)));
-
-        // @codeCoverageIgnoreStart
-        if (extension_loaded('gmp')) {
-            $this->math = new Gmp();
-        } elseif (extension_loaded('bcmath')) {
-            $this->math = new Bc();
-        } else {
-            throw new RuntimeException('Missing BC Math or GMP extension.');
-        }
-        // @codeCoverageIgnoreEnd
+        $this->math = $this->getMathExtension();
 
         if (strlen($this->alphabet) < 16) {
             throw new HashidsException('Alphabet must contain at least 16 unique characters.');
@@ -404,5 +394,27 @@ class Hashids implements HashidsInterface
         }
 
         return $number;
+    }
+
+    /**
+     * Get BC Math or GMP extension.
+     *
+     * @codeCoverageIgnore
+     *
+     * @throws \RuntimeException
+     *
+     * @return \Hashids\Math\Bc|\Hashids\Math\Gmp
+     */
+    protected function getMathExtension()
+    {
+        if (extension_loaded('gmp')) {
+            return new Gmp();
+        }
+
+        if (extension_loaded('bcmath')) {
+            return new Bc();
+        }
+
+        throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 }
