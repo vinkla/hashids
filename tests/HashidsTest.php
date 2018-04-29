@@ -340,8 +340,7 @@ class HashidsTest extends TestCase
         $data[0] = $hashids->encode(215);
         $data[1] = $hashids->encode(1315);
         
-        return $data;
-
+        $this->assertSame($data[0], $data[1]) 
         
     }
 }
