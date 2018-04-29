@@ -1,134 +1,177 @@
-![hashids](http://hashids.org/public/img/hashids-logo-normal.png)
-
-## Full Documentation
-
-A small PHP class to generate YouTube-like ids from numbers. Read documentation at [http://hashids.org/php](http://hashids.org/php)
+[![hashids](http://hashids.org/public/img/hashids.gif "Hashids")](http://hashids.org/)
 
 [![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
+[![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
+[![Coverage Status](https://img.shields.io/codecov/c/github/ivanakimov/hashids.php.svg?style=flat)](https://codecov.io/github/ivanakimov/hashids.php)
+[![Total Downloads](https://img.shields.io/packagist/dm/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
+[![Latest Version](https://img.shields.io/packagist/v/hashids/hashids.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
 [![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
 
-## Installation
+**Hashids** is small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database ids to the user: [http://hashids.org/php](http://hashids.org/php)
 
-You can install Hashids thru [Composer](http://getcomposer.org) (packagist has [hashids/hashids](https://packagist.org/packages/hashids/hashids) package). In your `composer.json` file use:
+## Getting started
 
-``` json
-{
-    "require": {
-        "hashids/hashids": "^1.0"
-    }
-}
+Require this package, with [Composer](https://getcomposer.org), in the root directory of your project.
+
+```bash
+$ composer require hashids/hashids
 ```
 
-And run: `php composer.phar install`. After that you can require the autoloader and use Hashids:
+Then you can import the class into your application:
 
-``` php
-require_once 'vendor/autoload.php';
-
+```php
 use Hashids\Hashids;
 
-$hashids = new Hashids('this is my salt');
+$hashids = new Hashids();
+
+$hashids->encode(1);
 ```
 
-## Updating from v0.3 to 1.0?
+> **Note:** Hashids requires either the [BC Math](https://secure.php.net/manual/en/book.bc.php) or [GMP](https://secure.php.net/manual/en/book.gmp.php) extension in order to work.
 
-Read the [CHANGELOG](CHANGELOG.md)!
-
-## Example Usage
-
-The simplest way to use Hashids:
+## Quick Example
 
 ```php
-$hashids = new Hashids\Hashids();
+use Hashids\Hashids;
 
-$id = $hashids->encode(1, 2, 3);
-$numbers = $hashids->decode($id);
+$hashids = new Hashids();
 
-var_dump($id, $numbers);
+$id = $hashids->encode(1, 2, 3); // o2fXhV
+$numbers = $hashids->decode($id); // [1, 2, 3]
 ```
-	
-```
-string(5) "laHquq"
-array(3) {
-  [0]=>
-  int(1)
-  [1]=>
-  int(2)
-  [2]=>
-  int(3)
-}
-```
-	
-And an example with all the custom parameters provided (unique salt value, minimum id length, custom alphabet):
+
+## More Options
+
+**A few more ways to pass to `encode()`:**
 
 ```php
-$hashids = new Hashids('this is my salt', 8, 'abcdefghij1234567890');
+use Hashids\Hashids;
 
-$id = $hashids->encode(1, 2, 3);
-$numbers = $hashids->decode($id);
+$hashids = new Hashids();
 
-var_dump($id, $numbers);
+$hashids->encode(1, 2, 3); // o2fXhV
+$hashids->encode([1, 2, 3]); // o2fXhV
+$hashids->encode('1', '2', '3'); // o2fXhV
+$hashids->encode(['1', '2', '3']); // o2fXhV
 ```
 
+**Make your ids unique:**
+
+Pass a project name to make your ids unique:
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids('My Project');
+$hashids->encode(1, 2, 3); // Z4UrtW
+
+$hashids = new Hashids('My Other Project');
+$hashids->encode(1, 2, 3); // gPUasb
 ```
-string(5) "514cdi42"
-array(3) {
-  [0]=>
-  int(1)
-  [1]=>
-  int(2)
-  [2]=>
-  int(3)
-}
+
+**Use padding to make your ids longer:**
+
+Note that ids are only padded to fit **at least** a certain length. It doesn't mean that your ids will be *exactly* that length.
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids(); // no padding
+$hashids->encode(1); // jR
+
+$hashids = new Hashids('', 10); // pad to length 10
+$hashids->encode(1); // VolejRejNm
 ```
-	
+
+**Pass a custom alphabet:**
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids('', 0, 'abcdefghijklmnopqrstuvwxyz'); // all lowercase
+$hashids->encode(1, 2, 3); // mdfphx
+```
+
+**Encode hex instead of numbers:**
+
+Useful if you want to encode [Mongo](https://www.mongodb.com)'s ObjectIds. Note that *there is no limit* on how large of a hex number you can pass (it does not have to be Mongo's ObjectId).
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids();
+
+$id = $hashids->encodeHex('507f1f77bcf86cd799439011'); // y42LW46J9luq3Xq9XMly
+$hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
+```
+
+## Pitfalls
+
+1. When decoding, output is always an array of numbers (even if you encode only one number):
+
+	```php
+	use Hashids\Hashids;
+
+	$hashids = new Hashids();
+
+	$id = $hashids->encode(1);
+
+	$hashids->decode($id); // [1]
+	```
+
+2. Encoding negative numbers is not supported.
+3. If you pass bogus input to `encode()`, an empty string will be returned:
+
+	```php
+	use Hashids\Hashids;
+
+	$hashids = new Hashids();
+
+	$id = $hashids->encode('123a');
+
+	$id === ''; // true
+	```
+
+4. Do not use this library as a security tool and do not encode sensitive data. This is **not** an encryption library.
+
+# Randomness
+
+The primary purpose of Hashids is to obfuscate ids. It's not meant or tested to be used as a security or compression tool. Having said that, this algorithm does try to make these ids random and unpredictable:
+
+No repeating patterns showing there are 3 identical numbers in the id:
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids();
+
+$hashids->encode(5, 5, 5); // A6t1tQ
+```
+
+Same with incremented numbers:
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids();
+
+$hashids->encode(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // wpfLh9iwsqt0uyCEFjHM
+
+$hashids->encode(1); // jR
+$hashids->encode(2); // k5
+$hashids->encode(3); // l5
+$hashids->encode(4); // mO
+$hashids->encode(5); // nR
+```
+
 ## Curses! #$%@
 
-This code was written with the intent of placing created ids in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.
-
-Therefore, the algorithm tries to avoid generating most common English curse words. This is done by never placing the following letters next to each other:
+This code was written with the intent of placing created ids in visible places, like the URL. Therefore, the algorithm tries to avoid generating most common English curse words by generating ids that never have the following letters next to each other:
 
 ```
-c, C, s, S, f, F, h, H, u, U, i, I, t, T
+c, f, h, i, s, t, u
 ```
-
-## Big Numbers
-
-Each number passed to the constructor **cannot be negative** or **greater than 1 billion by default** (1,000,000,000). Hashids `encode()` function will return an empty string if at least one of the numbers is out of bounds. Be sure to check for that -- no exception is thrown.
-
-PHP starts approximating numbers when it does arithmetic on large integers (by converting them to floats). Which is usually not a big issue, but a problem when precise integers are needed.
-
-However, if you have either [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) **--with-gmp**, or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) **--enable-bcmath** libraries installed, Hashids will increase its upper limit to `PHP_INT_MAX` which is **int(2147483647)** on 32-bit systems and **int(9223372036854775807)** on 64-bit.
-
-It will then use regular arithmetic on numbers less than 1 billion (because it's faster), and one of these libraries if greater than. GMP takes precedence over BCMath.
-
-You can get the upper limit by doing: `$hashids->get_max_int_value();` (which will stay at **1 billion** if neither of the libraries is installed).
-
-## Speed
-
-Even though speed is an important factor of every hashing algorithm, primary goal here was encoding several numbers at once while avoiding collisions.
-
-On a *2.26 GHz Intel Core 2 Duo with 8GB of RAM*, it takes about:
-
-1. **0.000093 seconds** to encode one number.
-2. **0.000240 seconds** to decode one id (while ensuring that it's valid).
-3. **0.493436 seconds** to generate **10,000** ids in a `for` loop.
-
-On a *2.7 GHz Intel Core i7 with 16GB of RAM*, it takes roughly:
-
-1. **0.000067 seconds** to encode one number.
-2. **0.000113 seconds** to decode one id (and ensuring that it's valid).
-3. **0.297426 seconds** to generate **10,000** ids in a `for` loop.
-
-*Sidenote: The numbers tested with were relatively small -- if you increase them, the speed will obviously decrease.*
-
-## Notes
-
-- If you want to squeeze out even more performance, set a shorter alphabet. Hashes will be less random and longer, but calculating them will be faster.
-
-## Contact
-
-I am on the internets [@IvanAkimov](http://twitter.com/ivanakimov)
 
 ## License
 
-Hashids is licensed under [The MIT License (MIT)](LICENSE).
+MIT License. See the [LICENSE](LICENSE) file. You can use Hashids in open source projects and commercial products. Don't break the Internet. Kthxbye.

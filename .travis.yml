@@ -1,15 +1,16 @@
 language: php
 
 php:
-  - 5.3.3
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
+  - 7.1
+  - 7.2
 
-before_script:
-  - composer install --dev
+sudo: false
 
-script: vendor/bin/phpunit tests/HashidsTest.php
+install:
+  - travis_retry composer install --no-interaction
+
+script:
+  - php $OPTIONS vendor/bin/phpunit --coverage-clover clover.xml
+
+after_script:
+  - bash <(curl -s https://codecov.io/bash)
