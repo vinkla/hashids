@@ -16,8 +16,8 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Hashids Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="standard">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>

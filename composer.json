@@ -1,6 +1,6 @@
 {
     "name": "hashids/hashids",
-    "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers.",
+    "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
     "keywords": ["hashids", "hashid", "hash", "ids", "youtube", "bitly", "encode", "decode", "obfuscate"],
     "homepage": "http://hashids.org/php",
     "license": "MIT",
@@ -9,17 +9,22 @@
             "name": "Ivan Akimov",
             "email": "ivan@barreleye.com",
             "homepage": "https://twitter.com/IvanAkimov"
+        },
+        {
+            "name": "Vincent Klaiber",
+            "email": "hello@vinkla.com",
+            "homepage": "https://vinkla.com"
         }
     ],
     "require": {
-        "php": "^5.3.3 || ^7.0"
+        "php": "^7.1.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8 || ^5.0"
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {
-            "Hashids\\": "lib/Hashids/"
+            "Hashids\\": "src/"
         }
     },
     "autoload-dev": {
@@ -27,9 +32,18 @@
             "Hashids\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "preferred-install": "dist"
+    },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "3.0-dev"
         }
-    }
+    },
+    "suggest": {
+       "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
+       "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
+     },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
