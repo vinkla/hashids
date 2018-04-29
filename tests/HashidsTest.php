@@ -332,4 +332,17 @@ class HashidsTest extends TestCase
         $encoded = $hashids->encode(1);
         $this->assertEquals('DngB0NV05ev1', $encoded);
     }
+    
+
+    public function testSameResult()
+    {
+        bcscale(2);
+        $hashids = new Hashids('megas', 30);
+        $data[0] = $hashids->encode(215);
+        $data[1] = $hashids->encode(1315);
+        
+        return $data;
+
+        
+    }
 }
