@@ -133,6 +133,7 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 	```
 
 4. Do not use this library as a security tool and do not encode sensitive data. This is **not** an encryption library.
+5. Do not use salt that is longer than 24 symbols to prevent collisions.
 
 # Randomness
 
