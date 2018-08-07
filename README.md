@@ -1,11 +1,10 @@
 [![hashids](http://hashids.org/public/img/hashids.gif "Hashids")](http://hashids.org/)
 
-[![Build Status](https://img.shields.io/travis/ivanakimov/hashids.php/master.svg?style=flat)](https://travis-ci.org/ivanakimov/hashids.php)
-[![StyleCI](https://styleci.io/repos/4026744/shield?style=flat)](https://styleci.io/repos/4026744)
-[![Coverage Status](https://img.shields.io/codecov/c/github/ivanakimov/hashids.php.svg?style=flat)](https://codecov.io/github/ivanakimov/hashids.php)
-[![Total Downloads](https://img.shields.io/packagist/dm/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
-[![Latest Version](https://img.shields.io/packagist/v/hashids/hashids.svg?style=flat)](https://github.com/ivanakimov/hashids.php/releases)
-[![License](https://img.shields.io/packagist/l/hashids/hashids.svg?style=flat)](https://packagist.org/packages/hashids/hashids)
+[![Build Status](https://badgen.net/travis/ivanakimov/hashids.php/master)](https://travis-ci.org/ivanakimov/hashids.php)
+[![Coverage Status](https://badgen.net/codecov/c/github/ivanakimov/hashids.php)](https://codecov.io/github/ivanakimov/hashids.php)
+[![Total Downloads](https://badgen.net/packagist/dm/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
+[![Latest Version](https://badgen.net/packagist/v/hashids/hashids)](https://github.com/ivanakimov/hashids.php/releases)
+[![License](https://badgen.net/packagist/license/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 
 **Hashids** is small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database ids to the user: [http://hashids.org/php](http://hashids.org/php)
 
