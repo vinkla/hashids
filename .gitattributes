@@ -1,4 +1,4 @@
-* text=auto
+* text=auto eol=lf
 
 /tests export-ignore
 /.codecov.yml export-ignore
