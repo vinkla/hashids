@@ -41,7 +41,7 @@ $numbers = $hashids->decode($id); // [1, 2, 3]
 
 ## More Options
 
-**A few more ways to pass numeric ids to the `encode()` function:**
+**A few more ways to pass input ids to the `encode()` function:**
 
 ```php
 use Hashids\Hashids;
@@ -54,9 +54,9 @@ $hashids->encode('1', '2', '3'); // o2fXhV
 $hashids->encode(['1', '2', '3']); // o2fXhV
 ```
 
-**Making your hashed ids unique:**
+**Making your output ids unique:**
 
-Pass a project name to make your hashed ids unique:
+Pass a project name to make your output ids unique:
 
 ```php
 use Hashids\Hashids;
@@ -68,9 +68,9 @@ $hashids = new Hashids('My Other Project');
 $hashids->encode(1, 2, 3); // gPUasb
 ```
 
-**Use padding to make your hashed ids longer:**
+**Use padding to make your output ids longer:**
 
-Note that hashed ids are only padded to fit **at least** a certain length. It doesn't mean that they will be *exactly* that length.
+Note that output ids are only padded to fit **at least** a certain length. It doesn't mean that they will be *exactly* that length.
 
 ```php
 use Hashids\Hashids;
@@ -165,7 +165,7 @@ $hashids->encode(5); // nR
 
 ## Curse words! #$%@
 
-This code was written with the intent of placing the hashed ids in visible places, like the URL. Therefore, the algorithm tries to avoid generating most common English curse words by generating ids that never have the following letters next to each other:
+This code was written with the intent of placing the output ids in visible places, like the URL. Therefore, the algorithm tries to avoid generating most common English curse words by generating ids that never have the following letters next to each other:
 
 ```
 c, f, h, i, s, t, u
