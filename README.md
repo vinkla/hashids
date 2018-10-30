@@ -6,7 +6,7 @@
 [![Latest Version](https://badgen.net/packagist/v/hashids/hashids)](https://github.com/ivanakimov/hashids.php/releases)
 [![License](https://badgen.net/packagist/license/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 
-**Hashids** is small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database ids to the user: [http://hashids.org/php](http://hashids.org/php)
+**Hashids** is a small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database numeric ids to users: [http://hashids.org/php](http://hashids.org/php)
 
 ## Getting started
 
@@ -41,7 +41,7 @@ $numbers = $hashids->decode($id); // [1, 2, 3]
 
 ## More Options
 
-**A few more ways to pass to `encode()`:**
+**A few more ways to pass input ids to the `encode()` function:**
 
 ```php
 use Hashids\Hashids;
@@ -54,9 +54,9 @@ $hashids->encode('1', '2', '3'); // o2fXhV
 $hashids->encode(['1', '2', '3']); // o2fXhV
 ```
 
-**Make your ids unique:**
+**Making your output ids unique:**
 
-Pass a project name to make your ids unique:
+Pass a project name to make your output ids unique:
 
 ```php
 use Hashids\Hashids;
@@ -68,9 +68,9 @@ $hashids = new Hashids('My Other Project');
 $hashids->encode(1, 2, 3); // gPUasb
 ```
 
-**Use padding to make your ids longer:**
+**Use padding to make your output ids longer:**
 
-Note that ids are only padded to fit **at least** a certain length. It doesn't mean that your ids will be *exactly* that length.
+Note that output ids are only padded to fit **at least** a certain length. It doesn't mean that they will be *exactly* that length.
 
 ```php
 use Hashids\Hashids;
@@ -82,7 +82,7 @@ $hashids = new Hashids('', 10); // pad to length 10
 $hashids->encode(1); // VolejRejNm
 ```
 
-**Pass a custom alphabet:**
+**Using a custom alphabet:**
 
 ```php
 use Hashids\Hashids;
@@ -106,7 +106,7 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 
 ## Pitfalls
 
-1. When decoding, output is always an array of numbers (even if you encode only one number):
+1. When decoding, output is always an array of numbers (even if you encoded only one number):
 
 	```php
 	use Hashids\Hashids;
@@ -131,13 +131,13 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 	$id === ''; // true
 	```
 
-4. Do not use this library as a security tool and do not encode sensitive data. This is **not** an encryption library.
+4. Do not use this library as a security measure. **Do not** encode sensitive data with it. Hashids is **not** an encryption library.
 
 # Randomness
 
-The primary purpose of Hashids is to obfuscate ids. It's not meant or tested to be used as a security or compression tool. Having said that, this algorithm does try to make these ids random and unpredictable:
+The primary purpose of Hashids is to obfuscate numeric ids. It's **not** meant or tested to be used as a security or compression tool. Having said that, this algorithm does try to make these ids random and unpredictable:
 
-No repeating patterns showing there are 3 identical numbers in the id:
+There is no pattern shown when encoding multiple identical numbers (3 shown in the following example):
 
 ```php
 use Hashids\Hashids;
@@ -147,7 +147,7 @@ $hashids = new Hashids();
 $hashids->encode(5, 5, 5); // A6t1tQ
 ```
 
-Same with incremented numbers:
+The same is true when encoding a series of numbers vs. encoding them separately:
 
 ```php
 use Hashids\Hashids;
@@ -163,9 +163,9 @@ $hashids->encode(4); // mO
 $hashids->encode(5); // nR
 ```
 
-## Curses! #$%@
+## Curse words! #$%@
 
-This code was written with the intent of placing created ids in visible places, like the URL. Therefore, the algorithm tries to avoid generating most common English curse words by generating ids that never have the following letters next to each other:
+This code was written with the intent of placing the output ids in visible places, like the URL. Therefore, the algorithm tries to avoid generating most common English curse words by generating ids that never have the following letters next to each other:
 
 ```
 c, f, h, i, s, t, u
