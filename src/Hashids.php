@@ -92,7 +92,7 @@ class Hashids implements HashidsInterface
      * Create a new hashids instance.
      *
      * @param string $salt
-     * @param int    $minHashLength
+     * @param int $minHashLength
      * @param string $alphabet
      *
      * @throws \Hashids\HashidsException
@@ -416,13 +416,13 @@ class Hashids implements HashidsInterface
     }
 
     /**
-     * replace simple use of $this->multiByteSplit with multi byte string.
+     * Replace simple use of $this->multiByteSplit with multi byte string.
      *
      * @param $string
      *
      * @return string[]|array
      */
-    private function multiByteSplit($string): array
+    protected function multiByteSplit($string): array
     {
         return \preg_split('/(?!^)(?=.)/u', $string) ?: [];
     }
