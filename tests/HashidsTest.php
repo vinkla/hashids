@@ -66,6 +66,7 @@ class HashidsTest extends TestCase
             ['abdegjklmnopqrvwxyzABDEGJKLMNOPQRVWXYZ1234567890'],
             ['abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()-_=+\\|\'";:/?.>,<{[}]'],
             ['`~!@#$%^&*()-_=+\\|\'";:/?.>,<{[}]'],
+            ['áàãăâeéèêiíìĩoóòõôơuúùũưyýỳđ'],
         ];
     }
 
@@ -79,7 +80,6 @@ class HashidsTest extends TestCase
         $hashids = new Hashids('', 0, $alphabets);
 
         $id = $hashids->encode($numbers);
-
         $this->assertSame($hashids->decode($id), $numbers);
     }
 
@@ -87,10 +87,12 @@ class HashidsTest extends TestCase
     {
         return [
             [''],
+            ['0'],
             ['   '],
             ['this is my salt'],
             ['abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()-_=+\\|\'";:/?.>,<{[}]'],
             ['`~!@#$%^&*()-_=+\\|\'";:/?.>,<{[}]'],
+            ['!áàãăâ eéèê iíìĩ oóòõôơ uúùũư yýỳ đ'],
         ];
     }
 
@@ -139,6 +141,7 @@ class HashidsTest extends TestCase
         return [
             [[1, 2, 3]],
             [['1', '2', '3']],
+            [['1', 2, '3']],
         ];
     }
 
@@ -320,6 +323,25 @@ class HashidsTest extends TestCase
         $hashids = new Hashids('this is my salt');
         $decoded = $hashids->decode($hash);
         $this->assertEquals($number, $decoded[0]);
+    }
+
+    public function jsHashidsDataProvider()
+    {
+        return [
+            ['', 0, 'áàãăâeéèêiíìĩoóòõôơuúùũưyýỳđ', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 'íóuđáìàúãỳăyâôeyiôuĩ'],
+            ['世界', 0, 'áàãăâeéèêiíìĩoóòõôơuúùũưyýỳđ', [9007199254740991], 'óôòúỳưúoỳééưýy'],
+            ['', 0, 'cCsSfFhHuUiItT01', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], '10h10i00s100t010u110C000F1000H0110I1010'],
+            ['', 9, '零0一1二2三3四4五5六6七7七8八9九', [4231], '5三77九58三九'],
+        ];
+    }
+
+    /**
+     * @dataProvider jsHashidsDataProvider
+     */
+    public function testJsHashidsCompatible($salt, $minHashLength, $alphabet, $numbers, $hash)
+    {
+        $hashids = new Hashids($salt, $minHashLength, $alphabet);
+        $this->assertEquals($hash, $hashids->encode($numbers));
     }
 
     /**

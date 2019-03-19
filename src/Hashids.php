@@ -13,6 +13,7 @@ namespace Hashids;
 
 use Hashids\Math\Bc;
 use Hashids\Math\Gmp;
+use Hashids\Math\MathInterface;
 use RuntimeException;
 
 /**
@@ -95,50 +96,48 @@ class Hashids implements HashidsInterface
      * @param string $alphabet
      *
      * @throws \Hashids\HashidsException
-     *
-     * @return void
      */
     public function __construct($salt = '', $minHashLength = 0, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
     {
-        $this->salt = $salt;
+        $this->salt = \mb_convert_encoding($salt, 'UTF-8', \mb_detect_encoding($salt));
         $this->minHashLength = $minHashLength;
-        $this->alphabet = implode('', array_unique(str_split($alphabet)));
+        $alphabet = \mb_convert_encoding($alphabet, 'UTF-8', \mb_detect_encoding($alphabet));
+        $this->alphabet = \implode('', \array_unique($this->multiByteSplit($alphabet)));
         $this->math = $this->getMathExtension();
 
-        if (strlen($this->alphabet) < 16) {
+        if (\mb_strlen($this->alphabet) < 16) {
             throw new HashidsException('Alphabet must contain at least 16 unique characters.');
         }
 
-        if (strpos($this->alphabet, ' ') !== false) {
+        if (false !== \mb_strpos($this->alphabet, ' ')) {
             throw new HashidsException('Alphabet can\'t contain spaces.');
         }
 
-        $alphabetArray = str_split($this->alphabet);
-        $sepsArray = str_split($this->seps);
-
-        $this->seps = implode('', array_intersect($sepsArray, $alphabetArray));
-        $this->alphabet = implode('', array_diff($alphabetArray, $sepsArray));
+        $alphabetArray = $this->multiByteSplit($this->alphabet);
+        $sepsArray = $this->multiByteSplit($this->seps);
+        $this->seps = \implode('', \array_intersect($sepsArray, $alphabetArray));
+        $this->alphabet = \implode('', \array_diff($alphabetArray, $sepsArray));
         $this->seps = $this->shuffle($this->seps, $this->salt);
 
-        if (!$this->seps || (strlen($this->alphabet) / strlen($this->seps)) > self::SEP_DIV) {
-            $sepsLength = (int) ceil(strlen($this->alphabet) / self::SEP_DIV);
+        if (!$this->seps || (\mb_strlen($this->alphabet) / \mb_strlen($this->seps)) > self::SEP_DIV) {
+            $sepsLength = (int) \ceil(\mb_strlen($this->alphabet) / self::SEP_DIV);
 
-            if ($sepsLength > strlen($this->seps)) {
-                $diff = $sepsLength - strlen($this->seps);
-                $this->seps .= substr($this->alphabet, 0, $diff);
-                $this->alphabet = substr($this->alphabet, $diff);
+            if ($sepsLength > \mb_strlen($this->seps)) {
+                $diff = $sepsLength - \mb_strlen($this->seps);
+                $this->seps .= \mb_substr($this->alphabet, 0, $diff);
+                $this->alphabet = \mb_substr($this->alphabet, $diff);
             }
         }
 
         $this->alphabet = $this->shuffle($this->alphabet, $this->salt);
-        $guardCount = (int) ceil(strlen($this->alphabet) / self::GUARD_DIV);
+        $guardCount = (int) \ceil(\mb_strlen($this->alphabet) / self::GUARD_DIV);
 
-        if (strlen($this->alphabet) < 3) {
-            $this->guards = substr($this->seps, 0, $guardCount);
-            $this->seps = substr($this->seps, $guardCount);
+        if (\mb_strlen($this->alphabet) < 3) {
+            $this->guards = \mb_substr($this->seps, 0, $guardCount);
+            $this->seps = \mb_substr($this->seps, $guardCount);
         } else {
-            $this->guards = substr($this->alphabet, 0, $guardCount);
-            $this->alphabet = substr($this->alphabet, $guardCount);
+            $this->guards = \mb_substr($this->alphabet, 0, $guardCount);
+            $this->alphabet = \mb_substr($this->alphabet, $guardCount);
         }
     }
 
@@ -149,11 +148,11 @@ class Hashids implements HashidsInterface
      *
      * @return string
      */
-    public function encode(...$numbers)
+    public function encode(...$numbers): string
     {
         $ret = '';
 
-        if (1 === count($numbers) && is_array($numbers[0])) {
+        if (1 === \count($numbers) && \is_array($numbers[0])) {
             $numbers = $numbers[0];
         }
 
@@ -162,7 +161,7 @@ class Hashids implements HashidsInterface
         }
 
         foreach ($numbers as $number) {
-            $isNumber = ctype_digit((string) $number);
+            $isNumber = \ctype_digit((string) $number);
 
             if (!$isNumber) {
                 return $ret;
@@ -170,47 +169,47 @@ class Hashids implements HashidsInterface
         }
 
         $alphabet = $this->alphabet;
-        $numbersSize = count($numbers);
+        $numbersSize = \count($numbers);
         $numbersHashInt = 0;
 
         foreach ($numbers as $i => $number) {
-            $numbersHashInt += $this->math->intval($this->math->mod($number, ($i + 100)));
+            $numbersHashInt += $this->math->intval($this->math->mod($number, $i + 100));
         }
 
-        $lottery = $ret = $alphabet[$numbersHashInt % strlen($alphabet)];
+        $lottery = $ret = \mb_substr($alphabet, $numbersHashInt % \mb_strlen($alphabet), 1);
         foreach ($numbers as $i => $number) {
-            $alphabet = $this->shuffle($alphabet, substr($lottery.$this->salt.$alphabet, 0, strlen($alphabet)));
+            $alphabet = $this->shuffle($alphabet, \mb_substr($lottery.$this->salt.$alphabet, 0, \mb_strlen($alphabet)));
             $ret .= $last = $this->hash($number, $alphabet);
 
             if ($i + 1 < $numbersSize) {
-                $number %= (ord($last) + $i);
-                $sepsIndex = $this->math->intval($this->math->mod($number, strlen($this->seps)));
-                $ret .= $this->seps[$sepsIndex];
+                $number %= (\mb_ord($last, 'UTF-8') + $i);
+                $sepsIndex = $this->math->intval($this->math->mod($number, \mb_strlen($this->seps)));
+                $ret .= \mb_substr($this->seps, $sepsIndex, 1);
             }
         }
 
-        if (strlen($ret) < $this->minHashLength) {
-            $guardIndex = ($numbersHashInt + ord($ret[0])) % strlen($this->guards);
+        if (\mb_strlen($ret) < $this->minHashLength) {
+            $guardIndex = ($numbersHashInt + \mb_ord(\mb_substr($ret, 0, 1), 'UTF-8')) % \mb_strlen($this->guards);
 
-            $guard = $this->guards[$guardIndex];
+            $guard = \mb_substr($this->guards, $guardIndex, 1);
             $ret = $guard.$ret;
 
-            if (strlen($ret) < $this->minHashLength) {
-                $guardIndex = ($numbersHashInt + ord($ret[2])) % strlen($this->guards);
-                $guard = $this->guards[$guardIndex];
+            if (\mb_strlen($ret) < $this->minHashLength) {
+                $guardIndex = ($numbersHashInt + \mb_ord(\mb_substr($ret, 2, 1), 'UTF-8')) % \mb_strlen($this->guards);
+                $guard = \mb_substr($this->guards, $guardIndex, 1);
 
                 $ret .= $guard;
             }
         }
 
-        $halfLength = (int) (strlen($alphabet) / 2);
-        while (strlen($ret) < $this->minHashLength) {
+        $halfLength = (int) (\mb_strlen($alphabet) / 2);
+        while (\mb_strlen($ret) < $this->minHashLength) {
             $alphabet = $this->shuffle($alphabet, $alphabet);
-            $ret = substr($alphabet, $halfLength).$ret.substr($alphabet, 0, $halfLength);
+            $ret = \mb_substr($alphabet, $halfLength).$ret.\mb_substr($alphabet, 0, $halfLength);
 
-            $excess = strlen($ret) - $this->minHashLength;
+            $excess = \mb_strlen($ret) - $this->minHashLength;
             if ($excess > 0) {
-                $ret = substr($ret, $excess / 2, $this->minHashLength);
+                $ret = \mb_substr($ret, (int) ($excess / 2), $this->minHashLength);
             }
         }
 
@@ -224,34 +223,32 @@ class Hashids implements HashidsInterface
      *
      * @return array
      */
-    public function decode($hash)
+    public function decode($hash): array
     {
         $ret = [];
 
-        if (!is_string($hash) || !($hash = trim($hash))) {
+        if (!\is_string($hash) || !($hash = \trim($hash))) {
             return $ret;
         }
 
         $alphabet = $this->alphabet;
 
-        $ret = [];
+        $hashBreakdown = \str_replace($this->multiByteSplit($this->guards), ' ', $hash);
+        $hashArray = \explode(' ', $hashBreakdown);
 
-        $hashBreakdown = str_replace(str_split($this->guards), ' ', $hash);
-        $hashArray = explode(' ', $hashBreakdown);
-
-        $i = count($hashArray) == 3 || count($hashArray) == 2 ? 1 : 0;
+        $i = 3 === \count($hashArray) || 2 === \count($hashArray) ? 1 : 0;
 
         $hashBreakdown = $hashArray[$i];
 
-        if (isset($hashBreakdown[0])) {
-            $lottery = $hashBreakdown[0];
-            $hashBreakdown = substr($hashBreakdown, 1);
+        if ('' !== $hashBreakdown) {
+            $lottery = \mb_substr($hashBreakdown, 0, 1);
+            $hashBreakdown = \mb_substr($hashBreakdown, 1);
 
-            $hashBreakdown = str_replace(str_split($this->seps), ' ', $hashBreakdown);
-            $hashArray = explode(' ', $hashBreakdown);
+            $hashBreakdown = \str_replace($this->multiByteSplit($this->seps), ' ', $hashBreakdown);
+            $hashArray = \explode(' ', $hashBreakdown);
 
             foreach ($hashArray as $subHash) {
-                $alphabet = $this->shuffle($alphabet, substr($lottery.$this->salt.$alphabet, 0, strlen($alphabet)));
+                $alphabet = $this->shuffle($alphabet, \mb_substr($lottery.$this->salt.$alphabet, 0, \mb_strlen($alphabet)));
                 $result = $this->unhash($subHash, $alphabet);
                 if ($this->math->greaterThan($result, PHP_INT_MAX)) {
                     $ret[] = $this->math->strval($result);
@@ -260,7 +257,7 @@ class Hashids implements HashidsInterface
                 }
             }
 
-            if ($this->encode($ret) != $hash) {
+            if ($this->encode($ret) !== $hash) {
                 $ret = [];
             }
         }
@@ -275,20 +272,20 @@ class Hashids implements HashidsInterface
      *
      * @return string
      */
-    public function encodeHex($str)
+    public function encodeHex($str): string
     {
-        if (!ctype_xdigit((string) $str)) {
+        if (!\ctype_xdigit((string) $str)) {
             return '';
         }
 
-        $numbers = trim(chunk_split($str, 12, ' '));
-        $numbers = explode(' ', $numbers);
+        $numbers = \trim(chunk_split($str, 12, ' '));
+        $numbers = \explode(' ', $numbers);
 
         foreach ($numbers as $i => $number) {
-            $numbers[$i] = hexdec('1'.$number);
+            $numbers[$i] = \hexdec('1'.$number);
         }
 
-        return call_user_func_array([$this, 'encode'], $numbers);
+        return $this->encode(...$numbers);
     }
 
     /**
@@ -298,13 +295,13 @@ class Hashids implements HashidsInterface
      *
      * @return string
      */
-    public function decodeHex($hash)
+    public function decodeHex($hash): string
     {
         $ret = '';
         $numbers = $this->decode($hash);
 
         foreach ($numbers as $i => $number) {
-            $ret .= substr(dechex($number), 1);
+            $ret .= \mb_substr(dechex($number), 1);
         }
 
         return $ret;
@@ -318,7 +315,7 @@ class Hashids implements HashidsInterface
      *
      * @return string
      */
-    protected function shuffle($alphabet, $salt)
+    protected function shuffle($alphabet, $salt): string
     {
         $key = $alphabet.' '.$salt;
 
@@ -326,22 +323,22 @@ class Hashids implements HashidsInterface
             return $this->shuffledAlphabets[$key];
         }
 
-        $saltLength = strlen($salt);
-
+        $saltLength = \mb_strlen($salt);
+        $saltArray = $this->multiByteSplit($salt);
         if (!$saltLength) {
             return $alphabet;
         }
-
-        for ($i = strlen($alphabet) - 1, $v = 0, $p = 0; $i > 0; $i--, $v++) {
+        $alphabetArray = $this->multiByteSplit($alphabet);
+        for ($i = \mb_strlen($alphabet) - 1, $v = 0, $p = 0; $i > 0; $i--, $v++) {
             $v %= $saltLength;
-            $p += $int = ord($salt[$v]);
+            $p += $int = \mb_ord($saltArray[$v], 'UTF-8');
             $j = ($int + $v + $p) % $i;
 
-            $temp = $alphabet[$j];
-            $alphabet[$j] = $alphabet[$i];
-            $alphabet[$i] = $temp;
+            $temp = $alphabetArray[$j];
+            $alphabetArray[$j] = $alphabetArray[$i];
+            $alphabetArray[$i] = $temp;
         }
-
+        $alphabet = \implode('', $alphabetArray);
         $this->shuffledAlphabets[$key] = $alphabet;
 
         return $alphabet;
@@ -355,13 +352,13 @@ class Hashids implements HashidsInterface
      *
      * @return string
      */
-    protected function hash($input, $alphabet)
+    protected function hash($input, $alphabet): string
     {
         $hash = '';
-        $alphabetLength = strlen($alphabet);
+        $alphabetLength = \mb_strlen($alphabet);
 
         do {
-            $hash = $alphabet[$this->math->intval($this->math->mod($input, $alphabetLength))].$hash;
+            $hash = \mb_substr($alphabet, $this->math->intval($this->math->mod($input, $alphabetLength)), 1).$hash;
 
             $input = $this->math->divide($input, $alphabetLength);
         } while ($this->math->greaterThan($input, 0));
@@ -380,14 +377,14 @@ class Hashids implements HashidsInterface
     protected function unhash($input, $alphabet)
     {
         $number = 0;
-        $inputLength = strlen($input);
+        $inputLength = \mb_strlen($input);
 
         if ($inputLength && $alphabet) {
-            $alphabetLength = strlen($alphabet);
-            $inputChars = str_split($input);
+            $alphabetLength = \mb_strlen($alphabet);
+            $inputChars = $this->multiByteSplit($input);
 
             foreach ($inputChars as $char) {
-                $position = strpos($alphabet, $char);
+                $position = \mb_strpos($alphabet, $char);
                 $number = $this->math->multiply($number, $alphabetLength);
                 $number = $this->math->add($number, $position);
             }
@@ -403,18 +400,30 @@ class Hashids implements HashidsInterface
      *
      * @throws \RuntimeException
      *
-     * @return \Hashids\Math\Bc|\Hashids\Math\Gmp
+     * @return \Hashids\Math\MathInterface
      */
-    protected function getMathExtension()
+    protected function getMathExtension(): MathInterface
     {
-        if (extension_loaded('gmp')) {
+        if (\extension_loaded('gmp')) {
             return new Gmp();
         }
 
-        if (extension_loaded('bcmath')) {
+        if (\extension_loaded('bcmath')) {
             return new Bc();
         }
 
         throw new RuntimeException('Missing BC Math or GMP extension.');
+    }
+
+    /**
+     * Replace simple use of $this->multiByteSplit with multi byte string.
+     *
+     * @param $string
+     *
+     * @return string[]|array
+     */
+    protected function multiByteSplit($string): array
+    {
+        return \preg_split('/(?!^)(?=.)/u', $string) ?: [];
     }
 }
