@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**4.0.0 (upcoming)**:
+
+- Added UTF-8 support (thanks [@bonfante](https://github.com/ivanakimov/hashids.php/pull/128))
+
 **3.0.0 (released 2018-03-12)**:
 
 - Added BC and GMP math classes (thanks [@jwpage](https://github.com/ivanakimov/hashids.php/pull/106))
