@@ -420,7 +420,7 @@ class Hashids implements HashidsInterface
      *
      * @param $string
      *
-     * @return string[]|array
+     * @return array|string[]
      */
     protected function multiByteSplit($string): array
     {
