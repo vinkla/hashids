@@ -20,7 +20,7 @@ use RuntimeException;
  * This is the hashids class.
  *
  * @author Ivan Akimov <ivan@barreleye.com>
- * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Vincent Klaiber <hello@doubledip.se>
  * @author Johnson Page <jwpage@gmail.com>
  */
 class Hashids implements HashidsInterface

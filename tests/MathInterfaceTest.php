@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test available MathInterface classes.
  *
- * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Vincent Klaiber <hello@doubledip.se>
  * @author Johnson Page <jwpage@gmail.com>
  */
 class MathInterfaceTest extends TestCase

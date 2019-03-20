@@ -14,7 +14,7 @@ namespace Hashids\Math;
 /**
  * Interface for different math extensions.
  *
- * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Vincent Klaiber <hello@doubledip.se>
  * @author Jakub Kramarz <lenwe@lenwe.net>
  * @author Johnson Page <jwpage@gmail.com>
  */

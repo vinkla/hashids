@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * This is the hashids test class.
  *
- * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Vincent Klaiber <hello@doubledip.se>
  */
 class HashidsTest extends TestCase
 {

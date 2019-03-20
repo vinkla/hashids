@@ -16,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This is the hashids exception class.
  *
- * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Vincent Klaiber <hello@doubledip.se>
  */
 class HashidsException extends InvalidArgumentException
 {

@@ -14,7 +14,7 @@ namespace Hashids\Math;
 /**
  * This is the Gmp math class.
  *
- * @author Vincent Klaiber <hello@vinkla.com>
+ * @author Vincent Klaiber <hello@doubledip.se>
  * @author Jakub Kramarz <lenwe@lenwe.net>
  * @author Johnson Page <jwpage@gmail.com>
  */
