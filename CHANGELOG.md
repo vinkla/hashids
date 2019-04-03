@@ -1,8 +1,9 @@
 # CHANGELOG
 
-**4.0.0 (upcoming)**:
+**4.0.0 (released 2019-04-03)**:
 
 - Added UTF-8 support (thanks [@bonfante](https://github.com/ivanakimov/hashids.php/pull/128))
+- Removed PHP 7.1 support
 
 **3.0.0 (released 2018-03-12)**:
 
