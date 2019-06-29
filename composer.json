@@ -12,7 +12,7 @@
         "decode",
         "obfuscate"
     ],
-    "homepage": "http://hashids.org/php",
+    "homepage": "https://hashids.org/php",
     "license": "MIT",
     "authors": [
         {

@@ -91,7 +91,7 @@
 
 - Bug fix: better handling of big numbers: [https://github.com/ivanakimov/hashids.php/issues/3](https://github.com/ivanakimov/hashids.php/issues/3) (thanks [@tobsn](https://github.com/tobsn) and [@miquelfire](https://github.com/miquelfire))
 - Bug fix: exception throwing in constructor
-- Default maximum number is set to 1 billion: 1,000,000,000. Unless you have [GNU Multiple Precision](http://www.php.net/manual/en/book.gmp.php) or [BCMath Arbitrary Precision Mathematics](http://www.php.net/manual/en/book.bc.php) library installed - then `PHP_INT_MAX` is used.
+- Default maximum number is set to 1 billion: 1,000,000,000. Unless you have [GNU Multiple Precision](https://www.php.net/manual/en/book.gmp.php) or [BCMath Arbitrary Precision Mathematics](https://www.php.net/manual/en/book.bc.php) library installed - then `PHP_INT_MAX` is used.
 - Cleanup: private variables use underscores
 
 **0.2.1**
@@ -104,7 +104,7 @@
 **0.2.0 - Warning: Hashes change in this version:**
 
 - Overall approximately **4x** faster
-- Consistent shuffle function uses slightly modified version of [Fisher–Yates algorithm](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
+- Consistent shuffle function uses slightly modified version of [Fisher–Yates algorithm](https://en.m.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
 - Generate large hash strings faster (more than 1000 chars)
 - When using _minimum hash length_ parameter, hash character disorder has been improved
 - Basic English curse words will now be avoided even with custom alphabet

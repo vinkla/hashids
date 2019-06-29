@@ -1,4 +1,4 @@
-[![hashids](http://hashids.org/public/img/hashids.gif "Hashids")](http://hashids.org/)
+[![hashids](https://hashids.org/public/img/hashids.gif "Hashids")](https://hashids.org/)
 
 [![Build Status](https://badgen.net/travis/vinkla/hashids/master)](https://travis-ci.com/vinkla/hashids)
 [![Coverage Status](https://badgen.net/codecov/c/github/vinkla/hashids)](https://codecov.io/github/vinkla/hashids)
@@ -6,7 +6,7 @@
 [![Latest Version](https://badgen.net/packagist/v/hashids/hashids)](https://github.com/vinkla/hashids/releases)
 [![License](https://badgen.net/packagist/license/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 
-**Hashids** is a small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database numeric ids to users: [http://hashids.org/php](http://hashids.org/php)
+**Hashids** is a small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database numeric ids to users: [https://hashids.org/php](https://hashids.org/php)
 
 ## Getting started
 
