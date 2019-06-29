@@ -173,4 +173,4 @@ c, f, h, i, s, t, u
 
 ## License
 
-MIT License. See the [LICENSE](LICENSE) file. You can use Hashids in open source projects and commercial products. Don't break the Internet. Kthxbye.
+[MIT](LICENSE) © [Ivan Akimov](https://barreleye.com/)
