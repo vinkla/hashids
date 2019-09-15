@@ -359,7 +359,7 @@ class HashidsTest extends TestCase
         $hashids = new Hashids();
 
         $singleIdHash = $hashids->encode(1);
-        $multipleIdHash = $hashids->encode([1,2]);
+        $multipleIdHash = $hashids->encode([1, 2]);
 
         // Return single integer for single-value hash
         $this->assertEquals(1, $hashids->decodeSingle($singleIdHash));
