@@ -117,6 +117,23 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 
 	$hashids->decode($id); // [1]
 	```
+ 
+   If you are certain the hash contains only one encoded value, you can use the `decodeSingle()` function.
+   It returns an integer for a hash containing a single encoded value, and null otherwise (either an invalid hash or one containing multiple encoded values).
+   
+   ```php
+   use Hashids\Hashids;
+   
+   $hashids = new Hashids();
+   
+   $singleValueHash = $hashids->encode(1);
+   $multipleValueHash = $hashids->encode([1, 2]);
+   
+   $hashids->decodeSingle($id); // 1
+   $hashids->decodeSingle(''); // null
+   $hashids->decodeSingle($multipleValueHash); // null
+   ```
+   
 
 2. Encoding negative numbers is not supported.
 3. If you pass bogus input to `encode()`, an empty string will be returned:

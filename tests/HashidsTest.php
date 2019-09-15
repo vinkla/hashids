@@ -353,4 +353,19 @@ class HashidsTest extends TestCase
         $encoded = $hashids->encode(1);
         $this->assertEquals('DngB0NV05ev1', $encoded);
     }
+
+    public function testDecodeSingle()
+    {
+        $hashids = new Hashids();
+
+        $singleIdHash = $hashids->encode(1);
+        $multipleIdHash = $hashids->encode([1,2]);
+
+        // Return single integer for single-value hash
+        $this->assertEquals(1, $hashids->decodeSingle($singleIdHash));
+
+        // Return null for invalid hash or multiple value hash
+        $this->assertEquals(null, $hashids->decodeSingle(''));
+        $this->assertEquals(null, $hashids->decodeSingle($multipleIdHash));
+    }
 }

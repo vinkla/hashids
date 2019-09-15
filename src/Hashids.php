@@ -266,6 +266,21 @@ class Hashids implements HashidsInterface
     }
 
     /**
+     * Decode a hash and only return one number.
+     * If it's an invalid hash or a hash with multiple encoded values, return null.
+     *
+     * @param string $hash
+     *
+     * @return int|null
+     */
+    public function decodeSingle($hash)
+    {
+        $ret = $this->decode($hash);
+
+        return count($ret) === 1 ? $ret[0] : null;
+    }
+
+    /**
      * Encode hexadecimal values and generate a hash string.
      *
      * @param string $str
