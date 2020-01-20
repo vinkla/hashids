@@ -31,6 +31,7 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
         "phpunit/phpunit": "^8.0"
     },
     "suggest": {

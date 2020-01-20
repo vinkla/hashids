@@ -9,7 +9,8 @@ install:
   - travis_retry composer install --no-interaction
 
 script:
-  - php $OPTIONS vendor/bin/phpunit --coverage-clover clover.xml
+  - vendor/bin/php-cs-fixer --diff --dry-run --verbose fix .
+  - vendor/bin/phpunit --coverage-clover clover.xml
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)
