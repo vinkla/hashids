@@ -9,8 +9,8 @@ install:
   - travis_retry composer install --no-interaction
 
 script:
-  - vendor/bin/php-cs-fixer --diff --dry-run --verbose fix .
   - vendor/bin/phpunit --coverage-clover clover.xml
+  - vendor/bin/phpcs --standard=PSR12 --colors -n src tests
 
 after_script:
   - bash <(curl -s https://codecov.io/bash)

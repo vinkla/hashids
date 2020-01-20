@@ -31,8 +31,8 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "phpunit/phpunit": "^8.0"
+        "phpunit/phpunit": "^8.0",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "suggest": {
         "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
