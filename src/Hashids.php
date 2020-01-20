@@ -178,7 +178,7 @@ class Hashids implements HashidsInterface
 
         $lottery = $ret = \mb_substr($alphabet, $numbersHashInt % \mb_strlen($alphabet), 1);
         foreach ($numbers as $i => $number) {
-            $alphabet = $this->shuffle($alphabet, \mb_substr($lottery.$this->salt.$alphabet, 0, \mb_strlen($alphabet)));
+            $alphabet = $this->shuffle($alphabet, \mb_substr($lottery . $this->salt . $alphabet, 0, \mb_strlen($alphabet)));
             $ret .= $last = $this->hash($number, $alphabet);
 
             if ($i + 1 < $numbersSize) {
@@ -192,7 +192,7 @@ class Hashids implements HashidsInterface
             $guardIndex = ($numbersHashInt + \mb_ord(\mb_substr($ret, 0, 1), 'UTF-8')) % \mb_strlen($this->guards);
 
             $guard = \mb_substr($this->guards, $guardIndex, 1);
-            $ret = $guard.$ret;
+            $ret = $guard . $ret;
 
             if (\mb_strlen($ret) < $this->minHashLength) {
                 $guardIndex = ($numbersHashInt + \mb_ord(\mb_substr($ret, 2, 1), 'UTF-8')) % \mb_strlen($this->guards);
@@ -205,7 +205,7 @@ class Hashids implements HashidsInterface
         $halfLength = (int) (\mb_strlen($alphabet) / 2);
         while (\mb_strlen($ret) < $this->minHashLength) {
             $alphabet = $this->shuffle($alphabet, $alphabet);
-            $ret = \mb_substr($alphabet, $halfLength).$ret.\mb_substr($alphabet, 0, $halfLength);
+            $ret = \mb_substr($alphabet, $halfLength) . $ret . \mb_substr($alphabet, 0, $halfLength);
 
             $excess = \mb_strlen($ret) - $this->minHashLength;
             if ($excess > 0) {
@@ -248,7 +248,7 @@ class Hashids implements HashidsInterface
             $hashArray = \explode(' ', $hashBreakdown);
 
             foreach ($hashArray as $subHash) {
-                $alphabet = $this->shuffle($alphabet, \mb_substr($lottery.$this->salt.$alphabet, 0, \mb_strlen($alphabet)));
+                $alphabet = $this->shuffle($alphabet, \mb_substr($lottery . $this->salt . $alphabet, 0, \mb_strlen($alphabet)));
                 $result = $this->unhash($subHash, $alphabet);
                 if ($this->math->greaterThan($result, PHP_INT_MAX)) {
                     $ret[] = $this->math->strval($result);
@@ -282,7 +282,7 @@ class Hashids implements HashidsInterface
         $numbers = \explode(' ', $numbers);
 
         foreach ($numbers as $i => $number) {
-            $numbers[$i] = \hexdec('1'.$number);
+            $numbers[$i] = \hexdec('1' . $number);
         }
 
         return $this->encode(...$numbers);
@@ -317,7 +317,7 @@ class Hashids implements HashidsInterface
      */
     protected function shuffle($alphabet, $salt): string
     {
-        $key = $alphabet.' '.$salt;
+        $key = $alphabet . ' ' . $salt;
 
         if (isset($this->shuffledAlphabets[$key])) {
             return $this->shuffledAlphabets[$key];
@@ -358,7 +358,7 @@ class Hashids implements HashidsInterface
         $alphabetLength = \mb_strlen($alphabet);
 
         do {
-            $hash = \mb_substr($alphabet, $this->math->intval($this->math->mod($input, $alphabetLength)), 1).$hash;
+            $hash = \mb_substr($alphabet, $this->math->intval($this->math->mod($input, $alphabetLength)), 1) . $hash;
 
             $input = $this->math->divide($input, $alphabetLength);
         } while ($this->math->greaterThan($input, 0));
