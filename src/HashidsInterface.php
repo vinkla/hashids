@@ -1,22 +1,16 @@
 <?php
 
-/*
- * This file is part of Hashids.
- *
- * (c) Ivan Akimov <ivan@barreleye.com>
+/**
+ * Copyright (c) Ivan Akimov.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @see https://github.com/vinkla/hashids
  */
 
 namespace Hashids;
 
-/**
- * This is the hashids interface.
- *
- * @author Ivan Akimov <ivan@barreleye.com>
- * @author Vincent Klaiber <hello@doubledip.se>
- */
 interface HashidsInterface
 {
     /**

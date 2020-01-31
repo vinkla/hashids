@@ -1,23 +1,18 @@
 <?php
 
-/*
- * This file is part of Hashids.
- *
- * (c) Ivan Akimov <ivan@barreleye.com>
+/**
+ * Copyright (c) Ivan Akimov.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @see https://github.com/vinkla/hashids
  */
 
 namespace Hashids;
 
 use InvalidArgumentException;
 
-/**
- * This is the hashids exception class.
- *
- * @author Vincent Klaiber <hello@doubledip.se>
- */
 class HashidsException extends InvalidArgumentException
 {
     //

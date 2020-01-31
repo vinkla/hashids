@@ -1,12 +1,12 @@
 <?php
 
-/*
- * This file is part of Hashids.
- *
- * (c) Ivan Akimov <ivan@barreleye.com>
+/**
+ * Copyright (c) Ivan Akimov.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @see https://github.com/vinkla/hashids
  */
 
 namespace Hashids\Tests;
@@ -15,11 +15,6 @@ use Hashids\Hashids;
 use Hashids\HashidsException;
 use PHPUnit\Framework\TestCase;
 
-/**
- * This is the hashids test class.
- *
- * @author Vincent Klaiber <hello@doubledip.se>
- */
 class HashidsTest extends TestCase
 {
     public function testSmallAlphabet()

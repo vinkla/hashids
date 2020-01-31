@@ -1,13 +1,13 @@
 <?php
 
-/*
-* This file is part of Hashids.
-*
-* (c) Ivan Akimov <ivan@barreleye.com>
-*
-* For the full copyright and license information, please view the LICENSE
-* file that was distributed with this source code.
-*/
+/**
+ * Copyright (c) Ivan Akimov.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @see https://github.com/vinkla/hashids
+ */
 
 namespace Hashids\Tests;
 
@@ -15,12 +15,6 @@ use Hashids\Math\Bc;
 use Hashids\Math\Gmp;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Test available MathInterface classes.
- *
- * @author Vincent Klaiber <hello@doubledip.se>
- * @author Johnson Page <jwpage@gmail.com>
- */
 class MathInterfaceTest extends TestCase
 {
     public function mathProvider()

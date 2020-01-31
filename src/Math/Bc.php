@@ -1,23 +1,16 @@
 <?php
 
-/*
- * This file is part of Hashids.
- *
- * (c) Ivan Akimov <ivan@barreleye.com>
+/**
+ * Copyright (c) Ivan Akimov.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @see https://github.com/vinkla/hashids
  */
 
 namespace Hashids\Math;
 
-/**
- * This is the Bc math class.
- *
- * @author Vincent Klaiber <hello@doubledip.se>
- * @author Jakub Kramarz <lenwe@lenwe.net>
- * @author Johnson Page <jwpage@gmail.com>
- */
 class Bc implements MathInterface
 {
     /**

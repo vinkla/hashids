@@ -1,12 +1,12 @@
 <?php
 
-/*
- * This file is part of Hashids.
- *
- * (c) Ivan Akimov <ivan@barreleye.com>
+/**
+ * Copyright (c) Ivan Akimov.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * @see https://github.com/vinkla/hashids
  */
 
 namespace Hashids;
@@ -16,13 +16,6 @@ use Hashids\Math\Gmp;
 use Hashids\Math\MathInterface;
 use RuntimeException;
 
-/**
- * This is the hashids class.
- *
- * @author Ivan Akimov <ivan@barreleye.com>
- * @author Vincent Klaiber <hello@doubledip.se>
- * @author Johnson Page <jwpage@gmail.com>
- */
 class Hashids implements HashidsInterface
 {
     /**
