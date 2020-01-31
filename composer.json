@@ -2,28 +2,26 @@
     "name": "hashids/hashids",
     "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
     "keywords": [
-        "hashids",
-        "hashid",
-        "hash",
-        "ids",
-        "youtube",
         "bitly",
-        "encode",
         "decode",
-        "obfuscate"
+        "encode",
+        "hash",
+        "hashid",
+        "hashids",
+        "ids",
+        "obfuscate",
+        "youtube"
     ],
     "homepage": "https://hashids.org/php",
     "license": "MIT",
     "authors": [
         {
             "name": "Ivan Akimov",
-            "email": "ivan@barreleye.com",
-            "homepage": "https://twitter.com/IvanAkimov"
+            "email": "ivan@barreleye.com"
         },
         {
             "name": "Vincent Klaiber",
-            "email": "hello@doubledip.se",
-            "homepage": "https://doubledip.se"
+            "email": "hello@doubledip.se"
         }
     ],
     "require": {
