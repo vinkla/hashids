@@ -2,7 +2,7 @@
 
 [![Build Status](https://badgen.net/travis/vinkla/hashids/master)](https://travis-ci.com/vinkla/hashids)
 [![Coverage Status](https://badgen.net/codecov/c/github/vinkla/hashids)](https://codecov.io/github/vinkla/hashids)
-[![Total Downloads](https://badgen.net/packagist/dm/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
+[![Monthly Downloads](https://badgen.net/packagist/dm/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 [![Latest Version](https://badgen.net/packagist/v/hashids/hashids)](https://github.com/vinkla/hashids/releases)
 [![License](https://badgen.net/packagist/license/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 
