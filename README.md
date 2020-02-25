@@ -1,6 +1,6 @@
 [![hashids](https://hashids.org/public/img/hashids.gif "Hashids")](https://hashids.org/)
 
-[![Build Status](https://badgen.net/github/status/vinkla/hashids/master)](https://github.com/vinkla/hashids/actions)
+[![Build Status](https://badgen.net/github/checks/vinkla/hashids?label=build&icon=github)](https://github.com/vinkla/hashids/actions)
 [![Monthly Downloads](https://badgen.net/packagist/dm/vinkla/hashids)](https://packagist.org/packages/vinkla/hashids/stats)
 [![Latest Version](https://badgen.net/github/release/vinkla/hashids)](https://github.com/vinkla/laravel-shield/releases)
 
