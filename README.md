@@ -2,7 +2,7 @@
 
 [![Build Status](https://badgen.net/github/checks/vinkla/hashids?label=build&icon=github)](https://github.com/vinkla/hashids/actions)
 [![Monthly Downloads](https://badgen.net/packagist/dm/hashids/hashids)](https://packagist.org/packages/hashids/hashids/stats)
-[![Latest Version](https://badgen.net/github/release/vinkla/hashids)](https://github.com/vinkla/laravel-shield/releases)
+[![Latest Version](https://badgen.net/packagist/v/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 
 **Hashids** is a small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database numeric ids to users: [https://hashids.org/php](https://hashids.org/php)
 
