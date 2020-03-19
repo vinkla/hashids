@@ -39,7 +39,7 @@ $numbers = $hashids->decode($id); // [1, 2, 3]
 
 ## More Options
 
-**A few more ways to pass input ids to the `encode()` function:**
+#### A few more ways to pass input ids to the `encode()` function:
 
 ```php
 use Hashids\Hashids;
@@ -52,7 +52,7 @@ $hashids->encode('1', '2', '3'); // o2fXhV
 $hashids->encode(['1', '2', '3']); // o2fXhV
 ```
 
-**Making your output ids unique:**
+#### Making your output ids unique
 
 Pass a project name to make your output ids unique:
 
@@ -66,7 +66,7 @@ $hashids = new Hashids('My Other Project');
 $hashids->encode(1, 2, 3); // gPUasb
 ```
 
-**Use padding to make your output ids longer:**
+#### Use padding to make your output ids longer
 
 Note that output ids are only padded to fit **at least** a certain length. It doesn't mean that they will be *exactly* that length.
 
@@ -80,7 +80,7 @@ $hashids = new Hashids('', 10); // pad to length 10
 $hashids->encode(1); // VolejRejNm
 ```
 
-**Using a custom alphabet:**
+#### Using a custom alphabet
 
 ```php
 use Hashids\Hashids;
@@ -89,7 +89,7 @@ $hashids = new Hashids('', 0, 'abcdefghijklmnopqrstuvwxyz'); // all lowercase
 $hashids->encode(1, 2, 3); // mdfphx
 ```
 
-**Encode hex instead of numbers:**
+#### Encode hex instead of numbers
 
 Useful if you want to encode [Mongo](https://www.mongodb.com)'s ObjectIds. Note that *there is no limit* on how large of a hex number you can pass (it does not have to be Mongo's ObjectId).
 
