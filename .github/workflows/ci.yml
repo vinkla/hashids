@@ -18,7 +18,7 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         coverage: xdebug
-    - run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+    - run: composer install --prefer-dist --no-interaction
     - run: vendor/bin/phpunit --coverage-text
     - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
 
