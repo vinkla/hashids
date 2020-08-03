@@ -359,7 +359,7 @@ class HashidsTest extends TestCase
             $collisionIndex = array_search($encodedId, $encodedIds);
 
             $this->assertFalse(
-                $collisionIndex,
+                $collisionIndex !== false,
                 "Collision with: \n $collisionIndex -> $encodedId \n\n For: \n $number -> $encodedId"
             );
 
