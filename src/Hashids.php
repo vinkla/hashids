@@ -397,11 +397,11 @@ class Hashids implements HashidsInterface
      */
     protected function getMathExtension(): MathInterface
     {
-        if (\extension_loaded('gmp')) {
+        if (\function_exists('gmp_init')) {
             return new Gmp();
         }
 
-        if (\extension_loaded('bcmath')) {
+        if (\function_exists('bcadd')) {
             return new Bc();
         }
 
