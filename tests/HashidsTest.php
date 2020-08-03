@@ -351,27 +351,16 @@ class HashidsTest extends TestCase
 
     public function testCollision()
     {
-        $encodedIds = [];
         $hashids = new Hashids();
+
+        $encodedIds = '';
 
         foreach (range(0, 100000) as $number) {
             $encodedId = $hashids->encode($number);
-            $collisionIndex = array_search($encodedId, $encodedIds);
 
-            $this->assertFalse(
-                $collisionIndex !== false,
-                "Collision with: \n $collisionIndex -> $encodedId \n\n For: \n $number -> $encodedId"
-            );
+            $this->assertStringNotContainsString($encodedId, $encodedIds, "Collision with: \n $encodedId \n\n For: \n $number -> $encodedId");
 
-            $encodedIds[] = $encodedId;
+            $encodedIds .= $encodedId . ' ';
         }
-    }
-
-    public function testCollision2()
-    {
-        $hashids = new Hashids();
-
-        $this->assertSame('0E97', $hashids->encode(587));
-        $this->assertSame('0E97', $hashids->encode(25543));
     }
 }
