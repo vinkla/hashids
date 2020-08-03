@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         php: [7.2, 7.3, 7.4]
-        extension: [':gmp', ':bcmath']
+        extension: [':bcmath']
 
     name: PHP ${{ matrix.php }} (${{ matrix.extension }})
 
@@ -20,7 +20,7 @@ jobs:
         php-version: ${{ matrix.php }}
         coverage: xdebug
         extensions: ${{ matrix.extension }}
-    - run: php -m
+    - run: php -r "if(! extension_loaded('bcmath')) {throw new Exception('bcmath not found');}"
     - run: composer install --prefer-dist --no-interaction
     - run: vendor/bin/phpunit --coverage-text
     - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
