@@ -9,8 +9,9 @@ jobs:
     strategy:
       matrix:
         php: [7.2, 7.3, 7.4]
+        extension: ['bc', 'gmp']
 
-    name: PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }} ${{ matrix.extension }}
 
     steps:
     - uses: actions/checkout@v2
@@ -18,6 +19,7 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         coverage: xdebug
+        extension: ${{ matrix.extension }}
     - run: composer install --prefer-dist --no-interaction
     - run: vendor/bin/phpunit --coverage-text
     - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
