@@ -365,6 +365,11 @@ class HashidsTest extends TestCase
 
             $encodedIds[] = $encodedId;
         }
+    }
+
+    public function testCollision2()
+    {
+        $hashids = new Hashids();
 
         $this->assertSame('0E97', $hashids->encode(587));
         $this->assertSame('0E97', $hashids->encode(25543));
