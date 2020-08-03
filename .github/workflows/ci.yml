@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         php: [7.2, 7.3, 7.4]
-        extension: ['bcmath, :gmp', 'gmp, :bcmath']
+        extension: [':gmp', ':bcmath']
 
     name: PHP ${{ matrix.php }} (${{ matrix.extension }})
 
