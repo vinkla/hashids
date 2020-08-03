@@ -14,15 +14,25 @@ namespace Hashids\Tests;
 use Hashids\Math\Bc;
 use Hashids\Math\Gmp;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class MathInterfaceTest extends TestCase
 {
     public function mathProvider()
     {
-        return [
-            [new Bc()],
-            [new Gmp()],
-        ];
+        if (\extension_loaded('gmp')) {
+            return [
+                [new Gmp()]
+            ];
+        }
+
+        if (\extension_loaded('bcmath')) {
+            return [
+                [new Bc()]
+            ];
+        }
+
+        throw new RuntimeException('Missing BC Math or GMP extension.');
     }
 
     /**
