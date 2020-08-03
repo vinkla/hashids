@@ -348,4 +348,18 @@ class HashidsTest extends TestCase
         $encoded = $hashids->encode(1);
         $this->assertEquals('DngB0NV05ev1', $encoded);
     }
+    
+    public function testCollision()
+    {
+        $encodedIds = [];
+        $hashids = new Hashids();
+
+        foreach (range(0, 100000) as $number) {
+            $encodedId = $hashids->encode($number);
+
+            $this->assertFalse(in_array($encodedId, $encodedIds), 'Collision for: ' . $encodedId);
+
+            $encodedIds[] = $encodedId;
+        }
+    }
 }
