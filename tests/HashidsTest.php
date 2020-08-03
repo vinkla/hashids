@@ -356,8 +356,12 @@ class HashidsTest extends TestCase
 
         foreach (range(0, 100000) as $number) {
             $encodedId = $hashids->encode($number);
+            $collisionIndex = array_search($encodedId, $encodedIds);
 
-            $this->assertFalse(in_array($encodedId, $encodedIds), 'Collision for: ' . $encodedId);
+            $this->assertFalse(
+                $collisionIndex,
+                "Collision with: \n $collisionIndex -> $encodedId \n\n For: \n $number -> $encodedId"
+            );
 
             $encodedIds[] = $encodedId;
         }
