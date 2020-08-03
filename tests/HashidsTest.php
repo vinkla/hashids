@@ -348,4 +348,22 @@ class HashidsTest extends TestCase
         $encoded = $hashids->encode(1);
         $this->assertEquals('DngB0NV05ev1', $encoded);
     }
+
+    public function testPaddingWithHrtime()
+    {
+        // pass
+        $actual = (new Hashids())->encode(hrtime(true), 12);
+        $this->assertGreaterThanOrEqual(12, strlen($actual));
+
+        // fail - comes out as 12
+        // $actual = (new Hashids())->encode(hrtime(true), 24);
+        // $this->assertGreaterThanOrEqual(24, strlen($actual));
+
+        // pass
+        $actual = (new Hashids())->encode(hrtime(true), 10);
+        $this->assertGreaterThanOrEqual(10, strlen($actual));
+
+        // comes out as 12 - each time
+        $this->assertEquals(10, strlen($actual));
+    }
 }
