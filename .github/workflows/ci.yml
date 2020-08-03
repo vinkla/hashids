@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         php: [7.2, 7.3, 7.4]
-        extension: ['bcmath :gmp', 'gmp :bcmath']
+        extension: ['bcmath, :gmp', 'gmp, :bcmath']
 
     name: PHP ${{ matrix.php }} (${{ matrix.extension }})
 
@@ -20,7 +20,7 @@ jobs:
         php-version: ${{ matrix.php }}
         coverage: xdebug
         extensions: ${{ matrix.extension }}
-    - run: php -r "print_r(get_loaded_extensions());"
+    - run: php -m
     - run: composer install --prefer-dist --no-interaction
     - run: vendor/bin/phpunit --coverage-text
     - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
