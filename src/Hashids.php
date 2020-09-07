@@ -411,9 +411,9 @@ class Hashids implements HashidsInterface
     /**
      * Replace simple use of $this->multiByteSplit with multi byte string.
      *
-     * @param $string
+     * @param string $string
      *
-     * @return array|string[]
+     * @return array<int, string>
      */
     protected function multiByteSplit($string): array
     {
