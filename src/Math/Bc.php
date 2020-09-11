@@ -11,105 +11,74 @@
 
 namespace Hashids\Math;
 
+use function bcadd;
+use function bccomp;
+use function bcdiv;
+use function bcmod;
+use function bcmul;
+
 class Bc implements MathInterface
 {
     /**
-     * Add two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function add($a, $b)
+    public function add(string $a, string $b): string
     {
-        return \bcadd($a, $b, 0);
+        return bcadd($a, $b, 0);
     }
 
     /**
-     * Multiply two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function multiply($a, $b)
+    public function multiply(string $a, string $b): string
     {
-        return \bcmul($a, $b, 0);
+        return bcmul($a, $b, 0);
     }
 
     /**
-     * Divide two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function divide($a, $b)
+    public function divide(string $a, string $b): string
     {
-        return \bcdiv($a, $b, 0);
+        return bcdiv($a, $b, 0);
     }
 
     /**
-     * Compute arbitrary-length integer modulo.
-     *
-     * @param string $n
-     * @param string $d
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function mod($n, $d)
+    public function mod(string $n, string $d): string
     {
-        return \bcmod($n, $d);
+        return bcmod($n, $d);
     }
 
     /**
-     * Compares two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return bool
+     * {@inheritDoc}
      */
-    public function greaterThan($a, $b)
+    public function greaterThan(string $a, string $b): bool
     {
-        return \bccomp($a, $b, 0) > 0;
+        return bccomp($a, $b, 0) > 0;
     }
 
     /**
-     * Converts arbitrary-length integer to PHP integer.
-     *
-     * @param string $a
-     *
-     * @return int
+     * {@inheritDoc}
      */
-    public function intval($a)
+    public function intval(string $a): int
     {
-        return \intval($a);
+        return (int) $a;
     }
 
     /**
-     * Converts arbitrary-length integer to PHP string.
-     *
-     * @param string $a
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function strval($a)
+    public function strval(string $a): string
     {
         return $a;
     }
 
     /**
-     * Converts PHP integer to arbitrary-length integer.
-     *
-     * @param int $a
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function get($a)
+    public function get(int $a): string
     {
         return $a;
     }

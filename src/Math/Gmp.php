@@ -11,106 +11,78 @@
 
 namespace Hashids\Math;
 
+use function gmp_add;
+use function gmp_cmp;
+use function gmp_div_q;
+use function gmp_init;
+use function gmp_intval;
+use function gmp_mod;
+use function gmp_mul;
+use function gmp_strval;
+
 class Gmp implements MathInterface
 {
     /**
-     * Add two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function add($a, $b)
+    public function add(string $a, string $b): string
     {
-        return \gmp_add($a, $b);
+        return gmp_add($a, $b);
     }
 
     /**
-     * Multiply two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function multiply($a, $b)
+    public function multiply(string $a, string $b): string
     {
-        return \gmp_mul($a, $b);
+        return gmp_mul($a, $b);
     }
 
     /**
-     * Divide two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function divide($a, $b)
+    public function divide(string $a, string $b): string
     {
-        return \gmp_div_q($a, $b);
+        return gmp_div_q($a, $b);
     }
 
     /**
-     * Compute arbitrary-length integer modulo.
-     *
-     * @param string $n
-     * @param string $d
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function mod($n, $d)
+    public function mod(string $n, string $d): string
     {
-        return \gmp_mod($n, $d);
+        return gmp_mod($n, $d);
     }
 
     /**
-     * Compares two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return bool
+     * {@inheritDoc}
      */
-    public function greaterThan($a, $b)
+    public function greaterThan(string $a, string $b): bool
     {
-        return \gmp_cmp($a, $b) > 0;
+        return gmp_cmp($a, $b) > 0;
     }
 
     /**
-     * Converts arbitrary-length integer to PHP integer.
-     *
-     * @param string $a
-     *
-     * @return int
+     * {@inheritDoc}
      */
-    public function intval($a)
+    public function intval(string $a): int
     {
-        return \gmp_intval($a);
+        return gmp_intval($a);
     }
 
     /**
-     * Converts arbitrary-length integer to PHP string.
-     *
-     * @param string $a
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function strval($a)
+    public function strval(string $a): string
     {
-        return \gmp_strval($a);
+        return gmp_strval($a);
     }
 
     /**
-     * Converts PHP integer to arbitrary-length integer.
-     *
-     * @param int $a
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function get($a)
+    public function get(int $a): string
     {
-        return \gmp_init($a);
+        return gmp_init($a);
     }
 }

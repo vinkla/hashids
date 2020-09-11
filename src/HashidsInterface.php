@@ -15,37 +15,21 @@ interface HashidsInterface
 {
     /**
      * Encode parameters to generate a hash.
-     *
-     * @param mixed $numbers
-     *
-     * @return string
      */
-    public function encode(...$numbers);
+    public function encode(...$numbers): string;
 
     /**
      * Decode a hash to the original parameter values.
-     *
-     * @param string $hash
-     *
-     * @return array
      */
-    public function decode($hash);
+    public function decode(string $hash): array;
 
     /**
      * Encode hexadecimal values and generate a hash string.
-     *
-     * @param string $str
-     *
-     * @return string
      */
-    public function encodeHex($str);
+    public function encodeHex(string $str): string;
 
     /**
      * Decode a hexadecimal hash.
-     *
-     * @param string $hash
-     *
-     * @return string
      */
-    public function decodeHex($hash);
+    public function decodeHex(string $hash): string;
 }

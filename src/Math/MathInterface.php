@@ -15,78 +15,41 @@ interface MathInterface
 {
     /**
      * Add two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
      */
-    public function add($a, $b);
+    public function add(string $a, string $b): string;
 
     /**
      * Multiply two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
      */
-    public function multiply($a, $b);
+    public function multiply(string $a, string $b): string;
 
     /**
      * Divide two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return string
      */
-    public function divide($a, $b);
+    public function divide(string $a, string $b): string;
 
     /**
      * Compute arbitrary-length integer modulo.
-     *
-     * @param string $n
-     * @param string $d
-     *
-     * @return string
      */
-    public function mod($n, $d);
+    public function mod(string $n, string $d): string;
 
     /**
      * Compares two arbitrary-length integers.
-     *
-     * @param string $a
-     * @param string $b
-     *
-     * @return bool
      */
-    public function greaterThan($a, $b);
+    public function greaterThan(string $a, string $b): bool;
 
     /**
      * Converts arbitrary-length integer to PHP integer.
-     *
-     * @param string $a
-     *
-     * @return int
      */
-    public function intval($a);
+    public function intval(string $a): int;
 
     /**
      * Converts arbitrary-length integer to PHP string.
-     *
-     * @param string $a
-     *
-     * @return string
      */
-    public function strval($a);
+    public function strval(string $a): string;
 
     /**
      * Converts PHP integer to arbitrary-length integer.
-     *
-     * @param int $a
-     *
-     * @return string
      */
-    public function get($a);
+    public function get(int $a): string;
 }

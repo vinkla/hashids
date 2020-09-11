@@ -15,5 +15,4 @@ use InvalidArgumentException;
 
 class HashidsException extends InvalidArgumentException
 {
-    //
 }
