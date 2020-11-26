@@ -1,5 +1,9 @@
 # CHANGELOG
 
+**4.1.0 (released 2020-11-26)**:
+
+- Added PHP 8.0 support
+
 **4.0.0 (released 2019-04-03)**:
 
 - Added UTF-8 support (thanks [@bonfante](https://github.com/ivanakimov/hashids.php/pull/128))

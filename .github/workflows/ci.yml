@@ -21,16 +21,6 @@ jobs:
           coverage: xdebug
           extensions: ${{ matrix.extension }}
           tools: composer:v2
-      - uses: nick-invision/retry@v1
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer update --no-interaction --no-progress --ignore-platform-req=php
-        if: "matrix.php >= 8"
-      - uses: nick-invision/retry@v1
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer update --no-interaction --prefer-dist --no-progress
-        if: "matrix.php < 8"
+      - run: composer install --prefer-dist --no-interaction
       - run: vendor/bin/phpunit --coverage-text
+      - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
