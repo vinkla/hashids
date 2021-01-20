@@ -168,7 +168,3 @@ This code was written with the intent of placing the output ids in visible place
 ```
 c, f, h, i, s, t, u
 ```
-
-## License
-
-[MIT](LICENSE) © [Ivan Akimov](https://barreleye.com/)
