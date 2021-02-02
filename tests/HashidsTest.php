@@ -348,4 +348,11 @@ class HashidsTest extends TestCase
         $encoded = $hashids->encode(1);
         $this->assertEquals('DngB0NV05ev1', $encoded);
     }
+
+    public function hash_hex(){
+    $hashids = new Hashids();
+    $hashed_text = $hashids->encode_hex("63706b64");
+    return $hashed_text;   
+    }
+
 }
