@@ -98,7 +98,7 @@ class Hashids implements HashidsInterface
         $this->alphabet = \implode('', \array_unique($this->multiByteSplit($alphabet)));
         $this->math = $this->getMathExtension();
 
-        if ($this->isStrLenLessThanVal($this->alphabet,16)) {
+        if (\mb_strlen($this->alphabet) < 16) {
             throw new HashidsException('Alphabet must contain at least 16 unique characters.');
         }
 
@@ -125,7 +125,7 @@ class Hashids implements HashidsInterface
         $this->alphabet = $this->shuffle($this->alphabet, $this->salt);
         $guardCount = (int) \ceil(\mb_strlen($this->alphabet) / self::GUARD_DIV);
 
-        if ($this->isStrLenLessThanVal($this->alphabet,3)) {
+        if (\mb_strlen($this->alphabet) < 3) {
             $this->guards = \mb_substr($this->seps, 0, $guardCount);
             $this->seps = \mb_substr($this->seps, $guardCount);
         } else {
@@ -181,13 +181,13 @@ class Hashids implements HashidsInterface
             }
         }
 
-        if ($this->isStrLenLessThanVal($ret, $this->minHashLength)) {
+        if (\mb_strlen($ret) < $this->minHashLength) {
             $guardIndex = ($numbersHashInt + \mb_ord(\mb_substr($ret, 0, 1), 'UTF-8')) % \mb_strlen($this->guards);
 
             $guard = \mb_substr($this->guards, $guardIndex, 1);
             $ret = $guard . $ret;
 
-            if ($this->isStrLenLessThanVal($ret, $this->minHashLength)) {
+            if (\mb_strlen($ret) < $this->minHashLength) {
                 $guardIndex = ($numbersHashInt + \mb_ord(\mb_substr($ret, 2, 1), 'UTF-8')) % \mb_strlen($this->guards);
                 $guard = \mb_substr($this->guards, $guardIndex, 1);
 
@@ -196,7 +196,7 @@ class Hashids implements HashidsInterface
         }
 
         $halfLength = (int) (\mb_strlen($alphabet) / 2);
-        while ($this->isStrLenLessThanVal($ret, $this->minHashLength)) {
+        while (\mb_strlen($ret) < $this->minHashLength) {
             $alphabet = $this->shuffle($alphabet, $alphabet);
             $ret = \mb_substr($alphabet, $halfLength) . $ret . \mb_substr($alphabet, 0, $halfLength);
 
@@ -367,7 +367,7 @@ class Hashids implements HashidsInterface
      *
      * @return int
      */
-    protected function unhash($input, $alphabet): int
+    protected function unhash($input, $alphabet)
     {
         $number = 0;
         $inputLength = \mb_strlen($input);
@@ -418,18 +418,5 @@ class Hashids implements HashidsInterface
     protected function multiByteSplit($string): array
     {
         return \preg_split('/(?!^)(?=.)/u', $string) ?: [];
-    }
-
-    /**
-     * Check if the string length less than value or not
-     *
-     * @param $string
-     *
-     * @param $value
-     *
-     * @return bool
-     */
-    protected function isStrLenLessThanVal($string, $value): bool {
-        return \mb_strlen($string) < $value;
     }
 }
