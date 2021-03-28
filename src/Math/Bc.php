@@ -21,7 +21,7 @@ class Bc implements MathInterface
      *
      * @return string
      */
-    public function add($a, $b)
+    public function add($a, $b): string
     {
         return \bcadd($a, $b, 0);
     }
@@ -34,7 +34,7 @@ class Bc implements MathInterface
      *
      * @return string
      */
-    public function multiply($a, $b)
+    public function multiply($a, $b): string
     {
         return \bcmul($a, $b, 0);
     }
@@ -47,7 +47,7 @@ class Bc implements MathInterface
      *
      * @return string
      */
-    public function divide($a, $b)
+    public function divide($a, $b): ?string
     {
         return \bcdiv($a, $b, 0);
     }
@@ -60,7 +60,7 @@ class Bc implements MathInterface
      *
      * @return string
      */
-    public function mod($n, $d)
+    public function mod($n, $d): ?string
     {
         return \bcmod($n, $d);
     }
@@ -73,7 +73,7 @@ class Bc implements MathInterface
      *
      * @return bool
      */
-    public function greaterThan($a, $b)
+    public function greaterThan($a, $b): bool
     {
         return \bccomp($a, $b, 0) > 0;
     }
@@ -85,7 +85,7 @@ class Bc implements MathInterface
      *
      * @return int
      */
-    public function intval($a)
+    public function intval($a): int
     {
         return \intval($a);
     }
@@ -97,7 +97,7 @@ class Bc implements MathInterface
      *
      * @return string
      */
-    public function strval($a)
+    public function strval($a): string
     {
         return $a;
     }
