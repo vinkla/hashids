@@ -11,22 +11,22 @@
 
 namespace Hashids\Tests;
 
-use Hashids\Math\Bc;
-use Hashids\Math\Gmp;
+use Hashids\Bc;
+use Hashids\Gmp;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-class MathInterfaceTest extends TestCase
+class MathTest extends TestCase
 {
     public function mathProvider()
     {
-        if (\extension_loaded('gmp')) {
+        if (extension_loaded('gmp')) {
             return [
                 [new Gmp()]
             ];
         }
 
-        if (\extension_loaded('bcmath')) {
+        if (extension_loaded('bcmath')) {
             return [
                 [new Bc()]
             ];
