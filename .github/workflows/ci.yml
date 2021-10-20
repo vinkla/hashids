@@ -10,6 +10,7 @@ jobs:
       matrix:
         php: [7.2, 7.3, 7.4, 8.0]
         extension: [":bcmath", ":gmp"]
+        dependency-version: ["lowest", "highest"]
 
     name: PHP ${{ matrix.php }}
 
@@ -21,6 +22,8 @@ jobs:
           coverage: xdebug
           extensions: ${{ matrix.extension }}
           tools: composer:v2
-      - run: composer install --prefer-dist --no-interaction
+      - uses: ramsey/composer-install@v1
+        with:
+          dependency-versions: ${{ matrix.dependency-version }}
       - run: vendor/bin/phpunit --coverage-text
       - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
