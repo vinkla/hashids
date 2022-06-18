@@ -14,13 +14,12 @@ jobs:
     name: PHP ${{ matrix.php }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: xdebug
           extensions: ${{ matrix.extension }}
-          tools: composer:v2
       - run: composer install --prefer-dist --no-interaction
       - run: vendor/bin/phpunit --coverage-text
       - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
