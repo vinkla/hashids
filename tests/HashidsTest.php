@@ -348,4 +348,14 @@ class HashidsTest extends TestCase
         $encoded = $hashids->encode(1);
         $this->assertEquals('DngB0NV05ev1', $encoded);
     }
+	
+	public function testLongSaltWithCustomAlphabet()
+	{
+		$alphabet = "bcdfghjkmnpqrstvwxz23456789";
+		$a = new Hashids("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", 5, $alphabet);
+		$b = new Hashids("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 5, $alphabet);
+		$encodedA = $a->encode(1);
+		$encodedB = $b->encode(1);
+		$this->assertNotEquals($encodedA, $encodedB);
+	}
 }
