@@ -23,14 +23,14 @@ class Hashids implements HashidsInterface
      *
      * @var float
      */
-    const SEP_DIV = 3.5;
+    public const SEP_DIV = 3.5;
 
     /**
      * The guard divider.
      *
      * @var float
      */
-    const GUARD_DIV = 12;
+    public const GUARD_DIV = 12;
 
     /**
      * The alphabet string.
