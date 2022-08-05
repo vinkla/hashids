@@ -1,4 +1,4 @@
-name: CI
+name: PHPUnit
 
 on: [push, pull_request]
 
@@ -22,4 +22,3 @@ jobs:
           extensions: ${{ matrix.extension }}
       - run: composer install --prefer-dist --no-interaction
       - run: vendor/bin/phpunit --coverage-text
-      - run: vendor/bin/phpcs --standard=PSR12 --colors -n src tests
