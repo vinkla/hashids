@@ -2,6 +2,7 @@
 
 ## 5.0.0 (upcoming)
 
+- Added property type declarations
 - Removed HashidsException class
 - Removed PHP 7 and 8.0 support
 - Renamed Bc class to BCMath
