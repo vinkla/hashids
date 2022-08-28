@@ -64,9 +64,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider alphabetProvider
-     */
+    /** @dataProvider alphabetProvider */
     public function testAlphabet($alphabets)
     {
         $numbers = [1, 2, 3];
@@ -90,9 +88,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider saltProvider
-     */
+    /** @dataProvider saltProvider */
     public function testSalt($salts)
     {
         $numbers = [1, 2, 3];
@@ -115,9 +111,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider minLengthProvider
-     */
+    /** @dataProvider minLengthProvider */
     public function testMinLength($lengths)
     {
         $numbers = [1, 2, 3];
@@ -139,9 +133,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider encodeTypesProvider
-     */
+    /** @dataProvider encodeTypesProvider */
     public function testEncodeTypes($params)
     {
         $numbers = [1, 2, 3];
@@ -177,9 +169,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider defaultParamsProvider
-     */
+    /** @dataProvider defaultParamsProvider */
     public function testDefaultParams($id, $numbers)
     {
         $hashids = new Hashids();
@@ -212,9 +202,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider customParamsProvider
-     */
+    /** @dataProvider customParamsProvider */
     public function testCustomParams($id, $numbers)
     {
         $minLength = 30;
@@ -244,9 +232,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider defaultParamsHexProvider
-     */
+    /** @dataProvider defaultParamsHexProvider */
     public function testDefaultParamsHex($id, $hex)
     {
         $hashids = new Hashids();
@@ -272,9 +258,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider customParamsHexProvider
-     */
+    /** @dataProvider customParamsHexProvider */
     public function testCustomParamsHex($id, $hex)
     {
         $minLength = 30;
@@ -299,9 +283,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider bigNumberDataProvider
-     */
+    /** @dataProvider bigNumberDataProvider */
     public function testBigNumberEncode($number, $hash)
     {
         $hashids = new Hashids('this is my salt');
@@ -309,9 +291,7 @@ class HashidsTest extends TestCase
         $this->assertEquals($hash, $encoded);
     }
 
-    /**
-     * @dataProvider bigNumberDataProvider
-     */
+    /** @dataProvider bigNumberDataProvider */
     public function testBigNumberDecode($number, $hash)
     {
         $hashids = new Hashids('this is my salt');
@@ -329,9 +309,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider jsHashidsDataProvider
-     */
+    /** @dataProvider jsHashidsDataProvider */
     public function testJsHashidsCompatible($salt, $minHashLength, $alphabet, $numbers, $hash)
     {
         $hashids = new Hashids($salt, $minHashLength, $alphabet);
