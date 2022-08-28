@@ -75,7 +75,7 @@ class HashidsTest extends TestCase
         $this->assertSame($hashids->decode($id), $numbers);
     }
 
-    public function saltProvider($salts)
+    public function saltProvider()
     {
         return [
             [''],
