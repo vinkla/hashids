@@ -11,8 +11,8 @@
 
 namespace Hashids\Tests;
 
-use Hashids\Bc;
-use Hashids\Gmp;
+use Hashids\Math\BCMath;
+use Hashids\Math\Gmp;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -28,7 +28,7 @@ class MathTest extends TestCase
 
         if (extension_loaded('bcmath')) {
             return [
-                [new Bc()]
+                [new BCMath()]
             ];
         }
 

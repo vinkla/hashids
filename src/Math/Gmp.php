@@ -9,47 +9,47 @@
  * @see https://github.com/vinkla/hashids
  */
 
-namespace Hashids;
+namespace Hashids\Math;
 
-class Bc
+class Gmp implements MathInterface
 {
     public function add($a, $b)
     {
-        return bcadd($a, $b, 0);
+        return gmp_add($a, $b);
     }
 
     public function multiply($a, $b)
     {
-        return bcmul($a, $b, 0);
+        return gmp_mul($a, $b);
     }
 
     public function divide($a, $b)
     {
-        return bcdiv($a, $b, 0);
+        return gmp_div_q($a, $b);
     }
 
     public function mod($n, $d)
     {
-        return bcmod($n, $d);
+        return gmp_mod($n, $d);
     }
 
     public function greaterThan($a, $b)
     {
-        return bccomp($a, $b, 0) > 0;
+        return gmp_cmp($a, $b) > 0;
     }
 
     public function intval($a)
     {
-        return intval($a);
+        return gmp_intval($a);
     }
 
     public function strval($a)
     {
-        return $a;
+        return gmp_strval($a);
     }
 
     public function get($a)
     {
-        return $a;
+        return gmp_init($a);
     }
 }

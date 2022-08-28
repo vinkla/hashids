@@ -12,21 +12,21 @@
 namespace Hashids\Tests;
 
 use Hashids\Hashids;
-use Hashids\HashidsException;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class HashidsTest extends TestCase
 {
     public function testSmallAlphabet()
     {
-        $this->expectException(HashidsException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new Hashids('', 0, '1234567890');
     }
 
     public function testAlphabetWithSpace()
     {
-        $this->expectException(HashidsException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new Hashids('', 0, 'a cdefghijklmnopqrstuvwxyz');
     }

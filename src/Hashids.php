@@ -11,13 +11,16 @@
 
 namespace Hashids;
 
+use Hashids\Math\BCMath;
+use Hashids\Math\Gmp;
+use InvalidArgumentException;
 use RuntimeException;
 
 class Hashids implements HashidsInterface
 {
     public const GUARD_DIV = 12;
     public const SEP_DIV = 3.5;
-    protected Bc|Gmp $math;
+    protected BCMath|Gmp $math;
     protected array $shuffledAlphabets;
     protected int $minHashLength;
     protected string $alphabet;
@@ -25,7 +28,7 @@ class Hashids implements HashidsInterface
     protected string $salt;
     protected string $seps = 'cfhistuCFHISTU';
 
-    /** @throws \Hashids\HashidsException */
+    /** @throws \InvalidArgumentException */
     public function __construct(
         string $salt = '',
         int $minHashLength = 0,
@@ -38,11 +41,11 @@ class Hashids implements HashidsInterface
         $this->math = $this->getMathExtension();
 
         if (mb_strlen($this->alphabet) < 16) {
-            throw new HashidsException('Alphabet must contain at least 16 unique characters.');
+            throw new InvalidArgumentException('Alphabet must contain at least 16 unique characters.');
         }
 
         if (false !== mb_strpos($this->alphabet, ' ')) {
-            throw new HashidsException('Alphabet can\'t contain spaces.');
+            throw new InvalidArgumentException('Alphabet can\'t contain spaces.');
         }
 
         $alphabetArray = $this->multiByteSplit($this->alphabet);
@@ -291,14 +294,14 @@ class Hashids implements HashidsInterface
      * Get BC Math or GMP extension.
      * @throws \RuntimeException
      */
-    protected function getMathExtension(): Bc|Gmp
+    protected function getMathExtension(): BCMath|Gmp
     {
         if (extension_loaded('gmp')) {
             return new Gmp();
         }
 
         if (extension_loaded('bcmath')) {
-            return new Bc();
+            return new BCMath();
         }
 
         throw new RuntimeException('Missing BC Math or GMP extension.');
