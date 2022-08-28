@@ -1,6 +1,7 @@
 {
     "name": "hashids/hashids",
     "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers",
+    "license": "MIT",
     "keywords": [
         "bitly",
         "decode",
@@ -12,8 +13,6 @@
         "obfuscate",
         "youtube"
     ],
-    "homepage": "https://hashids.org/php",
-    "license": "MIT",
     "authors": [
         {
             "name": "Ivan Akimov",
@@ -24,26 +23,20 @@
             "email": "hello@doubledip.se"
         }
     ],
+    "homepage": "https://hashids.org/php",
     "require": {
         "php": "^8.1",
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.4",
-        "squizlabs/php_codesniffer": "^3.5"
+        "phpunit/phpunit": "^9.4"
     },
     "suggest": {
         "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
         "ext-gmp": "Required to use GNU multiple precision mathematics (*)."
     },
-    "config": {
-        "preferred-install": "dist"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "5.0-dev"
-        }
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Hashids\\": "src/"
@@ -54,6 +47,12 @@
             "Hashids\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "config": {
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "5.0-dev"
+        }
+    }
 }
