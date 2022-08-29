@@ -42,11 +42,11 @@ class Hashids implements HashidsInterface
         $this->math = $this->getMathExtension();
 
         if (mb_strlen($this->alphabet) < 16) {
-            throw new InvalidArgumentException('Alphabet must contain at least 16 unique characters.');
+            throw new InvalidArgumentException('The Hashids alphabet must contain at least 16 unique characters.');
         }
 
         if (false !== mb_strpos($this->alphabet, ' ')) {
-            throw new InvalidArgumentException('Alphabet can\'t contain spaces.');
+            throw new InvalidArgumentException('The Hashids alphabet can\'t contain spaces.');
         }
 
         $alphabetArray = $this->multiByteSplit($this->alphabet);
@@ -305,7 +305,7 @@ class Hashids implements HashidsInterface
             return new BCMath();
         }
 
-        throw new RuntimeException('Missing BC Math or GMP extension.');
+        throw new RuntimeException('Hashids require either BC Math or GMP extension to be installed.');
     }
 
     /**
