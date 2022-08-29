@@ -13,6 +13,7 @@ namespace Hashids;
 
 use Hashids\Math\BCMath;
 use Hashids\Math\Gmp;
+use Hashids\Math\MathInterface;
 use InvalidArgumentException;
 use RuntimeException;
 
@@ -20,7 +21,7 @@ class Hashids implements HashidsInterface
 {
     public const GUARD_DIV = 12;
     public const SEP_DIV = 3.5;
-    protected BCMath|Gmp $math;
+    protected MathInterface $math;
     protected array $shuffledAlphabets;
     protected int $minHashLength;
     protected string $alphabet;
@@ -294,7 +295,7 @@ class Hashids implements HashidsInterface
      * Get BC Math or GMP extension.
      * @throws \RuntimeException
      */
-    protected function getMathExtension(): BCMath|Gmp
+    protected function getMathExtension(): MathInterface
     {
         if (extension_loaded('gmp')) {
             return new Gmp();
