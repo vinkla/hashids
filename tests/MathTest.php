@@ -32,7 +32,7 @@ class MathTest extends TestCase
             ];
         }
 
-        throw new RuntimeException('Hashids require either BC Math or GMP extension to be installed.');
+        throw new RuntimeException('Missing math extension for Hashids, install either BCMath or GMP.');
     }
 
     /** @dataProvider mathProvider */
