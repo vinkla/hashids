@@ -305,7 +305,7 @@ class Hashids implements HashidsInterface
             return new BCMath();
         }
 
-        throw new RuntimeException('Missing math extension for Hashids, install either BCMath or GMP.');
+        throw new RuntimeException('Missing math extension for Hashids, install either bcmath or gmp.');
     }
 
     /**
