@@ -6,7 +6,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
 
-    name: PSR-12
+    name: PER
 
     steps:
       - uses: actions/checkout@v3
@@ -15,4 +15,4 @@ jobs:
           php-version: 8.1
           coverage: xdebug
           tools: php-cs-fixer, cs2pr
-      - run: php-cs-fixer fix . --dry-run --rules=@PSR12 --format=checkstyle | cs2pr
+      - run: php-cs-fixer fix . --dry-run --rules=@PER --format=checkstyle | cs2pr
