@@ -38,7 +38,7 @@ class BCMath implements MathInterface
         return bccomp($a, $b, 0) > 0;
     }
 
-    public function intval($a)
+    public function intval(mixed $a)
     {
         return intval($a);
     }
