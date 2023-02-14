@@ -29,7 +29,7 @@
         "ext-mbstring": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.4"
+        "phpunit/phpunit": "^10.0"
     },
     "suggest": {
         "ext-bcmath": "Required to use BC Math arbitrary precision mathematics (*).",
