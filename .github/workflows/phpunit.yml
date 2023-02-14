@@ -11,7 +11,7 @@ jobs:
         php: [8.1, 8.2]
         extension: [":bcmath", ":gmp"]
 
-    name: PHP ${{ matrix.php }} ${{ matrix.extension }}
+    name: PHP ${{ matrix.php }}
 
     steps:
       - uses: actions/checkout@v3
