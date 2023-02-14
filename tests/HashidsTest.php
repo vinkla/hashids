@@ -12,21 +12,21 @@
 namespace Hashids\Tests;
 
 use Hashids\Hashids;
-use Hashids\HashidsException;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class HashidsTest extends TestCase
 {
     public function testSmallAlphabet()
     {
-        $this->expectException(HashidsException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new Hashids('', 0, '1234567890');
     }
 
     public function testAlphabetWithSpace()
     {
-        $this->expectException(HashidsException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new Hashids('', 0, 'a cdefghijklmnopqrstuvwxyz');
     }
@@ -51,7 +51,7 @@ class HashidsTest extends TestCase
         $this->assertSame('', $hashids->decodeHex('f'));
     }
 
-    public function alphabetProvider()
+    public static function alphabetProvider()
     {
         return [
             ['cCsSfFhHuUiItT01'],
@@ -64,9 +64,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider alphabetProvider
-     */
+    /** @dataProvider alphabetProvider */
     public function testAlphabet($alphabets)
     {
         $numbers = [1, 2, 3];
@@ -77,7 +75,7 @@ class HashidsTest extends TestCase
         $this->assertSame($hashids->decode($id), $numbers);
     }
 
-    public function saltProvider($salts)
+    public static function saltProvider()
     {
         return [
             [''],
@@ -90,9 +88,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider saltProvider
-     */
+    /** @dataProvider saltProvider */
     public function testSalt($salts)
     {
         $numbers = [1, 2, 3];
@@ -104,7 +100,7 @@ class HashidsTest extends TestCase
         $this->assertSame($hashids->decode($id), $numbers);
     }
 
-    public function minLengthProvider()
+    public static function minLengthProvider()
     {
         return [
             [0],
@@ -115,9 +111,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider minLengthProvider
-     */
+    /** @dataProvider minLengthProvider */
     public function testMinLength($lengths)
     {
         $numbers = [1, 2, 3];
@@ -130,7 +124,7 @@ class HashidsTest extends TestCase
         $this->assertLessThanOrEqual(strlen($id), $lengths);
     }
 
-    public function encodeTypesProvider()
+    public static function encodeTypesProvider()
     {
         return [
             [[1, 2, 3]],
@@ -139,9 +133,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider encodeTypesProvider
-     */
+    /** @dataProvider encodeTypesProvider */
     public function testEncodeTypes($params)
     {
         $numbers = [1, 2, 3];
@@ -157,7 +149,7 @@ class HashidsTest extends TestCase
         $this->assertSame($id, $hashids->encode($decodedNumbers));
     }
 
-    public function defaultParamsProvider()
+    public static function defaultParamsProvider()
     {
         return [
             ['gY', [0]],
@@ -177,9 +169,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider defaultParamsProvider
-     */
+    /** @dataProvider defaultParamsProvider */
     public function testDefaultParams($id, $numbers)
     {
         $hashids = new Hashids();
@@ -192,7 +182,7 @@ class HashidsTest extends TestCase
         $this->assertSame($numbers, $decodedNumbers);
     }
 
-    public function customParamsProvider()
+    public static function customParamsProvider()
     {
         return [
             ['nej1m3d5a6yn875e7gr9kbwpqol02q', [0]],
@@ -212,9 +202,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider customParamsProvider
-     */
+    /** @dataProvider customParamsProvider */
     public function testCustomParams($id, $numbers)
     {
         $minLength = 30;
@@ -230,7 +218,7 @@ class HashidsTest extends TestCase
         $this->assertLessThanOrEqual(strlen($encodedId), $minLength);
     }
 
-    public function defaultParamsHexProvider()
+    public static function defaultParamsHexProvider()
     {
         return [
             ['wpVL4j9g', 'deadbeef'],
@@ -244,9 +232,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider defaultParamsHexProvider
-     */
+    /** @dataProvider defaultParamsHexProvider */
     public function testDefaultParamsHex($id, $hex)
     {
         $hashids = new Hashids();
@@ -258,7 +244,7 @@ class HashidsTest extends TestCase
         $this->assertSame(strtolower($hex), $decodedHex);
     }
 
-    public function customParamsHexProvider()
+    public static function customParamsHexProvider()
     {
         return [
             ['0dbq3jwa8p4b3gk6gb8bv21goerm96', 'deadbeef'],
@@ -272,9 +258,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider customParamsHexProvider
-     */
+    /** @dataProvider customParamsHexProvider */
     public function testCustomParamsHex($id, $hex)
     {
         $minLength = 30;
@@ -289,7 +273,7 @@ class HashidsTest extends TestCase
         $this->assertLessThanOrEqual(strlen($encodedId), $minLength);
     }
 
-    public function bigNumberDataProvider()
+    public static function bigNumberDataProvider()
     {
         return [
             [2147483647, 'ykJWW1g'], //max 32-bit signed integer
@@ -299,9 +283,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider bigNumberDataProvider
-     */
+    /** @dataProvider bigNumberDataProvider */
     public function testBigNumberEncode($number, $hash)
     {
         $hashids = new Hashids('this is my salt');
@@ -309,9 +291,7 @@ class HashidsTest extends TestCase
         $this->assertEquals($hash, $encoded);
     }
 
-    /**
-     * @dataProvider bigNumberDataProvider
-     */
+    /** @dataProvider bigNumberDataProvider */
     public function testBigNumberDecode($number, $hash)
     {
         $hashids = new Hashids('this is my salt');
@@ -319,7 +299,7 @@ class HashidsTest extends TestCase
         $this->assertEquals($number, $decoded[0]);
     }
 
-    public function jsHashidsDataProvider()
+    public static function jsHashidsDataProvider()
     {
         return [
             ['', 0, 'áàãăâeéèêiíìĩoóòõôơuúùũưyýỳđ', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 'íóuđáìàúãỳăyâôeyiôuĩ'],
@@ -329,9 +309,7 @@ class HashidsTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider jsHashidsDataProvider
-     */
+    /** @dataProvider jsHashidsDataProvider */
     public function testJsHashidsCompatible($salt, $minHashLength, $alphabet, $numbers, $hash)
     {
         $hashids = new Hashids($salt, $minHashLength, $alphabet);

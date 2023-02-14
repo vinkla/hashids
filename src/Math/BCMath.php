@@ -11,45 +11,45 @@
 
 namespace Hashids\Math;
 
-class Gmp implements MathInterface
+class BCMath implements MathInterface
 {
     public function add($a, $b)
     {
-        return gmp_add($a, $b);
+        return bcadd($a, $b, 0);
     }
 
     public function multiply($a, $b)
     {
-        return gmp_mul($a, $b);
+        return bcmul($a, $b, 0);
     }
 
     public function divide($a, $b)
     {
-        return gmp_div_q($a, $b);
+        return bcdiv($a, $b, 0);
     }
 
     public function mod($n, $d)
     {
-        return gmp_mod($n, $d);
+        return bcmod($n, $d);
     }
 
     public function greaterThan($a, $b)
     {
-        return gmp_cmp($a, $b) > 0;
+        return bccomp($a, $b, 0) > 0;
     }
 
     public function intval($a)
     {
-        return gmp_intval($a);
+        return intval($a);
     }
 
     public function strval($a)
     {
-        return gmp_strval($a);
+        return $a;
     }
 
     public function get($a)
     {
-        return gmp_init($a);
+        return $a;
     }
 }

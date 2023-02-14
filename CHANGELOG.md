@@ -1,37 +1,44 @@
 # CHANGELOG
 
-**4.1.0 (released 2020-11-26)**:
+## 5.0.0 (upcoming)
+
+- Added property type declarations
+- Removed HashidsException class
+- Removed PHP 7 and 8.0 support
+- Renamed Bc class to BCMath
+
+## 4.1.0
 
 - Added PHP 8.0 support
 
-**4.0.0 (released 2019-04-03)**:
+## 4.0.0
 
 - Added UTF-8 support (thanks [@bonfante](https://github.com/ivanakimov/hashids.php/pull/128))
 - Removed PHP 7.1 support
 
-**3.0.0 (released 2018-03-12)**:
+## 3.0.0
 
 - Added BC and GMP math classes (thanks [@jwpage](https://github.com/ivanakimov/hashids.php/pull/106))
 - Update and optimize alphabet shuffling (thanks [@jwpage](https://github.com/ivanakimov/hashids.php/pull/105))
 - Removed PHP 5.0 support ([#107](https://github.com/ivanakimov/hashids.php/pull/107))
 
-**2.0.4 (released 2017-10-28)**:
+## 2.0.4
 
 - Remove ext-bcmath requirement ([#91](https://github.com/ivanakimov/hashids.php/pull/91))
 
-**2.0.3 (released 2017-01-01)**:
+## 2.0.3
 
 - Implemented unhash using Horner's method (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/80))
 
-**2.0.2 (released 2016-12-29)**:
+## 2.0.2
 
 - Fix bug related to bc math accuracy (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/79))
 
-**2.0.1 (released 2016-12-29)**:
+## 2.0.1
 
 - Fix bug related to big numbers (thanks [@jkramarz](https://github.com/ivanakimov/hashids.php/pull/75))
 
-**2.0.0 (released 2016-11-15)**:
+## 2.0.0
 
 - Added .editorconfig file
 - Added Codecov coverage
@@ -42,7 +49,7 @@
 - Updated how separators are generated
 - Updated test suite
 
-**1.0.6**:
+## 1.0.6
 
 - `CHANGELOG` moved to its own file (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/41))
 - `.gitattributes` added (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/40))
@@ -54,26 +61,26 @@
 - typo in custom parameters example (thanks [@McMillanThomas](https://github.com/ivanakimov/hashids.php/pull/52))
 - testing against PHP 7.0 now (thanks [@vinkla](https://github.com/ivanakimov/hashids.php/pull/54))
 
-**1.0.5**:
+## 1.0.5
 
 - bug fix for passing empty array to `encode` (thanks [@bpahan](https://github.com/ivanakimov/hashids.php/issues/32))
 
-**1.0.3** & **1.0.4**:
+## 1.0.3 & 1.0.4
 
 - adjusting examples (thanks [@Trismegiste](https://github.com/ivanakimov/hashids.php/pull/28))
 - proper version bump in `const VERSION`
 
-**1.0.2**
+## 1.0.2
 
 - PSR-2 cleanup + interface changes (thanks [@Trismegiste](https://github.com/ivanakimov/hashids.php/pull/23))
 - `encode()` can accept array of integers (thanks [@leunggamciu](https://github.com/ivanakimov/hashids.php/pull/24))
 
-**1.0.1**
+## 1.0.1
 
 - bug fix for `encode_hex()` (thanks [@leihog](https://github.com/ivanakimov/hashids.php/pull/20))
 - unit test for `encode_hex()/decode_hex()`
 
-**1.0.0**
+## 1.0.0
 
 - Several public functions are renamed to be more appropriate:
     - Function `encrypt()` changed to `encode()`
@@ -86,26 +93,30 @@
 - Version tag added: `1.0`
 - `README.md` updated
 
-**0.3.1**
+## 0.3.1
 
 - Added *encrypt_hex()* and *decrypt_hex()* support
 - Minor: Relaxed integer check in *encrypt()* function (can now pass strings of numbers)
 
-**0.3.0 - Warning: Hashes change in this version:**
+## 0.3.0
+
+> **Warning** Hashes change in this version
 
 - Bug fix: better handling of big numbers: [https://github.com/ivanakimov/hashids.php/issues/3](https://github.com/ivanakimov/hashids.php/issues/3) (thanks [@tobsn](https://github.com/tobsn) and [@miquelfire](https://github.com/miquelfire))
 - Bug fix: exception throwing in constructor
 - Default maximum number is set to 1 billion: 1,000,000,000. Unless you have [GNU Multiple Precision](https://www.php.net/manual/en/book.gmp.php) or [BCMath Arbitrary Precision Mathematics](https://www.php.net/manual/en/book.bc.php) library installed - then `PHP_INT_MAX` is used.
 - Cleanup: private variables use underscores
 
-**0.2.1**
+## 0.2.1
 
 - General directory cleanup + improvements
 - Now only one library file for both PHP 5.3 and PHP 5.4
 - Constants uppercased
 - Namespace `Hashids` added to library class
 
-**0.2.0 - Warning: Hashes change in this version:**
+## 0.2.0
+
+> **Warning** Hashes change in this version
 
 - Overall approximately **4x** faster
 - Consistent shuffle function uses slightly modified version of [Fisher–Yates algorithm](https://en.m.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm)
@@ -117,12 +128,16 @@
 - Composer package at packagist: [https://packagist.org/packages/hashids/hashids](https://packagist.org/packages/hashids/hashids)
 - _Minor:_ a bit smaller code overall -- more motivation to port to other languages :P
 
-**0.1.3 - Warning: Hashes change in this version:**
+## 0.1.3
+
+> **Warning** Hashes change in this version
 
 - Updated default alphabet (thanks to [@speps](https://github.com/speps))
 - Constructor removes duplicate characters for default alphabet as well (thanks to [@speps](https://github.com/speps))
 
-**0.1.2 - Warning: Hashes change in this version:**
+## 0.1.2
+
+> **Warning** Hashes change in this version
 
 - Minimum hash length can now be specified
 - Added more randomness to hashes
@@ -133,11 +148,11 @@
 - Consistent shuffle does not depend on md5 anymore
 - Speed improvements
 
-**0.1.1**
+## 0.1.1
 
 - Speed improvements
 - Bug fixes
 
-**0.1.0**
+## 0.1.0
 
 - First commit
