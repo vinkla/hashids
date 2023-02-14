@@ -51,7 +51,7 @@ class HashidsTest extends TestCase
         $this->assertSame('', $hashids->decodeHex('f'));
     }
 
-    public function alphabetProvider()
+    public static function alphabetProvider()
     {
         return [
             ['cCsSfFhHuUiItT01'],
@@ -75,7 +75,7 @@ class HashidsTest extends TestCase
         $this->assertSame($hashids->decode($id), $numbers);
     }
 
-    public function saltProvider()
+    public static function saltProvider()
     {
         return [
             [''],
@@ -100,7 +100,7 @@ class HashidsTest extends TestCase
         $this->assertSame($hashids->decode($id), $numbers);
     }
 
-    public function minLengthProvider()
+    public static function minLengthProvider()
     {
         return [
             [0],
@@ -124,7 +124,7 @@ class HashidsTest extends TestCase
         $this->assertLessThanOrEqual(strlen($id), $lengths);
     }
 
-    public function encodeTypesProvider()
+    public static function encodeTypesProvider()
     {
         return [
             [[1, 2, 3]],
@@ -149,7 +149,7 @@ class HashidsTest extends TestCase
         $this->assertSame($id, $hashids->encode($decodedNumbers));
     }
 
-    public function defaultParamsProvider()
+    public static function defaultParamsProvider()
     {
         return [
             ['gY', [0]],
@@ -182,7 +182,7 @@ class HashidsTest extends TestCase
         $this->assertSame($numbers, $decodedNumbers);
     }
 
-    public function customParamsProvider()
+    public static function customParamsProvider()
     {
         return [
             ['nej1m3d5a6yn875e7gr9kbwpqol02q', [0]],
@@ -218,7 +218,7 @@ class HashidsTest extends TestCase
         $this->assertLessThanOrEqual(strlen($encodedId), $minLength);
     }
 
-    public function defaultParamsHexProvider()
+    public static function defaultParamsHexProvider()
     {
         return [
             ['wpVL4j9g', 'deadbeef'],
@@ -244,7 +244,7 @@ class HashidsTest extends TestCase
         $this->assertSame(strtolower($hex), $decodedHex);
     }
 
-    public function customParamsHexProvider()
+    public static function customParamsHexProvider()
     {
         return [
             ['0dbq3jwa8p4b3gk6gb8bv21goerm96', 'deadbeef'],
@@ -273,7 +273,7 @@ class HashidsTest extends TestCase
         $this->assertLessThanOrEqual(strlen($encodedId), $minLength);
     }
 
-    public function bigNumberDataProvider()
+    public static function bigNumberDataProvider()
     {
         return [
             [2147483647, 'ykJWW1g'], //max 32-bit signed integer
@@ -299,7 +299,7 @@ class HashidsTest extends TestCase
         $this->assertEquals($number, $decoded[0]);
     }
 
-    public function jsHashidsDataProvider()
+    public static function jsHashidsDataProvider()
     {
         return [
             ['', 0, 'áàãăâeéèêiíìĩoóòõôơuúùũưyýỳđ', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 'íóuđáìàúãỳăyâôeyiôuĩ'],

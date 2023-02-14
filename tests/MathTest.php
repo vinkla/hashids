@@ -18,7 +18,7 @@ use RuntimeException;
 
 class MathTest extends TestCase
 {
-    public function mathProvider()
+    public static function mathProvider()
     {
         if (extension_loaded('gmp')) {
             return [
