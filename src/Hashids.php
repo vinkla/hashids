@@ -80,7 +80,7 @@ class Hashids implements HashidsInterface
     /**
      * Encode parameters to generate a hash.
      *
-     * @param string|array<int, string> $numbers
+     * @param int|string|array<int, int|string> $numbers
      */
     public function encode(...$numbers): string
     {
