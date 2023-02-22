@@ -20,16 +20,17 @@ class MathTest extends TestCase
 {
     public static function mathProvider()
     {
+        $providerCases = [];
         if (extension_loaded('gmp')) {
-            return [
-                [new Gmp()]
-            ];
+            $providerCases[] = [new Gmp()];
         }
 
         if (extension_loaded('bcmath')) {
-            return [
-                [new BCMath()]
-            ];
+            $providerCases[] = [new BCMath()];
+        }
+
+        if (count($providerCases) > 0) {
+            return $providerCases;
         }
 
         throw new RuntimeException('Missing math extension for Hashids, install either bcmath or gmp.');
