@@ -77,7 +77,6 @@ class Hashids implements HashidsInterface
         }
     }
 
-    /** Encode parameters to generate a hash. */
     public function encode(...$numbers): string
     {
         $ret = '';
@@ -146,7 +145,6 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    /** Decode a hash to the original parameter values. */
     public function decode(string $hash): array
     {
         $ret = [];
@@ -189,7 +187,6 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    /** Encode hexadecimal values and generate a hash string. */
     public function encodeHex(string $str): string
     {
         if (!ctype_xdigit($str)) {
@@ -206,7 +203,6 @@ class Hashids implements HashidsInterface
         return $this->encode(...$numbers);
     }
 
-    /** Decode a hexadecimal hash. */
     public function decodeHex(string $hash): string
     {
         $ret = '';
