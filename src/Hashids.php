@@ -77,10 +77,7 @@ class Hashids implements HashidsInterface
         }
     }
 
-    /**
-     * Encode parameters to generate a hash.
-     * @param int|string|array<int, int|string> ...$numbers
-     */
+    /** Encode parameters to generate a hash. */
     public function encode(...$numbers): string
     {
         $ret = '';
@@ -149,10 +146,7 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
-    /**
-     * Decode a hash to the original parameter values.
-     * @return array<int, int>|array{}
-     */
+    /** Decode a hash to the original parameter values. */
     public function decode(string $hash): array
     {
         $ret = [];
