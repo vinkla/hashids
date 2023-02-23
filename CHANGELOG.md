@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.0.1
+
+- Updated PHPDoc types for encode method
+
 ## 5.0.0
 
 - Added property type declarations
