@@ -19,7 +19,10 @@ interface HashidsInterface
      */
     public function encode(...$numbers): string;
 
-    /** Decode a hash to the original parameter values. */
+    /**
+     * Decode a hash to the original parameter values.
+     * @return array<int, int>|array{}
+     */
     public function decode(string $hash): array;
 
     /** Encode hexadecimal values and generate a hash string. */

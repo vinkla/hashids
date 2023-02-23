@@ -151,7 +151,7 @@ class Hashids implements HashidsInterface
 
     /**
      * Decode a hash to the original parameter values.
-     * @return array<int, string>
+     * @return array<int, int>|array{}
      */
     public function decode(string $hash): array
     {
