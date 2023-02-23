@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 5.0.2
+
+- Updated PHPDoc types
+
 ## 5.0.1
 
 - Updated PHPDoc types for encode method
