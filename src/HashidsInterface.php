@@ -21,7 +21,7 @@ interface HashidsInterface
 
     /**
      * Decode a hash to the original parameter values.
-     * @return array<int, int>|array{}
+     * @return array<int, int>
      */
     public function decode(string $hash): array;
 
