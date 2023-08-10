@@ -1,4 +1,4 @@
-[![hashids](https://hashids.org/public/img/hashids.gif "Hashids")](https://hashids.org/)
+[![hashids](https://raw.githubusercontent.com/hashids/hashids.github.io/master/public/img/hashids.gif "Hashids")](https://hashids.org/)
 
 [![Build Status](https://badgen.net/github/checks/vinkla/hashids?label=build&icon=github)](https://github.com/vinkla/hashids/actions)
 [![Monthly Downloads](https://badgen.net/packagist/dm/hashids/hashids)](https://packagist.org/packages/hashids/hashids/stats)
