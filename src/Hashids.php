@@ -305,4 +305,16 @@ class Hashids implements HashidsInterface
     {
         return preg_split('/(?!^)(?=.)/u', $string) ?: [];
     }
+
+    /** Encode any text. */
+    public function encodeText(string $value): string
+    {
+        return $this->encodeHex(bin2hex($value));
+    }
+
+    public function decodeText(string $hash): string
+    {
+        return hex2bin($this->decodeHex($hash));
+    }
+
 }
