@@ -1,6 +1,10 @@
 name: PHP-CS-Fixer
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 jobs:
   run:
@@ -9,7 +13,7 @@ jobs:
     name: PER
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
