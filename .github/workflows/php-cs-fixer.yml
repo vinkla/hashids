@@ -10,7 +10,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
 
-    name: PER
+    name: PER-CS
 
     steps:
       - uses: actions/checkout@v4
