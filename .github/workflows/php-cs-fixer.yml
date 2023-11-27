@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: 8.3
           coverage: xdebug
           tools: php-cs-fixer, cs2pr
       - run: php-cs-fixer fix . --dry-run --rules=@PER-CS --format=checkstyle | cs2pr
