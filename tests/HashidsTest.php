@@ -52,8 +52,6 @@ class HashidsTest extends TestCase
         $this->assertSame('', $hashids->encodeHex('z'));
 
         $this->assertSame('', $hashids->decodeHex('f'));
-
-        $this->noMethod('test');
     }
 
     public static function alphabetProvider()
