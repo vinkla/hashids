@@ -46,8 +46,8 @@ class HashidsTest extends TestCase
         $this->assertSame([], $hashids->decode(''));
         $this->assertSame([], $hashids->decode('f'));
 
-        $this->assertSame([], $hashids->decodeToString(''));
-        $this->assertSame([], $hashids->decodeToString('f'));
+        $this->assertSame('', $hashids->decodeToString(''));
+        $this->assertSame('', $hashids->decodeToString('f'));
 
         $this->assertSame('', $hashids->encodeHex('z'));
 
