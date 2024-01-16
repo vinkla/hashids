@@ -187,6 +187,11 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
+    public function decodeToString(string $hash): string
+    {
+        return implode($this->decode($hash));
+    }
+
     public function encodeHex(string $str): string
     {
         if (!ctype_xdigit($str)) {

@@ -35,6 +35,8 @@ $hashids = new Hashids();
 
 $id = $hashids->encode(1, 2, 3); // o2fXhV
 $numbers = $hashids->decode($id); // [1, 2, 3]
+or
+$numbers = $hashids->decodeToString($id); // 123
 ```
 
 ## More Options
@@ -115,6 +117,12 @@ $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 
 	$hashids->decode($id); // [1]
 	```
+     You can use
+    ```php
+    $hashids->decodeToString($id); // 1    
+    ```
+   to get simple string, which is imploded array of decode;
+
 
 2. Encoding negative numbers is not supported.
 3. If you pass bogus input to `encode()`, an empty string will be returned:

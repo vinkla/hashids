@@ -46,9 +46,14 @@ class HashidsTest extends TestCase
         $this->assertSame([], $hashids->decode(''));
         $this->assertSame([], $hashids->decode('f'));
 
+        $this->assertSame([], $hashids->decodeToString(''));
+        $this->assertSame([], $hashids->decodeToString('f'));
+
         $this->assertSame('', $hashids->encodeHex('z'));
 
         $this->assertSame('', $hashids->decodeHex('f'));
+
+        $this->noMethod('test');
     }
 
     public static function alphabetProvider()
@@ -180,6 +185,19 @@ class HashidsTest extends TestCase
         $this->assertSame($id, $encodedId);
         $this->assertSame($id, call_user_func_array([$hashids, 'encode'], $numbers));
         $this->assertSame($numbers, $decodedNumbers);
+    }
+
+
+    /** @dataProvider defaultParamsProvider */
+    public function testDecodeToString($id, $numbers)
+    {
+        $hashids = new Hashids();
+
+        $implodedNum = implode($numbers);
+        $encodedId = $hashids->encode($numbers);
+        $decodedNumber = $hashids->decodeToString($encodedId);
+
+        $this->assertSame($implodedNum, $decodedNumber);
     }
 
     public static function customParamsProvider()

@@ -25,6 +25,11 @@ interface HashidsInterface
      */
     public function decode(string $hash): array;
 
+    /**
+     * Decode a hash to the string, with concatenated original parameter values.
+     */
+    public function decodeToString(string $hash): string;
+
     /** Encode hexadecimal values and generate a hash string. */
     public function encodeHex(string $str): string;
 
