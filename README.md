@@ -102,6 +102,19 @@ $id = $hashids->encodeHex('507f1f77bcf86cd799439011'); // y42LW46J9luq3Xq9XMly
 $hex = $hashids->decodeHex($id); // 507f1f77bcf86cd799439011
 ```
 
+#### Encode string instead of numbers
+
+Useful if you want to encode [Mongo](https://www.mongodb.com)'s ObjectIds. Note that *there is no limit* on how large of a hex number you can pass (it does not have to be Mongo's ObjectId).
+
+```php
+use Hashids\Hashids;
+
+$hashids = new Hashids();
+
+$id = $hashids->encodeString('encode decode string'); // llKJwwjNPAUjRXRzM4ryH0pZ7p2xWEHM1K8
+$hex = $hashids->decodeString($id); // encode decode string
+```
+
 ## Pitfalls
 
 1. When decoding, output is always an array of numbers (even if you encoded only one number):
