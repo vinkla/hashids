@@ -215,6 +215,22 @@ class Hashids implements HashidsInterface
         return $ret;
     }
 
+    public function encodeString(string $str): string
+    {
+        $hexStr = bin2hex($str);
+        return $this->encodeHex($hexStr);
+    }
+
+    public function decodeString(string $hash): string
+    {
+        $hexStr = $this->decodeHex($hash);
+        $ret = hex2bin($hexStr);
+        if ($ret === false) {
+            return '';
+        }
+        return $ret;
+    }
+
     /** Shuffle alphabet by given salt. */
     protected function shuffle(string $alphabet, string $salt): string
     {

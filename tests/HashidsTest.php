@@ -49,6 +49,8 @@ class HashidsTest extends TestCase
         $this->assertSame('', $hashids->encodeHex('z'));
 
         $this->assertSame('', $hashids->decodeHex('f'));
+
+        $this->assertSame('', $hashids->decodeHex('f'));
     }
 
     public static function alphabetProvider()
@@ -242,6 +244,32 @@ class HashidsTest extends TestCase
 
         $this->assertSame($id, $encodedId);
         $this->assertSame(strtolower($hex), $decodedHex);
+    }
+
+    public static function defaultParamsStringProvider()
+    {
+        return [
+            ['MwLNMNmXm', 'hello'],
+            ['RlgMvxEkR', 'world'],
+            ['RvAQEOX6GVcRV', 'Hashids'],
+            ['WEo7Q87k1piOyVk9By3PIpyxql', 'PHPUnit testing'],
+            ['llKJwwjNPAUjRXRzM4ryH0pZ7p2xWEHM1K8', 'encode decode string'],
+            ['BmDo4pEjWjH5jDnnv', '1234567890'],
+            ['qqyxMWW1yQsZW92317O9izwNV0Bow9uVjgE6oON5', 'complex test case string'],
+            ['vBvqKrRkmKfxAnQ3ymmjI4nmwpENnzHnMrXVAQG1SXVR8zrlJkiwk6AyRAqEUJR83ngX9', 'long string with special chars !@#$%^&*()'],
+        ];
+    }
+
+    /** @dataProvider defaultParamsStringProvider */
+    public function testDefaultParamsString($id, $string)
+    {
+        $hashids = new Hashids();
+
+        $encodedString = $hashids->encodeString($string);
+        $decodedString = $hashids->decodeString($encodedString);
+
+        $this->assertSame($id, $encodedString);
+        $this->assertSame($string, $decodedString);
     }
 
     public static function customParamsHexProvider()

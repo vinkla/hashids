@@ -30,4 +30,10 @@ interface HashidsInterface
 
     /** Decode a hexadecimal hash. */
     public function decodeHex(string $hash): string;
+
+    /** Encode arbitrary string values and generate a hash string. */
+    public function encodeString(string $str): string;
+
+    /** Decode an arbitrary string hash. */
+    public function decodeString(string $hash): string;
 }
