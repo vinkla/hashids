@@ -49,8 +49,6 @@ class HashidsTest extends TestCase
         $this->assertSame('', $hashids->encodeHex('z'));
 
         $this->assertSame('', $hashids->decodeHex('f'));
-
-        $this->assertSame('', $hashids->decodeHex('f'));
     }
 
     public static function alphabetProvider()
