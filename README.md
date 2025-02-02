@@ -1,5 +1,5 @@
 <a href="https://sqids.org/">
-    <img align="left" src="https://github.com/user-attachments/assets/75864e3a-483c-4b6f-9b0b-66f5e3d6e736" alt="Sqids" width="100" height="100">
+    <img align="right" src="https://github.com/user-attachments/assets/75864e3a-483c-4b6f-9b0b-66f5e3d6e736" alt="Sqids" width="100" height="100">
 </a>
 
 > [!TIP]
