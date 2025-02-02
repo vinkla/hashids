@@ -6,12 +6,14 @@
 
 **Hashids** is a small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database numeric ids to users: [https://hashids.org/php](https://hashids.org/php)
 
-<a href="https://sqids.org/">
-    <img align="right" src="https://github.com/user-attachments/assets/75864e3a-483c-4b6f-9b0b-66f5e3d6e736" alt="Sqids" width="100" height="100">
-</a>
+### Hashids → Sqids
 
 > [!TIP]
 > The creator of Hashids has released a new, upgraded version rebranded as **Sqids**. However, Hashids will continue to be maintained and available for future use. For more information, please visit the [Sqids repository](https://github.com/sqids/sqids-php) and learn how it compares to Hashids on the [Sqids website](https://sqids.org/faq#hashids).
+
+<a href="https://sqids.org/">
+    <img align="right" src="https://github.com/user-attachments/assets/75864e3a-483c-4b6f-9b0b-66f5e3d6e736" alt="Sqids" width="100" height="100">
+</a>
 
 ## Getting started
 
