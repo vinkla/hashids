@@ -18,7 +18,7 @@
 Require this package, with [Composer](https://getcomposer.org), in the root directory of your project.
 
 ```bash
-composer require hashids/hashids
+composer require vinkla/hashids
 ```
 
 Then you can import the class into your application:
