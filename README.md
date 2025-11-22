@@ -1,8 +1,8 @@
 [![hashids](https://raw.githubusercontent.com/hashids/hashids.github.io/master/public/img/hashids.gif "Hashids")](https://hashids.org/)
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/vinkla/hashids/phpunit.yml?branch=master&label=tests)](https://github.com/vinkla/hashids/actions)
-[![Monthly Downloads](https://img.shields.io/packagist/dm/hashids/hashids)](https://packagist.org/packages/vinkla/hashids/stats)
-[![Latest Version](https://img.shields.io/packagist/v/hashids/hashids)](https://packagist.org/packages/vinkla/hashids)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/hashids/hashids)](https://packagist.org/packages/hashids/hashids/stats)
+[![Latest Version](https://img.shields.io/packagist/v/hashids/hashids)](https://packagist.org/packages/hashids/hashids)
 
 **Hashids** is a small PHP library to generate YouTube-like ids from numbers. Use it when you don't want to expose your database numeric ids to users: [https://hashids.org/php](https://hashids.org/php)
 
